@@ -8,7 +8,7 @@ public class Grid : MonoBehaviour
     // VARIABLES
 
     private static GameObject Border { get; set; }
-    private static GameObject[,] lineToAnimate { get; set; }
+    private static GameObject[,] LineToAnimate { get; set; }
 
     // Grid dimensions
     public static int gridHeight = 21;
@@ -19,7 +19,7 @@ public class Grid : MonoBehaviour
     public float timeToGameOver = 10.0f;
 
     public static int[,] PlayGrid { get; set; }
-    public static bool _gameOver;
+    public static bool IsGameOver;
     public static SubGrid MovementGrid { get; set; }
 
     private static readonly int ColorBlack = Shader.PropertyToID("_Color");
@@ -41,7 +41,7 @@ public class Grid : MonoBehaviour
             IsClear = new bool[gridWidth, gridHeight],
             GridCube = new GameObject[gridWidth, gridHeight]
         };
-        lineToAnimate = new GameObject[gridWidth, gridHeight];
+        LineToAnimate = new GameObject[gridWidth, gridHeight];
         for (var x = 0; x < gridWidth; x++)
         for (var y = 0; y < gridHeight; y++)
             if (x < 1 || x > 10 || y < 1)
@@ -66,7 +66,7 @@ public class Grid : MonoBehaviour
 
     public static void GameOver()
     {
-        if (_gameOver == false)
+        if (IsGameOver == false)
         {
             var kick = 3f;
             for (var x = 1; x < gridWidth - 1; x++)
@@ -79,7 +79,7 @@ public class Grid : MonoBehaviour
                     Debug.Log("Game Over!");
                 }
 
-            _gameOver = true;
+            IsGameOver = true;
             /*if (gameOver)
                 while (gameOver)
                 {
@@ -141,8 +141,8 @@ public class Grid : MonoBehaviour
                     MovementGrid.IsClear[x, y] = true;
                     if (MovementGrid.IsClear[x, y])
                     {
-                        lineToAnimate[x, y] = Instantiate(MovementGrid.GridCube[x, y]);
-                        StartCoroutine(lineClearAnimation(x, y, gridWidth));
+                        LineToAnimate[x, y] = Instantiate(MovementGrid.GridCube[x, y]);
+                        StartCoroutine(lineClearAnimation(x, y));
                         DestroyImmediate(MovementGrid.GridCube[x, y]);
                         PlayGrid[x, y] = 0;
                         MovementGrid.IsClear[x, y] = false;
@@ -195,7 +195,7 @@ public class Grid : MonoBehaviour
 
     private void LockManager()
     {
-        foreach (var block in Blocks._tetrominos.Where(block => block.IsLocked))
+        foreach (var block in Blocks.Tetrominos.Where(block => block.IsLocked))
         {
             int size;
             if (block.Type == "I" || block.Type == "O")
@@ -216,7 +216,7 @@ public class Grid : MonoBehaviour
                         block.Color;
                 }
 
-            block.TetrominoGo.transform.position = Blocks.spawnArea;
+            block.TetrominoGo.transform.position = Blocks.SpawnArea;
             block.Location = new float[] {3, 30, 0};
             while (block.RotationState != 0)
             {
@@ -245,24 +245,25 @@ public class Grid : MonoBehaviour
         GridManager(gridWidth, gridHeight);
     }
 
-    private IEnumerator lineClearAnimation(int x, int y, int w)
+    private IEnumerator lineClearAnimation(int x, int y)
     {
         Debug.Log("Starting line clear coroutine");
 
         {
-            var gameOverRigidbody = lineToAnimate[x, y].AddComponent<Rigidbody>();
+            var gameOverRigidbody = LineToAnimate[x, y].AddComponent<Rigidbody>();
             gameOverRigidbody.position += Vector3.back;
             //gameOverRigidbody.AddForce(0, 0, 0, ForceMode.Impulse);
-            gameOverRigidbody.AddTorque(0, -10, -2, ForceMode.Impulse);
+            gameOverRigidbody.AddForce(0, 0, -0.5f, ForceMode.Impulse);
+            gameOverRigidbody.AddTorque(0, -10, 1, ForceMode.Impulse);
 
-            while (lineToAnimate[x, y].transform.position[1] > -10)
+            while (LineToAnimate[x, y].transform.position[1] > -10)
             {
                 Debug.Log("waiting");
                 yield return null;
             }
 
             Debug.Log("Coroutine has concluded");
-            Destroy(lineToAnimate[x, y]);
+            Destroy(LineToAnimate[x, y]);
         }
     }
 }

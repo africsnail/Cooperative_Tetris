@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class Menu : MonoBehaviour
 {
-    public static bool IsPaused = false;
-
+    // VARIABLES
+    public static bool IsPaused;
     private GameObject _canvas;
     private Canvas _canvasCanvas;
     private AudioSource _musicMusic;

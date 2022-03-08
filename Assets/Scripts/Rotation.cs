@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
-    public static float rotationOffsetX;
-    public static float rotationOffsetY;
+    public static float RotationOffsetX;
+    public static float RotationOffsetY;
 
     public string keybindRotateC = "d";
     public string keybindRotateAc = "a";
@@ -29,7 +27,7 @@ public class Rotation : MonoBehaviour
 
         var canRotate = true;
 
-        foreach (var block in Blocks._tetrominos.Where(block => block.IsActive))
+        foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
         {
             int size;
             if (block.Type == "I" || block.Type == "O")
@@ -117,8 +115,8 @@ public class Rotation : MonoBehaviour
     private void Rotate()
     {
         if (Input.GetKeyDown(keybindRotateC) || Input.GetKeyDown(keybindRotateAc))
-            if (Blocks.isFalling && Blocks.activeSpawn == false)
-                foreach (var block in Blocks._tetrominos.Where(block => block.IsActive))
+            if (Blocks.IsFalling && Blocks.ActiveSpawn == false)
+                foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
                 {
                     if (block.RotationState == 3)
                         FutureRotationC = 0;
@@ -365,20 +363,20 @@ public class Rotation : MonoBehaviour
 
     public static void Rotate(string direction, int xMove, int yMove)
     {
-        foreach (var block in Blocks._tetrominos.Where(block => block.IsActive || block.AtSpawn))
-            if (block.IsLocked == false && Blocks.activeSpawn == false || block.AtSpawn)
+        foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive || block.AtSpawn))
+            if (block.IsLocked == false && Blocks.ActiveSpawn == false || block.AtSpawn)
             {
                 int size;
                 if (block.Type == "I" || block.Type == "O")
                 {
-                    rotationOffsetX = 1.5f;
-                    rotationOffsetY = 2.5f;
+                    RotationOffsetX = 1.5f;
+                    RotationOffsetY = 2.5f;
                     size = 4;
                 }
                 else
                 {
-                    rotationOffsetX = 1f;
-                    rotationOffsetY = 2f;
+                    RotationOffsetX = 1f;
+                    RotationOffsetY = 2f;
                     size = 3;
                 }
 
@@ -393,8 +391,8 @@ public class Rotation : MonoBehaviour
 
                     // Rotates the tetromino clockwise
                     block.TetrominoGo.transform.RotateAround(
-                        new Vector3(block.Location[0] + rotationOffsetX,
-                            block.Location[1] - rotationOffsetY, block.Location[2]), Vector3.forward,
+                        new Vector3(block.Location[0] + RotationOffsetX,
+                            block.Location[1] - RotationOffsetY, block.Location[2]), Vector3.forward,
                         -90.0f);
 
 
@@ -414,7 +412,7 @@ public class Rotation : MonoBehaviour
                     block.Location[1] += yMove;
 
                     block.TetrominoGo.transform.RotateAround(
-                        new Vector3(block.Location[0] + rotationOffsetX, block.Location[1] - rotationOffsetY,
+                        new Vector3(block.Location[0] + RotationOffsetX, block.Location[1] - RotationOffsetY,
                             block.Location[2]), Vector3.forward, 90.0f);
 
                     RGridCache = new int[size, size];
@@ -427,15 +425,13 @@ public class Rotation : MonoBehaviour
                     if (block.AtSpawn == false) block.RotationState = FutureRotationAc;
                 }
 
-                Blocks.timeLock = 0.0f;
-                Blocks.lockCounter++;
+                Blocks.TimeLock = 0.0f;
+                Blocks.LockCounter++;
             }
     }
 
     // Start is called before the first frame update
-    private void Start()
-    {
-    }
+    
 
     // Update is called once per frame
     private void Update()
