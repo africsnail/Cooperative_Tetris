@@ -97,10 +97,13 @@ public class Blocks : MonoBehaviour
 // Update is called once per frame
     private void Update()
     {
-        SpawnMino("random");
-        Falling();
-        Controls();
-        Hold();
+        if (!Menu.IsPaused)
+        {
+            SpawnMino("random");
+            Falling();
+            Controls();
+            Hold();
+        }
     }
 
 
@@ -517,8 +520,20 @@ public class Blocks : MonoBehaviour
                             block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
                             block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
                         }
+                    
+                    // Soft Drop
+                    if (timeSoftDrop >= timeToSoftDrop)
+                        if (Input.GetKey(keybindSoftDrop) && CanMove("down") && TimeLock <= timeToLock)
+                        {
+                            IsFalling = false;
+                            TimeLock = 0.0f;
+                            timeFall = 0.0f;
+                            timeSoftDrop = 0.0f;
+                            block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
+                            block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
+                        }
 
-                    // Falling disable
+                    // Falling disable for Soft Drop and Hard Drop
                     if (Input.GetKeyUp(keybindSoftDrop) || Input.GetKeyUp(keybindHardDrop) && CanMove("down"))
                     {
                         IsFalling = true;
@@ -590,18 +605,6 @@ public class Blocks : MonoBehaviour
                             LockCounter++;
                         }
                     }
-
-                    // Soft Drop
-                    if (timeSoftDrop >= timeToSoftDrop)
-                        if (Input.GetKey(keybindSoftDrop) && CanMove("down") && TimeLock <= timeToLock)
-                        {
-                            IsFalling = false;
-                            TimeLock = 0.0f;
-                            timeFall = 0.0f;
-                            timeSoftDrop = 0.0f;
-                            block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
-                            block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
-                        }
                 }
     }
 

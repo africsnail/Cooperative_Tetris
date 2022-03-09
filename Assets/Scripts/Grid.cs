@@ -12,7 +12,7 @@ public class Grid : MonoBehaviour
 
     // Grid dimensions
     public static int gridHeight = 21;
-    private static int gridWidth = 12;
+    public static int gridWidth = 12;
 
     // Game Over timer
     public float timeGameOver;
@@ -250,15 +250,16 @@ public class Grid : MonoBehaviour
         Debug.Log("Starting line clear coroutine");
 
         {
-            var gameOverRigidbody = LineToAnimate[x, y].AddComponent<Rigidbody>();
-            gameOverRigidbody.position += Vector3.back;
-            //gameOverRigidbody.AddForce(0, 0, 0, ForceMode.Impulse);
-            gameOverRigidbody.AddForce(0, 0, -0.5f, ForceMode.Impulse);
-            gameOverRigidbody.AddTorque(0, -10, 1, ForceMode.Impulse);
+            var lineClearRigidbody = LineToAnimate[x, y].AddComponent<Rigidbody>();
+            lineClearRigidbody.position += Vector3.back;
+            //lineClearRigidbody.AddForce(0, 0, 0, ForceMode.Impulse);
+            lineClearRigidbody.AddForce(0, 0, -0.5f, ForceMode.Impulse);
+            lineClearRigidbody.AddTorque(0, -10, 1.1f, ForceMode.Impulse);
 
             while (LineToAnimate[x, y].transform.position[1] > -10)
             {
                 Debug.Log("waiting");
+                lineClearRigidbody.AddForce(0, -2, 0, ForceMode.Acceleration);
                 yield return null;
             }
 
