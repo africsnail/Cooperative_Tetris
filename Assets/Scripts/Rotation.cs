@@ -484,22 +484,16 @@ public class Rotation : MonoBehaviour
                         {
                             Debug.Log("Mini T-Spin");
                             ScoreSystem.IsTSpinLastMove = 2;
-                            if (ScoreSystem.IsTSpin == 1)
-                                ScoreSystem.CurrentAction += 4;
-                            if (ScoreSystem.IsTSpin == 2)
-                                ScoreSystem.CurrentAction += 1;
-                            ScoreSystem.IsTSpin = 2;
+                            ScoreSystem.CurrentAction += 1;
+                            ScoreSystem.Score += 100;
                         }
                         else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
                                      block.RotationState) == 1)
                         {
                             Debug.Log("T-Spin");
                             ScoreSystem.IsTSpinLastMove = 1;
-                            if (ScoreSystem.IsTSpin == 1)
-                                ScoreSystem.CurrentAction += 4;
-                            if (ScoreSystem.IsTSpin == 2)
-                                ScoreSystem.CurrentAction += 1;
-                            ScoreSystem.IsTSpin = 1;
+                            ScoreSystem.CurrentAction += 4;
+                            ScoreSystem.Score += 400;
                         }
                     }
                 }
@@ -537,22 +531,16 @@ public class Rotation : MonoBehaviour
                         {
                             Debug.Log("Mini T-Spin");
                             ScoreSystem.IsTSpinLastMove = 2;
-                            if (ScoreSystem.IsTSpin == 1)
-                                ScoreSystem.CurrentAction += 4;
-                            if (ScoreSystem.IsTSpin == 2)
-                                ScoreSystem.CurrentAction += 1;
-                            ScoreSystem.IsTSpin = 2;
+                            ScoreSystem.CurrentAction += 1;
+                            ScoreSystem.Score += 100;
                         }
                         else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
                                      block.RotationState) == 1)
                         {
                             Debug.Log("T-Spin");
                             ScoreSystem.IsTSpinLastMove = 1;
-                            if (ScoreSystem.IsTSpin == 1)
-                                ScoreSystem.CurrentAction += 4;
-                            if (ScoreSystem.IsTSpin == 2)
-                                ScoreSystem.CurrentAction += 1;
-                            ScoreSystem.IsTSpin = 1;
+                            ScoreSystem.CurrentAction += 4;
+                            ScoreSystem.Score += 400;
                         }
                     }
                 }

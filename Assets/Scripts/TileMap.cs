@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class TileMap : MonoBehaviour
 {
@@ -94,6 +95,12 @@ public class TileMap : MonoBehaviour
                     MovementGrid.IsClear[x, y] = false;
                     PlayGrid[x, y] = 0;
                 }
+            // Reset scoring
+            ScoreSystem.IsTSpin = 0;
+            ScoreSystem.IsTSpinLastMove = 0;
+            ScoreSystem.LinesCleared = 0;
+            ScoreSystem.CurrentLevel = 1;
+            ScoreSystem.Score = 0;
 
             if (isReal)
                 IsGameOver = true;
@@ -155,15 +162,32 @@ public class TileMap : MonoBehaviour
         IsClear.Reverse();
         if (IsClear.Count > 0)
         {
-            ScoreSystem.CurrentAction += IsClear.Count switch
+            if (IsClear.Count == 1)
             {
-                1 => 1,
-                2 => 3,
-                3 => 5,
-                4 => 8,
-                _ => throw new ArgumentOutOfRangeException()
-            };
+                ScoreSystem.CurrentAction += 1;
+                ScoreSystem.IsB2B = false;
+            }
+            else if (IsClear.Count == 2)
+            {
+                ScoreSystem.CurrentAction += 3;
+                ScoreSystem.IsB2B = false;
+            }
+            else if (IsClear.Count == 3)
+            {
+                ScoreSystem.CurrentAction += 5;
+                ScoreSystem.IsB2B = false;
+            }
+            else if (IsClear.Count == 4)
+            {
+                ScoreSystem.CurrentAction += 8;
+                if (ScoreSystem.IsB2B)
+                    ScoreSystem.CurrentAction += 4;
+                ScoreSystem.IsB2B = true;
+            }
+            else
+                throw new ArgumentOutOfRangeException();
 
+            // Checking for T-Spin Line Clear
             if (ScoreSystem.IsTSpinLastMove == 1)
             {
                 // Writes 0 to IsTSpin for the last T-Spin to not be counted twice
@@ -171,27 +195,50 @@ public class TileMap : MonoBehaviour
                 switch (IsClear.Count)
                 {
                     case 1:
-                        ScoreSystem.CurrentAction += 8;
+                        ScoreSystem.CurrentAction += 4;
+                        ScoreSystem.Score += 400;
+                        if (ScoreSystem.IsB2B)
+                        {
+                            ScoreSystem.CurrentAction += 4;
+                            ScoreSystem.Score += 400;
+                        }
+                        ScoreSystem.IsB2B = true;
                         Debug.Log("T-Spin Single");
                         break;
                     case 2:
-                        ScoreSystem.CurrentAction += 12;
+                        ScoreSystem.CurrentAction += 8;
+                        ScoreSystem.Score += 800;
+                        if (ScoreSystem.IsB2B)
+                        {
+                            ScoreSystem.CurrentAction += 6;
+                            ScoreSystem.Score += 600;
+                        }
+                        ScoreSystem.IsB2B = true;
                         Debug.Log("T-Spin Double");
                         break;
                     case 3:
-                        ScoreSystem.CurrentAction += 16;
+                        ScoreSystem.CurrentAction += 12;
+                        ScoreSystem.Score += 1200;
+                        if (ScoreSystem.IsB2B)
+                        {
+                            ScoreSystem.CurrentAction += 8;
+                            ScoreSystem.Score += 800;
+                        }
+                        ScoreSystem.IsB2B = true;
                         Debug.Log("T-Spin Triple");
                         break;
                 }
             }
-
+            // Checking for Mini T-Spin Line Clear
             if (ScoreSystem.IsTSpinLastMove == 2)
             {
                 // Writes 0 to IsTSpin for the last T-Spin to not be counted twice
                 ScoreSystem.IsTSpin = 0;
                 if (IsClear.Count == 1)
                 {
-                    ScoreSystem.CurrentAction += 2;
+                    ScoreSystem.CurrentAction += 1;
+                    if (ScoreSystem.IsB2B)
+                        ScoreSystem.CurrentAction += 1;
                     Debug.Log("T-Spin Single");
                 }
             }
@@ -303,12 +350,9 @@ public class TileMap : MonoBehaviour
 
             while (LineToAnimate[x, y].transform.position[1] > -10)
             {
-                Debug.Log("waiting");
                 lineClearRigidbody.AddForce(0, -2, 0, ForceMode.Acceleration);
                 yield return null;
             }
-
-            Debug.Log("Coroutine has concluded");
             Destroy(LineToAnimate[x, y]);
         }
     }

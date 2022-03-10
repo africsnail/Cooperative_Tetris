@@ -21,7 +21,7 @@ public class Blocks : MonoBehaviour
 
     // Gravity timer
     public float timeFall;
-    public float timeToFall = 0.5f;
+    public static float TimeToFall = 1f;
     public bool smoothFallCoroutine;
 
     // Auto repeat timer
@@ -305,6 +305,8 @@ public class Blocks : MonoBehaviour
         foreach (var block in Tetrominos)
             block.TetrominoGo.transform.position =
                 new Vector3(block.Location[0], block.Location[1], block.Location[2]);
+        
+        SpawnMino("random");
     }
 
 
@@ -365,7 +367,7 @@ public class Blocks : MonoBehaviour
                         newY = y - 1;
                     else
                         newY = y;
-
+                    
                     if (TileMap.PlayGrid[4 + x + 1, 20 + newY - 2] == 1)
                     {
                         spawn = false;
@@ -393,6 +395,7 @@ public class Blocks : MonoBehaviour
                 timeSpawn += Time.deltaTime;
                 if (timeSpawn >= timeToSpawn)
                 {
+                    ScoreSystem.ScoreCounter();
                     if (type == "random")
                     {
                         Tetrominos.Find(mino => mino.Type == randomType[rIndex]).IsActive = true;
@@ -446,7 +449,7 @@ public class Blocks : MonoBehaviour
     private void Falling()
     {
         timeFall += Time.deltaTime;
-        if (timeFall >= timeToFall)
+        if (timeFall >= TimeToFall)
         {
             timeFall = 0.0f;
 
@@ -500,6 +503,7 @@ public class Blocks : MonoBehaviour
                     ActiveSpawn = true;
                     block.IsActive = false;
                     holdUsed = false;
+                    TimeLock = 0.0f;
                 }
             }
 
@@ -523,6 +527,8 @@ public class Blocks : MonoBehaviour
                             IsFalling = false;
                             block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
                             block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
+                            // Adding two score points per line for hard dropping
+                            ScoreSystem.Score += 2;
                             ScoreSystem.IsTSpinLastMove = 0;
                         }
 
@@ -536,6 +542,8 @@ public class Blocks : MonoBehaviour
                             timeSoftDrop = 0.0f;
                             block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
                             block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
+                            // Adding one score point per line for soft dropping
+                            ScoreSystem.Score += 1;
                             ScoreSystem.IsTSpinLastMove = 0;
                         }
 
