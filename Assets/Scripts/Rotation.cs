@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Rotation : MonoBehaviour
 {
@@ -66,11 +67,12 @@ public class Rotation : MonoBehaviour
                         var locationY = (int) block.Location[1] + yWithSizeOffset + yOffset - 2;
                         //int value = playGrid[locationX, locationY];
 
-                        if (locationX <= Grid.PlayGrid.GetUpperBound(0) &&
-                            locationX >= Grid.PlayGrid.GetLowerBound(0) &&
-                            locationY <= Grid.PlayGrid.GetUpperBound(1) && locationY >= Grid.PlayGrid.GetLowerBound(1))
+                        if (locationX <= TileMap.PlayGrid.GetUpperBound(0) &&
+                            locationX >= TileMap.PlayGrid.GetLowerBound(0) &&
+                            locationY <= TileMap.PlayGrid.GetUpperBound(1) &&
+                            locationY >= TileMap.PlayGrid.GetLowerBound(1))
                         {
-                            if (Grid.PlayGrid[(int) block.Location[0] + x + xOffset + 1,
+                            if (TileMap.PlayGrid[(int) block.Location[0] + x + xOffset + 1,
                                     (int) block.Location[1] + yWithSizeOffset + yOffset - 2] != 0)
                                 canRotate = false;
                         }
@@ -84,6 +86,69 @@ public class Rotation : MonoBehaviour
 
 
         return canRotate;
+    }
+
+    private static int IsTSpin(int[] location, int rotationState)
+    {
+        // Declaring T-Block sides
+        var sideA = new[] {0, 0};
+        var sideB = new[] {0, 0};
+        var sideC = new[] {0, 0};
+        var sideD = new[] {0, 0};
+        location[0] += 2;
+        location[1] -= 1;
+
+        switch (rotationState)
+        {
+            case 0:
+                sideA = new[] {-1, 1};
+                sideB = new[] {1, 1};
+                sideC = new[] {-1, -1};
+                sideD = new[] {1, -1};
+                break;
+            case 1:
+                sideA = new[] {1, 1};
+                sideB = new[] {1, -1};
+                sideC = new[] {-1, 1};
+                sideD = new[] {-1, -1};
+                break;
+            case 2:
+                sideA = new[] {1, 1};
+                sideB = new[] {-1, -1};
+                sideC = new[] {1, 1};
+                sideD = new[] {-1, 1};
+                break;
+            case 3:
+                sideA = new[] {-1, -1};
+                sideB = new[] {-1, 1};
+                sideC = new[] {1, -1};
+                sideD = new[] {1, 1};
+                break;
+        }
+
+        if (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 &&
+            TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1 &&
+            TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 &&
+            TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1)
+        {
+            return 1;
+        }
+        else if (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 &&
+                 TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1 &&
+                 (TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 ||
+                  TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1))
+        {
+            return 1;
+        }
+        else
+        {
+            if (TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 &&
+                TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1 &&
+                (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 ||
+                 TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1))
+                return 2;
+            else return 0;
+        }
     }
 
     private static int NewY(int size, int x)
@@ -366,6 +431,9 @@ public class Rotation : MonoBehaviour
         foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive || block.AtSpawn))
             if (block.IsLocked == false && Blocks.ActiveSpawn == false || block.AtSpawn)
             {
+                if (block.AtSpawn == false)
+                    ScoreSystem.IsTSpinLastMove = 0;
+
                 int size;
                 if (block.Type == "I" || block.Type == "O")
                 {
@@ -384,7 +452,6 @@ public class Rotation : MonoBehaviour
                 if (direction == "C")
                 {
                     // Moves the tetromino the required distance for a kick
-
                     block.TetrominoGo.transform.Translate(new Vector3(xMove, yMove, 0), Space.World);
                     block.Location[0] += xMove;
                     block.Location[1] += yMove;
@@ -392,8 +459,8 @@ public class Rotation : MonoBehaviour
                     // Rotates the tetromino clockwise
                     block.TetrominoGo.transform.RotateAround(
                         new Vector3(block.Location[0] + RotationOffsetX,
-                            block.Location[1] - RotationOffsetY, block.Location[2]), Vector3.forward,
-                        -90.0f);
+                            block.Location[1] - RotationOffsetY, block.Location[2]), Vector3.back,
+                        90.0f);
 
 
                     RGridCache = new int[size, size];
@@ -402,18 +469,52 @@ public class Rotation : MonoBehaviour
                         RGridCache[y, NewY(size, x)] = RotateGridC(size, block.RGrid, x, y)[y, NewY(size, x)];
                     for (var x = 0; x < size; x++)
                     for (var y = 0; y < size; y++)
+                    {
                         block.RGrid[x, y] = RGridCache[x, y];
+                        if (block.CubeGo[x, y] != null)
+                            block.CubeGo[x, y].transform.Rotate(Vector3.back, -90.0f);
+                    }
+
                     if (block.AtSpawn == false) block.RotationState = FutureRotationC;
+
+                    if (block.Type == "T" && block.Type == "T" && block.AtSpawn == false)
+                    {
+                        Debug.Log("Checking for T-Spin");
+                        if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]}, block.RotationState) == 2)
+                        {
+                            Debug.Log("Mini T-Spin");
+                            ScoreSystem.IsTSpinLastMove = 2;
+                            if (ScoreSystem.IsTSpin == 1)
+                                ScoreSystem.CurrentAction += 4;
+                            if (ScoreSystem.IsTSpin == 2)
+                                ScoreSystem.CurrentAction += 1;
+                            ScoreSystem.IsTSpin = 2;
+                        }
+                        else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
+                                     block.RotationState) == 1)
+                        {
+                            Debug.Log("T-Spin");
+                            ScoreSystem.IsTSpinLastMove = 1;
+                            if (ScoreSystem.IsTSpin == 1)
+                                ScoreSystem.CurrentAction += 4;
+                            if (ScoreSystem.IsTSpin == 2)
+                                ScoreSystem.CurrentAction += 1;
+                            ScoreSystem.IsTSpin = 1;
+                        }
+                    }
                 }
                 else if (direction == "Ac")
                 {
+                    // Moves the tetromino the required distance for a kick
                     block.TetrominoGo.transform.Translate(new Vector3(xMove, yMove, 0), Space.World);
                     block.Location[0] += xMove;
                     block.Location[1] += yMove;
 
+                    // Rotates the tetromino anti-clockwise
                     block.TetrominoGo.transform.RotateAround(
                         new Vector3(block.Location[0] + RotationOffsetX, block.Location[1] - RotationOffsetY,
-                            block.Location[2]), Vector3.forward, 90.0f);
+                            block.Location[2]), Vector3.back, -90.0f);
+
 
                     RGridCache = new int[size, size];
                     for (var x = 0; x < size; x++)
@@ -421,8 +522,39 @@ public class Rotation : MonoBehaviour
                         RGridCache[NewX(size, y), x] = RotateGridAc(size, block.RGrid, x, y)[NewX(size, y), x];
                     for (var x = 0; x < size; x++)
                     for (var y = 0; y < size; y++)
+                    {
                         block.RGrid[x, y] = RGridCache[x, y];
+                        if (block.CubeGo[x, y] != null)
+                            block.CubeGo[x, y].transform.Rotate(Vector3.back, 90.0f);
+                    }
+
                     if (block.AtSpawn == false) block.RotationState = FutureRotationAc;
+
+                    if (block.Type == "T" && block.AtSpawn == false)
+                    {
+                        Debug.Log("Checking for T-Spin");
+                        if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]}, block.RotationState) == 2)
+                        {
+                            Debug.Log("Mini T-Spin");
+                            ScoreSystem.IsTSpinLastMove = 2;
+                            if (ScoreSystem.IsTSpin == 1)
+                                ScoreSystem.CurrentAction += 4;
+                            if (ScoreSystem.IsTSpin == 2)
+                                ScoreSystem.CurrentAction += 1;
+                            ScoreSystem.IsTSpin = 2;
+                        }
+                        else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
+                                     block.RotationState) == 1)
+                        {
+                            Debug.Log("T-Spin");
+                            ScoreSystem.IsTSpinLastMove = 1;
+                            if (ScoreSystem.IsTSpin == 1)
+                                ScoreSystem.CurrentAction += 4;
+                            if (ScoreSystem.IsTSpin == 2)
+                                ScoreSystem.CurrentAction += 1;
+                            ScoreSystem.IsTSpin = 1;
+                        }
+                    }
                 }
 
                 Blocks.TimeLock = 0.0f;

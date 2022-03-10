@@ -10,6 +10,10 @@ public class Blocks : MonoBehaviour
     public static bool IsFalling;
     public static bool ActiveSpawn;
 
+    // Block with textures etc.
+    //public GameObject blockPrefab;
+    public Material blockWithTexture;
+
     public string[] randomType =
     {
         "I", "O", "J", "L", "S", "Z", "T"
@@ -42,14 +46,14 @@ public class Blocks : MonoBehaviour
     // Spawn 
     public float timeSpawn;
     public float timeToSpawn = 0.375f;
-    public GameObject previewBlock;
+    public static GameObject PreviewBlock;
 
 
     // Hold
-    public string holdType;
+    public static string HoldType;
     public bool holdUsed;
     public bool holdSpawn;
-    private GameObject _holdBlock;
+    public static GameObject HoldBlock;
 
     // Offsets
     public bool move;
@@ -60,7 +64,7 @@ public class Blocks : MonoBehaviour
     public string keybindLeft = "left";
     public string keybindSoftDrop = "down";
     public string keybindHardDrop = "space";
-    
+
     // Random type
     public int rIndex;
 
@@ -85,7 +89,6 @@ public class Blocks : MonoBehaviour
 
     //public int[] debug { get; set; }
 
-    
 
     // Start is called before the first frame update
     private void Start()
@@ -127,7 +130,7 @@ public class Blocks : MonoBehaviour
             Id = x, Type = "I", IsActive = false,
             TetrominoGo = new GameObject("BlockI"),
             CubeGo = new GameObject[4, 4],
-            Location = new [] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
+            Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
             IsHold = false
         });
         x++;
@@ -143,7 +146,7 @@ public class Blocks : MonoBehaviour
             Id = x, Type = "O", IsActive = false,
             TetrominoGo = new GameObject("BlockO"),
             CubeGo = new GameObject[4, 4],
-            Location = new [] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
+            Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
             IsHold = false
         });
         x++;
@@ -158,7 +161,7 @@ public class Blocks : MonoBehaviour
             Id = x, Type = "J", IsActive = false,
             TetrominoGo = new GameObject("BlockJ"),
             CubeGo = new GameObject[3, 3],
-            Location = new [] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
+            Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
             IsHold = false
         });
         x++;
@@ -173,7 +176,7 @@ public class Blocks : MonoBehaviour
             Id = x, Type = "L", IsActive = false,
             TetrominoGo = new GameObject("BlockL"),
             CubeGo = new GameObject[3, 3],
-            Location = new [] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
+            Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
             IsHold = false
         });
         x++;
@@ -188,7 +191,7 @@ public class Blocks : MonoBehaviour
             Id = x, Type = "S", IsActive = false,
             TetrominoGo = new GameObject("BlockS"),
             CubeGo = new GameObject[3, 3],
-            Location = new [] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
+            Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
             IsHold = false
         });
         x++;
@@ -203,7 +206,7 @@ public class Blocks : MonoBehaviour
             Id = x, Type = "Z", IsActive = false,
             TetrominoGo = new GameObject("BlockZ"),
             CubeGo = new GameObject[3, 3],
-            Location = new [] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
+            Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
             IsHold = false
         });
         x++;
@@ -218,7 +221,7 @@ public class Blocks : MonoBehaviour
             Id = x, Type = "T", IsActive = false,
             TetrominoGo = new GameObject("BlockT"),
             CubeGo = new GameObject[3, 3],
-            Location = new [] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
+            Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]},
             IsHold = false
         });
 
@@ -244,6 +247,7 @@ public class Blocks : MonoBehaviour
                         block.CubeGo[x2, y2].transform.position = new Vector3(x2, y2, 0);
                         // Color + Parent Block
                         var cubeRenderer = block.CubeGo[x2, y2].GetComponent<Renderer>();
+                        cubeRenderer.material = blockWithTexture;
                         if (block.Type == "I")
                         {
                             cubeRenderer.material.SetColor(Color1, Color.cyan);
@@ -324,14 +328,14 @@ public class Blocks : MonoBehaviour
                     else
                         newY = y;
                     if (direction == "down")
-                        if (Grid.PlayGrid[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 3] == 1)
+                        if (TileMap.PlayGrid[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 3] == 1)
                             move = false;
                     if (direction == "left")
-                        if (Grid.PlayGrid[(int) block.Location[0] + x,
+                        if (TileMap.PlayGrid[(int) block.Location[0] + x,
                                 (int) block.Location[1] + newY - 2] == 1)
                             move = false;
                     if (direction == "right")
-                        if (Grid.PlayGrid[(int) block.Location[0] + x + 2,
+                        if (TileMap.PlayGrid[(int) block.Location[0] + x + 2,
                                 (int) block.Location[1] + newY - 2] == 1)
                             move = false;
                 }
@@ -362,10 +366,10 @@ public class Blocks : MonoBehaviour
                     else
                         newY = y;
 
-                    if (Grid.PlayGrid[4 + x + 1, 20 + newY - 2] == 1)
+                    if (TileMap.PlayGrid[4 + x + 1, 20 + newY - 2] == 1)
                     {
                         spawn = false;
-                        Debug.Log(Grid.PlayGrid[4 + x + 1, 20 + newY - 2]);
+                        Debug.Log(TileMap.PlayGrid[4 + x + 1, 20 + newY - 2]);
                     }
                 }
         }
@@ -376,12 +380,13 @@ public class Blocks : MonoBehaviour
 
     private void Preview()
     {
-        previewBlock = Instantiate(Tetrominos.Find(mino => mino.Type == randomType[rIndex]).TetrominoGo);
-        previewBlock.transform.position = previewArea;
+        PreviewBlock = Instantiate(Tetrominos.Find(mino => mino.Type == randomType[rIndex]).TetrominoGo);
+        PreviewBlock.transform.position = previewArea;
     }
+
     private void SpawnMino(string type)
     {
-        if ((ActiveSpawn || holdSpawn) && Grid.IsGameOver == false)
+        if ((ActiveSpawn || holdSpawn) && TileMap.IsGameOver == false)
         {
             if (CanSpawn())
             {
@@ -390,7 +395,6 @@ public class Blocks : MonoBehaviour
                 {
                     if (type == "random")
                     {
-                        
                         Tetrominos.Find(mino => mino.Type == randomType[rIndex]).IsActive = true;
                         Tetrominos.Find(mino => mino.IsActive).TetrominoGo.transform.position = new Vector3(3, 17, 0);
                         foreach (var block in Tetrominos.Where(block => block.Type == randomType[rIndex]))
@@ -417,10 +421,10 @@ public class Blocks : MonoBehaviour
                             Debug.Log("Clearing hold type");
                         }
                     }
-                    
+
                     if (holdSpawn == false)
                         rIndex = new Random().Next(randomType.Length);
-                    DestroyImmediate(previewBlock);
+                    DestroyImmediate(PreviewBlock);
                     Preview();
                     ActiveSpawn = false;
                     holdSpawn = false;
@@ -434,7 +438,7 @@ public class Blocks : MonoBehaviour
             }
             else
             {
-                Grid.GameOver();
+                TileMap.GameOver(true);
             }
         }
     }
@@ -519,8 +523,9 @@ public class Blocks : MonoBehaviour
                             IsFalling = false;
                             block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
                             block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
+                            ScoreSystem.IsTSpinLastMove = 0;
                         }
-                    
+
                     // Soft Drop
                     if (timeSoftDrop >= timeToSoftDrop)
                         if (Input.GetKey(keybindSoftDrop) && CanMove("down") && TimeLock <= timeToLock)
@@ -531,6 +536,7 @@ public class Blocks : MonoBehaviour
                             timeSoftDrop = 0.0f;
                             block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
                             block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
+                            ScoreSystem.IsTSpinLastMove = 0;
                         }
 
                     // Falling disable for Soft Drop and Hard Drop
@@ -545,6 +551,7 @@ public class Blocks : MonoBehaviour
                     {
                         block.TetrominoGo.transform.Translate(Vector3.left * 1, Space.World);
                         block.Location = new[] {block.Location[0] - 1f, block.Location[1], block.Location[2]};
+                        ScoreSystem.IsTSpinLastMove = 0;
                         TimeLock = 0.0f;
                         LockCounter++;
 
@@ -556,6 +563,7 @@ public class Blocks : MonoBehaviour
                     {
                         block.TetrominoGo.transform.Translate(Vector3.right * 1, Space.World);
                         block.Location = new[] {block.Location[0] + 1f, block.Location[1], block.Location[2]};
+                        ScoreSystem.IsTSpinLastMove = 0;
                         TimeLock = 0.0f;
                         LockCounter++;
                     }
@@ -593,6 +601,7 @@ public class Blocks : MonoBehaviour
                         {
                             block.TetrominoGo.transform.Translate(Vector3.left * 1, Space.World);
                             block.Location = new[] {block.Location[0] - 1f, block.Location[1], block.Location[2]};
+                            ScoreSystem.IsTSpinLastMove = 0;
                             TimeLock = 0.0f;
                             LockCounter++;
                         }
@@ -601,6 +610,7 @@ public class Blocks : MonoBehaviour
                         {
                             block.TetrominoGo.transform.Translate(Vector3.right * 1, Space.World);
                             block.Location = new[] {block.Location[0] + 1f, block.Location[1], block.Location[2]};
+                            ScoreSystem.IsTSpinLastMove = 0;
                             TimeLock = 0.0f;
                             LockCounter++;
                         }
@@ -616,8 +626,8 @@ public class Blocks : MonoBehaviour
             {
                 block.IsHold = true;
                 block.IsActive = false;
-                block.Location = new [] {SpawnArea[0], SpawnArea[1], SpawnArea[2]};
-                if (_holdBlock != null) DestroyImmediate(_holdBlock);
+                block.Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]};
+                if (HoldBlock != null) DestroyImmediate(HoldBlock);
 
                 block.TetrominoGo.transform.position = SpawnArea;
                 while (block.RotationState != 0)
@@ -628,17 +638,17 @@ public class Blocks : MonoBehaviour
                     block.RotationState -= 1;
                 }
 
-                _holdBlock = Instantiate(block.TetrominoGo);
-                _holdBlock.transform.position = holdArea;
+                HoldBlock = Instantiate(block.TetrominoGo);
+                HoldBlock.transform.position = holdArea;
 
                 if (block.RotationState == 0) block.AtSpawn = false;
 
                 holdSpawn = true;
 
-                Debug.Log(holdType);
-                if (randomType.Contains(holdType))
+                Debug.Log(HoldType);
+                if (randomType.Contains(HoldType))
                 {
-                    SpawnMino(holdType);
+                    SpawnMino(HoldType);
                 }
                 else
                 {
@@ -650,7 +660,7 @@ public class Blocks : MonoBehaviour
                 break;
             }
 
-            holdType = Tetrominos.Find(block => block.IsHold).Type;
+            HoldType = Tetrominos.Find(block => block.IsHold).Type;
         }
     }
 

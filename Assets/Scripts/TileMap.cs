@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class TileMap : MonoBehaviour
 {
     // VARIABLES
 
     private static GameObject Border { get; set; }
     private static GameObject[,] LineToAnimate { get; set; }
+    public static GameObject[,] GameOverCube { get; set; }
 
     // Grid dimensions
     public static int gridHeight = 21;
@@ -22,7 +24,11 @@ public class Grid : MonoBehaviour
     public static bool IsGameOver;
     public static SubGrid MovementGrid { get; set; }
 
+    public Material blockWithTexture;
+
     private static readonly int ColorBlack = Shader.PropertyToID("_Color");
+
+    public static List<int> IsClear;
 
     private void InitializeGrid()
     {
@@ -55,6 +61,7 @@ public class Grid : MonoBehaviour
                     MovementGrid.GridCube[x, y].transform.position = new Vector3(x - 1, y - 1, 0);
                     var cubeRenderer = MovementGrid.GridCube[x, y].GetComponent<Renderer>();
                     cubeRenderer.material.SetColor(ColorBlack, Color.black);
+                    cubeRenderer.material = blockWithTexture;
                     var cubeCollider = MovementGrid.GridCube[x, y].GetComponent<Collider>();
                     DestroyImmediate(cubeCollider);
                     MovementGrid.Color[x, y] = Color.black;
@@ -64,46 +71,38 @@ public class Grid : MonoBehaviour
             }
     }
 
-    public static void GameOver()
+    public static void GameOver(bool isReal)
     {
         if (IsGameOver == false)
         {
             var kick = 3f;
+            GameOverCube = new GameObject[gridWidth - 1, gridHeight - 1];
             for (var x = 1; x < gridWidth - 1; x++)
             for (var y = 1; y < gridHeight - 1; y++)
                 if (MovementGrid.GridCube[x, y] != null)
                 {
-                    var gameOverRigidbody = MovementGrid.GridCube[x, y].AddComponent<Rigidbody>();
+                    GameOverCube[x, y] = Instantiate(MovementGrid.GridCube[x, y]);
+                    DestroyImmediate(MovementGrid.GridCube[x, y]);
+                    Debug.Log("GameOver");
+                    var gameOverRigidbody = GameOverCube[x, y].AddComponent<Rigidbody>();
+
                     gameOverRigidbody.AddForce(0, 0, -kick, ForceMode.Impulse);
                     gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
-                    Debug.Log("Game Over!");
+
+
+                    MovementGrid.IsActive[x, y] = false;
+                    MovementGrid.IsClear[x, y] = false;
+                    PlayGrid[x, y] = 0;
                 }
 
-            IsGameOver = true;
-            /*if (gameOver)
-                while (gameOver)
-                {
-                    {
-                        timeGameOver += Time.deltaTime;
-                        if (timeGameOver >= timeToGameOver)
-                        {
-                            for (int x = 1; x < gridWidth - 1; x++)
-                            for (int y = 1; y < gridHeight - 1; y++)
-                            {
-                                if (MovementGrid.GridCube[x, y] != null)
-                                    Destroy(MovementGrid.GridCube[x, y]);
-                                PlayGrid[x, y] = 0;
-                            }
-                            gameOver = false;
-                        }
-                    }
-                }*/
+            if (isReal)
+                IsGameOver = true;
         }
     }
 
     private void GridManager(int w, int h)
     {
-        var isClear = new List<int>();
+        IsClear = new List<int>();
         //Debug.Log("......");
         for (var y = 1; y < h - 1; y++)
         {
@@ -114,7 +113,8 @@ public class Grid : MonoBehaviour
                     if (MovementGrid.IsActive[x, y] == false)
                     {
                         //Debug.Log("Checking coordinates: " + x + ", " + y + ". Value: " + PlayGrid[x, y]);
-                        MovementGrid.GridCube[x, y] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                        MovementGrid.GridCube[x, y] =
+                            Instantiate(Blocks.Tetrominos.Find(block => block.Type == "O").CubeGo[2, 2]);
                         MovementGrid.GridCube[x, y].name = "Grid cube " + (x - 1) + "_" + (y - 1);
                         MovementGrid.GridCube[x, y].transform.position = new Vector3(x - 1, y - 1, 0);
                         var cubeRenderer = MovementGrid.GridCube[x, y].GetComponent<Renderer>();
@@ -135,7 +135,7 @@ public class Grid : MonoBehaviour
             if (lineClear)
             {
                 //Debug.Log("xd2");
-                isClear.Add(y);
+                IsClear.Add(y);
                 for (var x = 1; x < w - 1; x++)
                 {
                     MovementGrid.IsClear[x, y] = true;
@@ -152,15 +152,56 @@ public class Grid : MonoBehaviour
             }
         }
 
-        isClear.Reverse();
-        if (isClear.Count > 0)
+        IsClear.Reverse();
+        if (IsClear.Count > 0)
         {
-            for (var numberOfLine = 0; numberOfLine < isClear.Count; numberOfLine++)
+            ScoreSystem.CurrentAction += IsClear.Count switch
+            {
+                1 => 1,
+                2 => 3,
+                3 => 5,
+                4 => 8,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            if (ScoreSystem.IsTSpinLastMove == 1)
+            {
+                // Writes 0 to IsTSpin for the last T-Spin to not be counted twice
+                ScoreSystem.IsTSpin = 0;
+                switch (IsClear.Count)
+                {
+                    case 1:
+                        ScoreSystem.CurrentAction += 8;
+                        Debug.Log("T-Spin Single");
+                        break;
+                    case 2:
+                        ScoreSystem.CurrentAction += 12;
+                        Debug.Log("T-Spin Double");
+                        break;
+                    case 3:
+                        ScoreSystem.CurrentAction += 16;
+                        Debug.Log("T-Spin Triple");
+                        break;
+                }
+            }
+
+            if (ScoreSystem.IsTSpinLastMove == 2)
+            {
+                // Writes 0 to IsTSpin for the last T-Spin to not be counted twice
+                ScoreSystem.IsTSpin = 0;
+                if (IsClear.Count == 1)
+                {
+                    ScoreSystem.CurrentAction += 2;
+                    Debug.Log("T-Spin Single");
+                }
+            }
+
+            for (var numberOfLine = 0; numberOfLine < IsClear.Count; numberOfLine++)
             {
                 Debug.Log("Moving one row down:" + numberOfLine);
                 for (var y = 0; y < h - 1; y++)
                 for (var x = 1; x < w - 1; x++)
-                    if (y >= isClear[numberOfLine])
+                    if (y >= IsClear[numberOfLine])
                     {
                         PlayGrid[x, y] = PlayGrid[x, y + 1];
                         MovementGrid.Color[x, y] = MovementGrid.Color[x, y + 1];
@@ -189,7 +230,7 @@ public class Grid : MonoBehaviour
                     }
             }
 
-            isClear.Clear();
+            IsClear.Clear();
         }
     }
 
@@ -211,6 +252,7 @@ public class Grid : MonoBehaviour
                         newY = y - 1;
                     else
                         newY = y;
+                    Debug.Log(((int) block.Location[0] + x + 1) + "_" + ((int) block.Location[1] + newY - 2));
                     PlayGrid[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 2] = 1;
                     MovementGrid.Color[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 2] =
                         block.Color;
@@ -241,8 +283,11 @@ public class Grid : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        LockManager();
-        GridManager(gridWidth, gridHeight);
+        if (!Menu.IsPaused)
+        {
+            LockManager();
+            GridManager(gridWidth, gridHeight);
+        }
     }
 
     private IEnumerator lineClearAnimation(int x, int y)
