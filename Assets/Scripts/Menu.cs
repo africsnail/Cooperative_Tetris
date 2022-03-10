@@ -7,6 +7,11 @@ public class Menu : MonoBehaviour
     // VARIABLES
     public static bool IsPaused;
 
+    // Background
+    private Renderer _backgroundMaterial;
+    public Material materialMenu;
+    public Material materialGame;
+    
     // Pause menu
     private GameObject _canvas;
     private Canvas _canvasCanvas;
@@ -35,6 +40,7 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
+        _backgroundMaterial = GetComponent<Renderer>();
         InitializeMenu();
         InitializeGameOverMenu();
     }
@@ -50,6 +56,7 @@ public class Menu : MonoBehaviour
                 IsPaused = true;
                 _sizeActiveBlocks = Blocks.Tetrominos.Find(block => block.IsActive).RGrid.GetUpperBound(0);
                 _canvasCanvas.enabled = true;
+                _backgroundMaterial.material = materialMenu;
                 _musicMusic.Pause();
                 StartCoroutine(MenuOpenAnimation(TileMap.gridWidth - 1, TileMap.gridHeight - 1));
                 GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
@@ -60,6 +67,7 @@ public class Menu : MonoBehaviour
                 //Time.timeScale = 1f;
                 IsPaused = false;
                 _canvasCanvas.enabled = false;
+                _backgroundMaterial.material = materialGame;
                 _musicMusic.Play();
                 GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
                 ClearAnimationCubes(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
@@ -71,6 +79,7 @@ public class Menu : MonoBehaviour
             IsPaused = true;
             isPausedGameOver = true;
             _gameOverCanvasCanvas.enabled = true;
+            _backgroundMaterial.material = materialMenu;
         }
 
         if (IsPaused || isPausedGameOver)
@@ -179,6 +188,7 @@ public class Menu : MonoBehaviour
         _canvasCanvas = _canvas.GetComponent<Canvas>();
         _musicMusic = GetComponent<AudioSource>();
         _canvasCanvas.enabled = false;
+        _backgroundMaterial.material = materialGame;
     }
 
     private void InitializeGameOverMenu()
@@ -200,6 +210,7 @@ public class Menu : MonoBehaviour
         _gameOverMenuItemSelected = _gameOverMenuItem[_gameOverSelectedIndex];
         _gameOverCanvasCanvas = _gameOverCanvas.GetComponent<Canvas>();
         _gameOverCanvasCanvas.enabled = false;
+        _backgroundMaterial.material = materialGame;
     }
 
     private void ClearAnimationCubes(int w, int h)
@@ -256,6 +267,7 @@ public class Menu : MonoBehaviour
         Debug.Log("Restarting");
 
         _canvasCanvas.enabled = false;
+        _backgroundMaterial.material = materialGame;
         _musicMusic.Stop();
         _musicMusic.Play();
 
@@ -294,6 +306,7 @@ public class Menu : MonoBehaviour
         Debug.Log("Restarting");
 
         _gameOverCanvasCanvas.enabled = false;
+        _backgroundMaterial.material = materialGame;
         _musicMusic.Stop();
         _musicMusic.Play();
     }
