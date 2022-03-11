@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static Blocks;
 
 public class Menu : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Menu : MonoBehaviour
     private int _volume;
 
     // Menus
-    public static SubMenu[] Menus { get; set; }
+    public static SubMenu[] Menus { get; private set; }
 
     // In-game settings
     private Slider _volumeSlider;
@@ -27,8 +28,10 @@ public class Menu : MonoBehaviour
     private GameObject[,] _animationCube;
     private GameObject[,] _animationCube2;
 
+    // Key bindings
+    public static int KeySet;
 
-    private void Start()
+    private void Awake()
     {
         Menus = new SubMenu[3];
         for (int x = 0; x < 3; x++)
@@ -53,12 +56,12 @@ public class Menu : MonoBehaviour
             {
                 //Time.timeScale = 0f;
                 Menus[0].IsPaused = true;
-                _sizeActiveBlocks = Blocks.Tetrominos.Find(block => block.IsActive).RGrid.GetUpperBound(0);
+                _sizeActiveBlocks = Tetrominos.Find(block => block.IsActive).RGrid.GetUpperBound(0);
                 Menus[0].CanvasCanvas.enabled = true;
                 _backgroundMaterial.material = materialMenu;
                 _musicMusic.Pause();
-                StartCoroutine(MenuOpenAnimation(TileMap.gridWidth - 1, TileMap.gridHeight - 1));
-                GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
+                StartCoroutine(MenuOpenAnimation(TileMap.gridWidth - 1, TileMap.gridHeight));
+                GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight);
             }
             else
             {
@@ -66,8 +69,8 @@ public class Menu : MonoBehaviour
                 Menus[0].CanvasCanvas.enabled = false;
                 _backgroundMaterial.material = materialGame;
                 _musicMusic.Play();
-                GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
-                ClearAnimationCubes(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
+                GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight);
+                ClearAnimationCubes(TileMap.gridWidth - 1, TileMap.gridHeight);
             }
         }
 
@@ -140,30 +143,41 @@ public class Menu : MonoBehaviour
 
             if (id == 2)
             {
-                if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+                if (Menus[2].SelectedIndex == 1)
                 {
-                    _volume -= 10;
-                    if (_volume < 0)
-                        _volume = 0;
-                    _volumePercentage.text = _volume + "%";
-                    _volumeSlider.value = _volume / 100f;
-                    _musicMusic.volume = _volume / 100f;
-                    PlayerPrefs.SetInt("volume", _volume);
-                }
+                    if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+                    {
+                        _volume -= 10;
+                        if (_volume < 0)
+                            _volume = 0;
+                        _volumePercentage.text = _volume + "%";
+                        _volumeSlider.value = _volume / 100f;
+                        _musicMusic.volume = _volume / 100f;
+                        PlayerPrefs.SetInt("volume", _volume);
+                    }
 
-                if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+                    if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+                    {
+                        _volume += 10;
+                        if (_volume > 100)
+                            _volume = 100;
+                        _volumePercentage.text = _volume + "%";
+                        _volumeSlider.value = _volume / 100f;
+                        _musicMusic.volume = _volume / 100f;
+                        PlayerPrefs.SetInt("volume", _volume);
+                    }
+                }
+                else if (Menus[2].SelectedIndex == 2)
                 {
-                    _volume += 10;
-                    if (_volume > 100)
-                        _volume = 100;
-                    _volumePercentage.text = _volume + "%";
-                    _volumeSlider.value = _volume / 100f;
-                    _musicMusic.volume = _volume / 100f;
-                    PlayerPrefs.SetInt("volume", _volume);
+                    if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+                    {
+                        Menus[0].IsPaused = true;
+                        Menus[2].IsPaused = false;
+                        Menus[0].CanvasCanvas.enabled = true;
+                        Menus[2].CanvasCanvas.enabled = false;
+                    }
                 }
-
-                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return) ||
-                    Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     Menus[0].IsPaused = true;
                     Menus[2].IsPaused = false;
@@ -216,7 +230,7 @@ public class Menu : MonoBehaviour
         Menus[id].IsPaused = false;
         if (id == 2)
         {
-            // Read volume from preferences and set the needed variables
+            // Read audio preferences and set the needed variables
             _volumePercentage = Menus[2].MenuItem[1].transform.GetChild(0).GetComponent<Text>();
             _volumeSlider = Menus[2].MenuItem[1].transform.GetChild(1).GetComponent<Slider>();
             _volume = PlayerPrefs.GetInt("volume");
@@ -249,33 +263,31 @@ public class Menu : MonoBehaviour
     private void RestartGame()
     {
         // Clear currently active falling blocks
-        Blocks.Tetrominos.Find(block => block.IsActive).TetrominoGo.transform.position = Blocks.SpawnArea;
+        Tetrominos.Find(block => block.IsActive).TetrominoGo.transform.position = SpawnArea;
         TileMap.GameOver(false);
 
         // Clear all grid cubes
         for (var x = 1; x < TileMap.gridWidth - 1; x++)
-        for (var y = 1; y < TileMap.gridHeight - 1; y++)
+        for (var y = 1; y < TileMap.gridHeight; y++)
         {
-            if (TileMap.MovementTileMap.GridCube[x, y] != null)
-                DestroyImmediate(TileMap.MovementTileMap.GridCube[x, y]);
             if (TileMap.GameOverCube[x, y] != null)
                 StartCoroutine(GameOverCleanup(x, y));
         }
 
         Menus[0].IsPaused = false;
-        GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
-        Blocks.Tetrominos.Find(block => block.IsActive).IsActive = false;
+        GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight);
+        Tetrominos.Find(block => block.IsActive).IsActive = false;
 
-        Blocks.ActiveSpawn = true;
+        ActiveSpawn = true;
 
         // Clear held block
-        if (Blocks.Tetrominos.Exists(block => block.IsHold))
-            Blocks.Tetrominos.Find(block => block.IsHold).IsHold = false;
-        Blocks.HoldType = null;
-        Destroy(Blocks.HoldBlock);
+        if (Tetrominos.Exists(block => block.IsHold))
+            Tetrominos.Find(block => block.IsHold).IsHold = false;
+        HoldType = null;
+        Destroy(HoldBlock);
 
         // Clear preview block
-        Destroy(Blocks.PreviewBlock);
+        Destroy(PreviewBlock);
 
         Debug.Log("Restarting");
 
@@ -292,19 +304,17 @@ public class Menu : MonoBehaviour
         ScoreSystem.IsGameOverScoreSet = false;
         ScoreSystem.NewRecordText.enabled = false;
 
-        ClearAnimationCubes(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
+        ClearAnimationCubes(TileMap.gridWidth - 1, TileMap.gridHeight);
     }
 
     void RestartGameOver()
     {
-        GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
+        GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight);
         TileMap.GameOver(false);
         // Clear all grid cubes
         for (var x = 1; x < TileMap.gridWidth - 1; x++)
-        for (var y = 1; y < TileMap.gridHeight - 1; y++)
+        for (var y = 1; y < TileMap.gridHeight; y++)
         {
-            if (TileMap.MovementTileMap.GridCube[x, y] != null)
-                DestroyImmediate(TileMap.MovementTileMap.GridCube[x, y]);
             if (TileMap.GameOverCube[x, y] != null)
                 StartCoroutine(GameOverCleanup(x, y));
         }
@@ -312,17 +322,17 @@ public class Menu : MonoBehaviour
         Menus[0].IsPaused = false;
         Menus[1].IsPaused = false;
         TileMap.IsGameOver = false;
-        GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
-        Blocks.ActiveSpawn = true;
+        GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight);
+        ActiveSpawn = true;
 
         // Clear held block
-        if (Blocks.Tetrominos.Exists(block => block.IsHold))
-            Blocks.Tetrominos.Find(block => block.IsHold).IsHold = false;
-        Blocks.HoldType = null;
-        Destroy(Blocks.HoldBlock);
+        if (Tetrominos.Exists(block => block.IsHold))
+            Tetrominos.Find(block => block.IsHold).IsHold = false;
+        HoldType = null;
+        Destroy(HoldBlock);
 
         // Clear preview block
-        Destroy(Blocks.PreviewBlock);
+        Destroy(PreviewBlock);
 
         Debug.Log("Restarting");
 
@@ -382,14 +392,14 @@ public class Menu : MonoBehaviour
         for (var x = 0; x <= _sizeActiveBlocks; x++)
         for (var y = 0; y <= _sizeActiveBlocks; y++)
         {
-            if (Blocks.Tetrominos.Exists(block => block.IsActive))
+            if (Tetrominos.Exists(block => block.IsActive))
             {
-                if (Blocks.Tetrominos.Find(block => block.IsActive).CubeGo[x, y] != null)
+                if (Tetrominos.Find(block => block.IsActive).CubeGo[x, y] != null)
                 {
-                    animationRenderer2[x][y] = Blocks.Tetrominos.Find(block => block.IsActive).CubeGo[x, y]
+                    animationRenderer2[x][y] = Tetrominos.Find(block => block.IsActive).CubeGo[x, y]
                         .GetComponent<Renderer>();
                     animationRenderer2[x][y].enabled = !Menus[0].IsPaused;
-                    animationCollider2[x][y] = Blocks.Tetrominos.Find(block => block.IsActive).CubeGo[x, y]
+                    animationCollider2[x][y] = Tetrominos.Find(block => block.IsActive).CubeGo[x, y]
                         .GetComponent<Collider>();
                     animationCollider2[x][y].enabled = !Menus[0].IsPaused;
                 }
@@ -429,11 +439,11 @@ public class Menu : MonoBehaviour
         for (var x = 0; x <= _sizeActiveBlocks; x++)
         for (var y = 0; y <= _sizeActiveBlocks; y++)
         {
-            if (Blocks.Tetrominos.Find(block => block.IsActive).CubeGo[x, y] != null)
+            if (Tetrominos.Find(block => block.IsActive).CubeGo[x, y] != null)
             {
-                _animationCube2[x, y] = Instantiate(Blocks.Tetrominos.Find(block => block.IsActive).CubeGo[x, y]);
+                _animationCube2[x, y] = Instantiate(Tetrominos.Find(block => block.IsActive).CubeGo[x, y]);
                 var animationRigidbody2 = _animationCube2[x, y].AddComponent<Rigidbody>();
-                _animationCube2[x, y].transform.position += Blocks.Tetrominos.Find(block => block.IsActive)
+                _animationCube2[x, y].transform.position += Tetrominos.Find(block => block.IsActive)
                     .TetrominoGo.transform.position;
                 _animationCube2[x, y].name = "Animation cube (Blocks) " + x + "_" + y;
                 animationRigidbody2.AddForce(0, 0, -1, ForceMode.Impulse);

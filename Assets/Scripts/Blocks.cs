@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = System.Random;
-using Vector3 = UnityEngine.Vector3;
 
 public class Blocks : MonoBehaviour
 {
@@ -64,6 +63,7 @@ public class Blocks : MonoBehaviour
     public string keybindLeft = "left";
     public string keybindSoftDrop = "down";
     public string keybindHardDrop = "space";
+    public string[] keybindHold = {"left shift", "c"};
 
     // Random type
     public int rIndex;
@@ -91,7 +91,7 @@ public class Blocks : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         InitializeBlocks();
     }
@@ -315,6 +315,8 @@ public class Blocks : MonoBehaviour
         move = true;
         foreach (var block in Tetrominos.Where(block => block.IsActive))
         {
+            
+
             int size;
             if (block.Type == "I" || block.Type == "O")
                 size = 4;
@@ -371,7 +373,6 @@ public class Blocks : MonoBehaviour
                     if (TileMap.PlayGrid != null && TileMap.PlayGrid[4 + x + 1, 20 + newY - 2] == 1)
                     {
                         spawn = false;
-                        Debug.Log(TileMap.PlayGrid[4 + x + 1, 20 + newY - 2]);
                     }
                 }
         }
@@ -432,8 +433,9 @@ public class Blocks : MonoBehaviour
                     ActiveSpawn = false;
                     holdSpawn = false;
                     IsFalling = true;
-                    timeFall = 0.0f;
                     timeAutoRepeat = 0.0f;
+                    timeFall = 0.0f;
+                    timeSpawn = 0.0f;
                     TimeLock = 0.0f;
                     LockCounter = 0;
                     lockDeepestRow = 20;
@@ -479,6 +481,7 @@ public class Blocks : MonoBehaviour
                         }*/
                         block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
                         block.Location = new[] {block.Location[0], block.Location[1] - 1.0f, block.Location[2]};
+                        Debug.Log(Tetrominos.Count(tetromino => tetromino.IsActive));
                     }
         }
     }
@@ -516,94 +519,74 @@ public class Blocks : MonoBehaviour
 
         if (Input.GetKeyUp(keybindHardDrop) || Input.GetKeyDown(keybindHardDrop) || Input.GetKey(keybindLeft) ||
             Input.GetKey(keybindRight) || Input.GetKey(keybindSoftDrop) || Input.GetKeyUp(keybindSoftDrop) ||
-            Input.GetKeyDown(keybindLeft) || Input.GetKeyDown(keybindRight) || Input.GetKeyDown(keybindSoftDrop))
-            if (ActiveSpawn == false)
-                foreach (var block in Tetrominos.Where(block => block.IsActive))
+            Input.GetKeyDown(keybindLeft) || Input.GetKeyDown(keybindRight) || Input.GetKeyDown(keybindSoftDrop) ||
+            Input.GetKeyUp(keybindLeft) || Input.GetKeyUp(keybindRight))
+        {
+            
+                // Auto Repeat direction control
+                if (Input.GetKeyUp(keybindLeft) && Input.GetKey(keybindRight))
                 {
-                    // Hard Drop
-                    if (Input.GetKeyDown(keybindHardDrop))
-                        while (CanMove("down"))
-                        {
-                            IsFalling = false;
-                            TimeLock = timeToLock - 0.0001f;
-                            block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
-                            block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
-                            // Adding two score points per line for hard dropping
-                            ScoreSystem.Score += 2;
-                            ScoreSystem.IsTSpinLastMove = 0;
-                        }
+                    lastDir = true;
+                    timeBeginAutoRepeat = 0.0f;
+                }
+                if (Input.GetKeyDown(keybindRight))
+                {
+                    lastDir = true;
+                    timeBeginAutoRepeat = 0.0f;
+                }
 
-                    // Soft Drop
-                    if (timeSoftDrop >= timeToSoftDrop)
-                        if (Input.GetKey(keybindSoftDrop) && CanMove("down") && TimeLock <= timeToLock)
+                if (Input.GetKeyUp(keybindRight) && Input.GetKey(keybindLeft))
+                {
+                    lastDir = false;
+                    timeBeginAutoRepeat = 0.0f;
+                }
+                if (Input.GetKeyDown(keybindLeft))
+                {
+                    lastDir = false;
+                    timeBeginAutoRepeat = 0.0f;
+                }
+
+                if (ActiveSpawn == false)
+                {
+                    foreach (var block in Tetrominos.Where(block => block.IsActive))
+                    {
+                        // Hard Drop
+                        if (Input.GetKeyDown(keybindHardDrop))
+                            while (CanMove("down"))
+                            {
+                                IsFalling = false;
+                                TimeLock = timeToLock - 0.0001f;
+                                block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
+                                block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
+                                // Adding two score points per line for hard dropping
+                                ScoreSystem.Score += 2;
+                                ScoreSystem.IsTSpinLastMove = 0;
+                            }
+
+                        // Soft Drop
+                        if (timeSoftDrop >= timeToSoftDrop)
+                            if (Input.GetKey(keybindSoftDrop) && CanMove("down") && TimeLock <= timeToLock)
+                            {
+                                IsFalling = false;
+                                TimeLock = 0.0f;
+                                timeFall = 0.0f;
+                                timeSoftDrop = 0.0f;
+                                block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
+                                block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
+                                // Adding one score point per line for soft dropping
+                                ScoreSystem.Score += 1;
+                                ScoreSystem.IsTSpinLastMove = 0;
+                            }
+
+                        // Falling disable for Soft Drop and Hard Drop
+                        if (Input.GetKeyUp(keybindSoftDrop) || Input.GetKeyUp(keybindHardDrop) && CanMove("down"))
                         {
-                            IsFalling = false;
-                            TimeLock = 0.0f;
+                            IsFalling = true;
                             timeFall = 0.0f;
-                            timeSoftDrop = 0.0f;
-                            block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
-                            block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
-                            // Adding one score point per line for soft dropping
-                            ScoreSystem.Score += 1;
-                            ScoreSystem.IsTSpinLastMove = 0;
                         }
 
-                    // Falling disable for Soft Drop and Hard Drop
-                    if (Input.GetKeyUp(keybindSoftDrop) || Input.GetKeyUp(keybindHardDrop) && CanMove("down"))
-                    {
-                        IsFalling = true;
-                        timeFall = 0.0f;
-                    }
-
-                    // Left Movement
-                    if (Input.GetKeyDown(keybindLeft) && CanMove("left"))
-                    {
-                        block.TetrominoGo.transform.Translate(Vector3.left * 1, Space.World);
-                        block.Location = new[] {block.Location[0] - 1f, block.Location[1], block.Location[2]};
-                        ScoreSystem.IsTSpinLastMove = 0;
-                        TimeLock = 0.0f;
-                        LockCounter++;
-                    }
-                    // Right Movement
-                    else if (Input.GetKeyDown(keybindRight) && CanMove("right"))
-                    {
-                        block.TetrominoGo.transform.Translate(Vector3.right * 1, Space.World);
-                        block.Location = new[] {block.Location[0] + 1f, block.Location[1], block.Location[2]};
-                        ScoreSystem.IsTSpinLastMove = 0;
-                        TimeLock = 0.0f;
-                        LockCounter++;
-                    }
-
-                    // Auto Repeat direction control
-                    if (Input.GetKeyUp(keybindLeft) && Input.GetKey(keybindRight))
-                    {
-                        lastDir = true;
-                        timeBeginAutoRepeat = 0.0f;
-                    }
-
-                    if (Input.GetKeyUp(keybindRight) && Input.GetKey(keybindLeft))
-                    {
-                        lastDir = false;
-                        timeBeginAutoRepeat = 0.0f;
-                    }
-
-                    if (Input.GetKeyDown(keybindLeft))
-                    {
-                        lastDir = false;
-                        timeBeginAutoRepeat = 0.0f;
-                    }
-
-                    if (Input.GetKeyDown(keybindRight))
-                    {
-                        lastDir = true;
-                        timeBeginAutoRepeat = 0.0f;
-                    }
-
-                    // Auto Repeat
-                    if (timeAutoRepeat >= timeToAutoRepeat && timeBeginAutoRepeat >= timeToBeginAutoRepeat)
-                    {
-                        timeAutoRepeat = 0.0f;
-                        if (Input.GetKey(keybindLeft) && CanMove("left") && lastDir == false)
+                        // Left Movement
+                        if (Input.GetKeyDown(keybindLeft) && CanMove("left"))
                         {
                             block.TetrominoGo.transform.Translate(Vector3.left * 1, Space.World);
                             block.Location = new[] {block.Location[0] - 1f, block.Location[1], block.Location[2]};
@@ -611,8 +594,8 @@ public class Blocks : MonoBehaviour
                             TimeLock = 0.0f;
                             LockCounter++;
                         }
-
-                        if (Input.GetKey(keybindRight) && CanMove("right") && lastDir)
+                        // Right Movement
+                        else if (Input.GetKeyDown(keybindRight) && CanMove("right"))
                         {
                             block.TetrominoGo.transform.Translate(Vector3.right * 1, Space.World);
                             block.Location = new[] {block.Location[0] + 1f, block.Location[1], block.Location[2]};
@@ -620,13 +603,37 @@ public class Blocks : MonoBehaviour
                             TimeLock = 0.0f;
                             LockCounter++;
                         }
+
+                        // Auto Repeat
+                        if (timeAutoRepeat >= timeToAutoRepeat && timeBeginAutoRepeat >= timeToBeginAutoRepeat)
+                        {
+                            timeAutoRepeat = 0.0f;
+                            if (Input.GetKey(keybindLeft) && CanMove("left") && lastDir == false)
+                            {
+                                block.TetrominoGo.transform.Translate(Vector3.left * 1, Space.World);
+                                block.Location = new[] {block.Location[0] - 1f, block.Location[1], block.Location[2]};
+                                ScoreSystem.IsTSpinLastMove = 0;
+                                TimeLock = 0.0f;
+                                LockCounter++;
+                            }
+
+                            if (Input.GetKey(keybindRight) && CanMove("right") && lastDir)
+                            {
+                                block.TetrominoGo.transform.Translate(Vector3.right * 1, Space.World);
+                                block.Location = new[] {block.Location[0] + 1f, block.Location[1], block.Location[2]};
+                                ScoreSystem.IsTSpinLastMove = 0;
+                                TimeLock = 0.0f;
+                                LockCounter++;
+                            }
+                        }
                     }
                 }
+        }
     }
 
     private void Hold()
     {
-        if (holdUsed == false && Input.GetKeyDown(KeyCode.LeftShift))
+        if (holdUsed == false && (Input.GetKeyDown(keybindHold[0]) || Input.GetKeyDown(keybindHold[1])))
         {
             foreach (var block in Tetrominos.Where(block => block.IsActive))
             {
@@ -649,15 +656,8 @@ public class Blocks : MonoBehaviour
                 if (block.RotationState == 0) block.AtSpawn = false;
 
                 holdSpawn = true;
-                
-                if (randomType.Contains(HoldType))
-                {
-                    SpawnMino(HoldType);
-                }
-                else
-                {
-                    SpawnMino("random");
-                }
+
+                SpawnMino(randomType.Contains(HoldType) ? HoldType : "random");
 
                 holdUsed = true;
                 break;

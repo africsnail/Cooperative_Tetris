@@ -79,9 +79,9 @@ public class TileMap : MonoBehaviour
         if (IsGameOver == false)
         {
             var kick = 3f;
-            GameOverCube = new GameObject[gridWidth - 1, gridHeight - 1];
+            GameOverCube = new GameObject[gridWidth - 1, gridHeight];
             for (var x = 1; x < gridWidth - 1; x++)
-            for (var y = 1; y < gridHeight - 1; y++)
+            for (var y = 1; y < gridHeight; y++)
                 if (MovementTileMap.GridCube[x, y] != null)
                 {
                     GameOverCube[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
@@ -104,7 +104,7 @@ public class TileMap : MonoBehaviour
     private void GridManager(int w, int h)
     {
         IsClear = new List<int>();
-        for (var y = 1; y < h - 1; y++)
+        for (var y = 1; y < h; y++)
         {
             var lineClear = true;
             for (var x = 1; x < w - 1; x++)
@@ -252,7 +252,7 @@ public class TileMap : MonoBehaviour
 
             for (var numberOfLine = 0; numberOfLine < IsClear.Count; numberOfLine++)
             {
-                for (var y = 0; y < h - 1; y++)
+                for (var y = 0; y < h; y++)
                 for (var x = 1; x < w - 1; x++)
                     if (y >= IsClear[numberOfLine])
                     {
@@ -325,7 +325,7 @@ public class TileMap : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         InitializeGrid();
     }

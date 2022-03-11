@@ -22,7 +22,7 @@ public class ScoreSystem : MonoBehaviour
     public static bool IsGameOverScoreSet;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Initializing
         IsTSpinLastMove = 0;
