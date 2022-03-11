@@ -5,68 +5,65 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     // VARIABLES
-    public static bool IsPaused;
+    private int _sizeActiveBlocks;
 
     // Background
     private Renderer _backgroundMaterial;
     public Material materialMenu;
     public Material materialGame;
-    
-    // Pause menu
-    private GameObject _canvas;
-    private Canvas _canvasCanvas;
+
+    // Audio
     private AudioSource _musicMusic;
-    private Text[] _menuItem;
-    private GameObject[] _menu;
-    private int _selectedIndex;
-    private Text _menuItemSelected;
+    private int _volume;
 
-    private int _menuItemCount;
+    // Menus
+    public static SubMenu[] Menus { get; set; }
 
-    // Game Over menu
-    public bool isPausedGameOver;
-    private GameObject _gameOverCanvas;
-    private Canvas _gameOverCanvasCanvas;
-    private Text[] _gameOverMenuItem;
-    private GameObject[] _gameOverMenu;
-    private int _gameOverSelectedIndex;
-    private Text _gameOverMenuItemSelected;
-    private int _gameOverMenuItemCount;
-    private int _sizeActiveBlocks;
-
+    // In-game settings
+    private Slider _volumeSlider;
+    private Text _volumePercentage;
+    
+    // Pause animation
     private GameObject[,] _animationCube;
     private GameObject[,] _animationCube2;
 
 
     private void Start()
     {
+        Menus = new SubMenu[3];
+        for (int x = 0; x < 3; x++)
+            Menus[x] = new SubMenu();
         _backgroundMaterial = GetComponent<Renderer>();
-        InitializeMenu();
-        InitializeGameOverMenu();
+        InitializeMenu(id: 0, menuName: "Pause menu");
+        InitializeMenu(id: 1, menuName: "Game Over menu");
+        InitializeMenu(id: 2, menuName: "In-game settings");
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        MenuControls();
+    }
+
+    void MenuControls()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !Menus[2].IsPaused)
         {
-            if (IsPaused == false && TileMap.IsGameOver == false)
+            if (Menus[0].IsPaused == false && TileMap.IsGameOver == false)
             {
                 //Time.timeScale = 0f;
-                IsPaused = true;
+                Menus[0].IsPaused = true;
                 _sizeActiveBlocks = Blocks.Tetrominos.Find(block => block.IsActive).RGrid.GetUpperBound(0);
-                _canvasCanvas.enabled = true;
+                Menus[0].CanvasCanvas.enabled = true;
                 _backgroundMaterial.material = materialMenu;
                 _musicMusic.Pause();
                 StartCoroutine(MenuOpenAnimation(TileMap.gridWidth - 1, TileMap.gridHeight - 1));
                 GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
             }
-
             else
             {
-                //Time.timeScale = 1f;
-                IsPaused = false;
-                _canvasCanvas.enabled = false;
+                Menus[0].IsPaused = false;
+                Menus[0].CanvasCanvas.enabled = false;
                 _backgroundMaterial.material = materialGame;
                 _musicMusic.Play();
                 GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
@@ -74,146 +71,162 @@ public class Menu : MonoBehaviour
             }
         }
 
-        if (TileMap.IsGameOver && isPausedGameOver == false)
+        if (TileMap.IsGameOver)
         {
-            IsPaused = true;
-            isPausedGameOver = true;
-            _gameOverCanvasCanvas.enabled = true;
+            Menus[1].IsPaused = true;
+            Menus[1].CanvasCanvas.enabled = true;
             _backgroundMaterial.material = materialMenu;
         }
 
-        if (IsPaused || isPausedGameOver)
+        // Menu scrolling
+        sbyte id = 0;
+        for (sbyte x = 0; x < 3; x++)
+            if (Menus[x].IsPaused)
+                id = x;
+
+
+
+        if (Menus[id].IsPaused)
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if (isPausedGameOver)
-                {
-                    _gameOverMenuItemSelected.color = new Color(91f / 255f, 91f / 255f, 91f / 255f);
-                    GameOverMenuScroll("up");
-                }
-                else if (IsPaused)
-                {
-                    _menuItemSelected.color = new Color(91f / 255f, 91f / 255f, 91f / 255f);
-                    MenuScroll("up");
-                }
+                Menus[id].MenuItemSelected.color = new Color(91f / 255f, 91f / 255f, 91f / 255f);
+                MenuScroll(id, "up");
             }
 
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if (isPausedGameOver)
-                {
-                    _gameOverMenuItemSelected.color = new Color(91f / 255f, 91f / 255f, 91f / 255f);
-                    GameOverMenuScroll("down");
-                }
-                else if (IsPaused)
-                {
-                    _menuItemSelected.color = new Color(91f / 255f, 91f / 255f, 91f / 255f);
-                    MenuScroll("down");
-                }
+                Menus[id].MenuItemSelected.color = new Color(91f / 255f, 91f / 255f, 91f / 255f);
+                MenuScroll(id, "down");
             }
+            
 
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
             {
-                if (_selectedIndex == 2 || _gameOverSelectedIndex == 2)
+                if (id == 0)
                 {
-                    Application.Quit();
-                    Debug.Log("Quitting");
+                    if (Menus[0].SelectedIndex == 3)
+                    {
+                        Application.Quit();
+                        Debug.Log("Quitting");
+                    }
+
+                    if (Menus[0].SelectedIndex == 2)
+                    {
+                        RestartGame();
+                    }
+
+                    if (Menus[0].SelectedIndex == 1)
+                    {
+                        Menus[0].IsPaused = false;
+                        Menus[2].IsPaused = true;
+                        Menus[0].CanvasCanvas.enabled = false;
+                        Menus[2].CanvasCanvas.enabled = true;
+                    }
+                }
+                else if (id == 1)
+                {
+                    if (Menus[1].SelectedIndex == 2)
+                    {
+                        Application.Quit();
+                        Debug.Log("Quitting");
+                    }
+
+                    if (Menus[1].SelectedIndex == 1)
+                    {
+                        RestartGameOver();
+                    }
+                }
+            }
+            if (id == 2)
+            {
+                if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+                {
+                    _volume -= 10;
+                    if (_volume < 0)
+                        _volume = 0;
+                    _volumePercentage.text = _volume + "%";
+                    _volumeSlider.value = _volume / 100f;
+                    _musicMusic.volume = _volume / 100f;
+                    PlayerPrefs.SetInt("volume", _volume);
+                }
+                if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+                {
+                    _volume += 10;
+                    if (_volume > 100)
+                        _volume = 100;
+                    _volumePercentage.text = _volume + "%";
+                    _volumeSlider.value = _volume / 100f;
+                    _musicMusic.volume = _volume / 100f;
+                    PlayerPrefs.SetInt("volume", _volume);
                 }
 
-                if (_selectedIndex == 1 && isPausedGameOver == false)
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return) ||
+                    Input.GetKeyDown(KeyCode.Space))
                 {
-                    RestartGame();
-                }
-
-                if (_gameOverSelectedIndex == 1 && isPausedGameOver)
-                {
-                    RestartGameOver();
+                    Menus[0].IsPaused = true;
+                    Menus[2].IsPaused = false;
+                    Menus[0].CanvasCanvas.enabled = true;
+                    Menus[2].CanvasCanvas.enabled = false;
                 }
             }
 
-
-            if (isPausedGameOver)
-                _gameOverMenuItemSelected.color = new Color(94f / 255f, 92f / 255f, 214f / 255f);
-            else if (IsPaused)
-                _menuItemSelected.color = new Color(94f / 255f, 92f / 255f, 214f / 255f);
+            if (Menus[id].IsPaused)
+                Menus[id].MenuItemSelected.color = new Color(94f / 255f, 92f / 255f, 214f / 255f);
         }
     }
 
-    void MenuScroll(string direction)
+
+    void MenuScroll(int id, string direction)
     {
         if (direction == "up")
-            _selectedIndex -= 1;
+            Menus[id].SelectedIndex -= 1;
         if (direction == "down")
-            _selectedIndex += 1;
-        if (_selectedIndex > _menuItemCount - 1)
-            _selectedIndex = 0;
-        if (_selectedIndex < 0)
-            _selectedIndex = _menuItemCount - 1;
-        _menuItemSelected = _menuItem[_selectedIndex];
+            Menus[id].SelectedIndex += 1;
+
+        if (Menus[id].SelectedIndex > Menus[id].MenuItemCount - 1)
+            Menus[id].SelectedIndex = 1;
+        if (Menus[id].SelectedIndex < 1)
+            Menus[id].SelectedIndex = Menus[id].MenuItemCount - 1;
+        Menus[id].MenuItemSelected = Menus[id].MenuItem[Menus[id].SelectedIndex];
     }
 
-    void GameOverMenuScroll(string direction)
+    void InitializeMenu(int id, string menuName)
     {
-        if (direction == "up")
-            _gameOverSelectedIndex -= 1;
-        if (direction == "down")
-            _gameOverSelectedIndex += 1;
-
-        if (_gameOverSelectedIndex > _gameOverMenuItemCount - 1)
-            _gameOverSelectedIndex = 1;
-        if (_gameOverSelectedIndex < 1)
-            _gameOverSelectedIndex = _gameOverMenuItemCount - 1;
-        _gameOverMenuItemSelected = _gameOverMenuItem[_gameOverSelectedIndex];
-
-        Debug.Log(_menuItemCount + ", " + _gameOverSelectedIndex);
-    }
-
-    private void InitializeMenu()
-    {
-        _selectedIndex = 0;
-        _canvas = transform.GetChild(0).gameObject;
-        _menuItemCount = _canvas.transform.childCount;
+        Menus[id].Canvas = GameObject.Find(menuName);
+        Menus[id].MenuItemCount = Menus[id].Canvas.transform.childCount;
         // Creating GameObject array menu
-        _menu = new GameObject[_menuItemCount];
-        _menuItem = new Text[_menuItemCount];
+        Menus[id].Menu = new GameObject[Menus[id].MenuItemCount];
+        Menus[id].MenuItem = new Text[Menus[id].MenuItemCount];
         // Creating each menu item
-        for (int x = 0; x < _canvas.transform.childCount; x++)
+        for (int x = 0; x < Menus[id].Canvas.transform.childCount; x++)
         {
-            _menu[x] = _canvas.transform.GetChild(x).gameObject;
-            _menuItem[x] = _menu[x].GetComponent<Text>();
+            Menus[id].Menu[x] = Menus[id].Canvas.transform.GetChild(x).gameObject;
+            Menus[id].MenuItem[x] = Menus[id].Menu[x].GetComponent<Text>();
         }
 
-        _menuItemSelected = _menuItem[_selectedIndex];
-        _canvasCanvas = _canvas.GetComponent<Canvas>();
+        Menus[id].MenuItemSelected = Menus[id].MenuItem[Menus[id].SelectedIndex];
+        Menus[id].CanvasCanvas = Menus[id].Canvas.GetComponent<Canvas>();
         _musicMusic = GetComponent<AudioSource>();
-        _canvasCanvas.enabled = false;
+        Menus[id].CanvasCanvas.enabled = false;
         _backgroundMaterial.material = materialGame;
-    }
 
-    private void InitializeGameOverMenu()
-    {
-        _gameOverSelectedIndex = 1;
-        _gameOverCanvas = transform.GetChild(1).gameObject;
-        _gameOverMenuItemCount = _gameOverCanvas.transform.childCount;
-        // Creating GameObject array menu
-        _gameOverMenu = new GameObject[_gameOverMenuItemCount];
-        _gameOverMenuItem = new Text[_gameOverMenuItemCount];
-
-        // Creating each menu item
-        for (int x = 0; x < _gameOverCanvas.transform.childCount; x++)
+        // Un-pause menu
+        Menus[id].IsPaused = false;
+        if (id == 2)
         {
-            _gameOverMenu[x] = _gameOverCanvas.transform.GetChild(x).gameObject;
-            _gameOverMenuItem[x] = _gameOverMenu[x].GetComponent<Text>();
+            // Read volume from preferences and set the needed variables
+            _volumePercentage = Menus[2].MenuItem[1].transform.GetChild(0).GetComponent<Text>();
+            _volumeSlider = Menus[2].MenuItem[1].transform.GetChild(1).GetComponent<Slider>();
+            _volume = PlayerPrefs.GetInt("volume");
+            _volumeSlider.value = PlayerPrefs.GetInt("volume") / 100f;
+            _volumePercentage.text = PlayerPrefs.GetInt("volume") + "%";
+            _musicMusic.volume = PlayerPrefs.GetInt("volume") / 100f;
         }
-
-        _gameOverMenuItemSelected = _gameOverMenuItem[_gameOverSelectedIndex];
-        _gameOverCanvasCanvas = _gameOverCanvas.GetComponent<Canvas>();
-        _gameOverCanvasCanvas.enabled = false;
-        _backgroundMaterial.material = materialGame;
     }
 
-    private void ClearAnimationCubes(int w, int h)
+    void ClearAnimationCubes(int w, int h)
     {
         for (var x = 0; x < w; x++)
         for (var y = 0; y < h; y++)
@@ -243,13 +256,13 @@ public class Menu : MonoBehaviour
         for (var x = 1; x < TileMap.gridWidth - 1; x++)
         for (var y = 1; y < TileMap.gridHeight - 1; y++)
         {
-            if (TileMap.MovementGrid.GridCube[x, y] != null)
-                DestroyImmediate(TileMap.MovementGrid.GridCube[x, y]);
+            if (TileMap.MovementTileMap.GridCube[x, y] != null)
+                DestroyImmediate(TileMap.MovementTileMap.GridCube[x, y]);
             if (TileMap.GameOverCube[x, y] != null)
                 StartCoroutine(GameOverCleanup(x, y));
         }
 
-        IsPaused = false;
+        Menus[0].IsPaused = false;
         GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
         Blocks.Tetrominos.Find(block => block.IsActive).IsActive = false;
 
@@ -266,15 +279,23 @@ public class Menu : MonoBehaviour
 
         Debug.Log("Restarting");
 
-        _canvasCanvas.enabled = false;
+        Menus[0].CanvasCanvas.enabled = false;
         _backgroundMaterial.material = materialGame;
         _musicMusic.Stop();
         _musicMusic.Play();
+        
+        // Reset scoring
+        ScoreSystem.IsTSpinLastMove = 0;
+        ScoreSystem.LinesCleared = 0;
+        ScoreSystem.CurrentLevel = 1;
+        ScoreSystem.Score = 0;
+        ScoreSystem.IsGameOverScoreSet = false;
+        ScoreSystem.NewRecordText.enabled = false;
 
         ClearAnimationCubes(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
     }
 
-    private void RestartGameOver()
+    void RestartGameOver()
     {
         GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
         TileMap.GameOver(false);
@@ -282,14 +303,14 @@ public class Menu : MonoBehaviour
         for (var x = 1; x < TileMap.gridWidth - 1; x++)
         for (var y = 1; y < TileMap.gridHeight - 1; y++)
         {
-            if (TileMap.MovementGrid.GridCube[x, y] != null)
-                DestroyImmediate(TileMap.MovementGrid.GridCube[x, y]);
+            if (TileMap.MovementTileMap.GridCube[x, y] != null)
+                DestroyImmediate(TileMap.MovementTileMap.GridCube[x, y]);
             if (TileMap.GameOverCube[x, y] != null)
                 StartCoroutine(GameOverCleanup(x, y));
         }
 
-        IsPaused = false;
-        isPausedGameOver = false;
+        Menus[0].IsPaused = false;
+        Menus[1].IsPaused = false;
         TileMap.IsGameOver = false;
         GetRenderer(TileMap.gridWidth - 1, TileMap.gridHeight - 1);
         Blocks.ActiveSpawn = true;
@@ -304,15 +325,23 @@ public class Menu : MonoBehaviour
         Destroy(Blocks.PreviewBlock);
 
         Debug.Log("Restarting");
+        
+        // Reset scoring
+        ScoreSystem.IsTSpinLastMove = 0;
+        ScoreSystem.LinesCleared = 0;
+        ScoreSystem.CurrentLevel = 1;
+        ScoreSystem.Score = 0;
+        ScoreSystem.IsGameOverScoreSet = false;
+        ScoreSystem.NewRecordText.enabled = false;
 
-        _gameOverCanvasCanvas.enabled = false;
+        Menus[1].CanvasCanvas.enabled = false;
         _backgroundMaterial.material = materialGame;
         _musicMusic.Stop();
         _musicMusic.Play();
     }
 
 
-    private void GetRenderer(int w, int h)
+    void GetRenderer(int w, int h)
     {
         var animationRenderer = new Renderer[w][];
         for (int index = 0; index < w; index++)
@@ -341,12 +370,12 @@ public class Menu : MonoBehaviour
         for (var x = 1; x < w; x++)
         for (var y = 1; y < h; y++)
         {
-            if (TileMap.MovementGrid.GridCube[x, y] != null)
+            if (TileMap.MovementTileMap.GridCube[x, y] != null)
             {
-                animationRenderer[x][y] = TileMap.MovementGrid.GridCube[x, y].GetComponent<Renderer>();
-                animationRenderer[x][y].enabled = !IsPaused;
-                animationCollider[x][y] = TileMap.MovementGrid.GridCube[x, y].GetComponent<Collider>();
-                animationCollider[x][y].enabled = !IsPaused;
+                animationRenderer[x][y] = TileMap.MovementTileMap.GridCube[x, y].GetComponent<Renderer>();
+                animationRenderer[x][y].enabled = !Menus[0].IsPaused;
+                animationCollider[x][y] = TileMap.MovementTileMap.GridCube[x, y].GetComponent<Collider>();
+                animationCollider[x][y].enabled = !Menus[0].IsPaused;
             }
         }
 
@@ -359,10 +388,10 @@ public class Menu : MonoBehaviour
                 {
                     animationRenderer2[x][y] = Blocks.Tetrominos.Find(block => block.IsActive).CubeGo[x, y]
                         .GetComponent<Renderer>();
-                    animationRenderer2[x][y].enabled = !IsPaused;
+                    animationRenderer2[x][y].enabled = !Menus[0].IsPaused;
                     animationCollider2[x][y] = Blocks.Tetrominos.Find(block => block.IsActive).CubeGo[x, y]
                         .GetComponent<Collider>();
-                    animationCollider2[x][y].enabled = !IsPaused;
+                    animationCollider2[x][y].enabled = !Menus[0].IsPaused;
                 }
             }
         }
@@ -391,9 +420,9 @@ public class Menu : MonoBehaviour
         for (var x = 1; x < w; x++)
         for (var y = 1; y < h; y++)
         {
-            if (TileMap.MovementGrid.GridCube[x, y] != null)
+            if (TileMap.MovementTileMap.GridCube[x, y] != null)
             {
-                _animationCube[x, y] = Instantiate(TileMap.MovementGrid.GridCube[x, y]);
+                _animationCube[x, y] = Instantiate(TileMap.MovementTileMap.GridCube[x, y]);
                 _animationCube[x, y].name = "Animation cube (Grid) " + x + "_" + y;
                 var animationRigidbody = _animationCube[x, y].AddComponent<Rigidbody>();
                 animationRigidbody.AddForce(0, 0, -1, ForceMode.Impulse);

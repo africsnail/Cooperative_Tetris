@@ -11,28 +11,33 @@ public class ScoreSystem : MonoBehaviour
     public static int CurrentLevel;
     public static float CurrentAction;
     public static float Score;
+    private static float _highScore;
     public static float LinesCleared;
     public static int IsTSpinLastMove;
-    public static int IsTSpin;
     public static bool IsB2B;
-    private GameObject _scoreGo;
     private Text _scoreText;
-    private GameObject _levelGo;
     private Text _levelText;
+    private Text _scoreGameOverText;
+    private Text _highScoreText;
+    public static Text NewRecordText;
+    public static bool IsGameOverScoreSet;
 
     // Start is called before the first frame update
     void Start()
     {
-        IsTSpin = 0;
+        // Initializing
         IsTSpinLastMove = 0;
         LinesCleared = 0;
         CurrentLevel = 1;
         Score = 0;
-        
-        _scoreGo = GameObject.Find("Score");
-        _scoreText = _scoreGo.GetComponent<Text>();
-        _levelGo = GameObject.Find("Level");
-        _levelText = _levelGo.GetComponent<Text>();
+
+        _highScore = new float();
+        _highScore = PlayerPrefs.GetFloat("high_score");
+        NewRecordText = GameObject.Find("New record").GetComponent<Text>();
+        _scoreText = GameObject.Find("Score").GetComponent<Text>();
+        _levelText = GameObject.Find("Level").GetComponent<Text>();
+        _scoreGameOverText = GameObject.Find("Game Over score").GetComponent<Text>();
+        _highScoreText = GameObject.Find("High score").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -40,6 +45,23 @@ public class ScoreSystem : MonoBehaviour
     {
         _scoreText.text = "Score: " + Score;
         _levelText.text = "Level: " + CurrentLevel;
+
+        if (TileMap.IsGameOver && IsGameOverScoreSet == false)
+        {
+            if (Score > _highScore)
+            {
+                NewRecordText.enabled = true;
+                _highScore = Score;
+                PlayerPrefs.SetFloat("high_score", _highScore);
+            }
+            else
+            {
+                _scoreGameOverText.text = "Score: \n" + Score;
+            }
+            _scoreGameOverText.text = "Score: \n" + Score;
+            _highScoreText.text = "High score: \n" + _highScore;
+            IsGameOverScoreSet = true;
+        }
     }
 
     public static void ScoreCounter()
@@ -47,7 +69,10 @@ public class ScoreSystem : MonoBehaviour
 
         LinesCleared += CurrentAction;
         if (LinesCleared >= 5 * CurrentLevel)
+        {
+            LinesCleared -= 5 * CurrentLevel;
             CurrentLevel += 1;
+        }
 
         if (CurrentLevel == 16)
             CurrentLevel = 15;
@@ -56,9 +81,8 @@ public class ScoreSystem : MonoBehaviour
         Blocks.TimeToFall = (float)Math.Pow((0.8f - (CurrentLevel - 1f) * 0.007f), CurrentLevel - 1f);
 
         CurrentAction = 0;
-        IsTSpin = 0;
         IsTSpinLastMove = 0;
         
-        Debug.Log("Current score: " + Score + " Current level: " + CurrentLevel + " Current fall speed: " + Blocks.TimeToFall);
+        Debug.Log("Lines cleared: " + LinesCleared + " Current score: " + Score + " Current level: " + CurrentLevel + " Current fall speed: " + Blocks.TimeToFall);
     }
     }

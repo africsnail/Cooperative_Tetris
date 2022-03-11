@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SubGrid
+public class SubTileMap
 {
     public bool[,] IsActive { get; set; }
     public Color[,] Color { get; set; }

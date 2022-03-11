@@ -100,7 +100,7 @@ public class Blocks : MonoBehaviour
 // Update is called once per frame
     private void Update()
     {
-        if (!Menu.IsPaused)
+        if (!Menu.Menus[0].IsPaused && !Menu.Menus[2].IsPaused)
         {
             SpawnMino("random");
             Falling();
@@ -368,10 +368,11 @@ public class Blocks : MonoBehaviour
                     else
                         newY = y;
                     
-                    if (TileMap.PlayGrid[4 + x + 1, 20 + newY - 2] == 1)
+                    if (TileMap.PlayGrid != null && TileMap.PlayGrid[4 + x + 1, 20 + newY - 2] == 1)
                     {
                         spawn = false;
                         Debug.Log(TileMap.PlayGrid[4 + x + 1, 20 + newY - 2]);
+                        
                     }
                 }
         }
@@ -563,7 +564,7 @@ public class Blocks : MonoBehaviour
                         TimeLock = 0.0f;
                         LockCounter++;
 
-                        if (Menu.IsPaused)
+                        if (Menu.Menus[0].IsPaused)
                             Debug.Log("lmao");
                     }
                     // Right Movement
@@ -667,8 +668,8 @@ public class Blocks : MonoBehaviour
                 holdUsed = true;
                 break;
             }
-
-            HoldType = Tetrominos.Find(block => block.IsHold).Type;
+            if (Tetrominos.Exists(block => block.IsHold))
+              HoldType = Tetrominos.Find(block => block.IsHold).Type;
         }
     }
 

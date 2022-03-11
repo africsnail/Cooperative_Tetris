@@ -23,7 +23,7 @@ public class TileMap : MonoBehaviour
 
     public static int[,] PlayGrid { get; set; }
     public static bool IsGameOver;
-    public static SubGrid MovementGrid { get; set; }
+    public static SubTileMap MovementTileMap { get; set; }
 
     public Material blockWithTexture;
 
@@ -33,15 +33,17 @@ public class TileMap : MonoBehaviour
 
     private void InitializeGrid()
     {
-        Border = new GameObject();
-        Border.name = "Border";
+        Border = new GameObject
+        {
+            name = "Border"
+        };
         PlayGrid = new int[gridWidth, gridHeight];
         // Play area dimensions
         // const int w = 12;
         // const int h = 22;
         // Generating play area grid
         //Generating cubes 
-        MovementGrid = new SubGrid
+        MovementTileMap = new SubTileMap
         {
             Color = new Color[gridWidth, gridHeight],
             IsActive = new bool[gridWidth, gridHeight],
@@ -51,23 +53,23 @@ public class TileMap : MonoBehaviour
         LineToAnimate = new GameObject[gridWidth, gridHeight];
         for (var x = 0; x < gridWidth; x++)
         for (var y = 0; y < gridHeight; y++)
-            if (x < 1 || x > 10 || y < 1)
+            if (x < 1 || x > gridWidth - 2 || y < 1)
             {
                 PlayGrid[x, y] = 1;
                 if (PlayGrid[x, y] == 1)
                 {
-                    MovementGrid.GridCube[x, y] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    MovementGrid.GridCube[x, y].name = "Border cube";
-                    MovementGrid.GridCube[x, y].transform.parent = Border.transform;
-                    MovementGrid.GridCube[x, y].transform.position = new Vector3(x - 1, y - 1, 0);
-                    var cubeRenderer = MovementGrid.GridCube[x, y].GetComponent<Renderer>();
+                    MovementTileMap.GridCube[x, y] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    MovementTileMap.GridCube[x, y].name = "Border cube";
+                    MovementTileMap.GridCube[x, y].transform.parent = Border.transform;
+                    MovementTileMap.GridCube[x, y].transform.position = new Vector3(x - 1, y - 1, 0);
+                    var cubeRenderer = MovementTileMap.GridCube[x, y].GetComponent<Renderer>();
                     cubeRenderer.material.SetColor(ColorBlack, Color.black);
                     cubeRenderer.material = blockWithTexture;
-                    var cubeCollider = MovementGrid.GridCube[x, y].GetComponent<Collider>();
+                    var cubeCollider = MovementTileMap.GridCube[x, y].GetComponent<Collider>();
                     DestroyImmediate(cubeCollider);
-                    MovementGrid.Color[x, y] = Color.black;
-                    MovementGrid.IsActive[x, y] = true;
-                    MovementGrid.IsClear[x, y] = false;
+                    MovementTileMap.Color[x, y] = Color.black;
+                    MovementTileMap.IsActive[x, y] = true;
+                    MovementTileMap.IsClear[x, y] = false;
                 }
             }
     }
@@ -80,10 +82,10 @@ public class TileMap : MonoBehaviour
             GameOverCube = new GameObject[gridWidth - 1, gridHeight - 1];
             for (var x = 1; x < gridWidth - 1; x++)
             for (var y = 1; y < gridHeight - 1; y++)
-                if (MovementGrid.GridCube[x, y] != null)
+                if (MovementTileMap.GridCube[x, y] != null)
                 {
-                    GameOverCube[x, y] = Instantiate(MovementGrid.GridCube[x, y]);
-                    DestroyImmediate(MovementGrid.GridCube[x, y]);
+                    GameOverCube[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
+                    DestroyImmediate(MovementTileMap.GridCube[x, y]);
                     Debug.Log("GameOver");
                     var gameOverRigidbody = GameOverCube[x, y].AddComponent<Rigidbody>();
 
@@ -91,17 +93,10 @@ public class TileMap : MonoBehaviour
                     gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
 
 
-                    MovementGrid.IsActive[x, y] = false;
-                    MovementGrid.IsClear[x, y] = false;
+                    MovementTileMap.IsActive[x, y] = false;
+                    MovementTileMap.IsClear[x, y] = false;
                     PlayGrid[x, y] = 0;
                 }
-            // Reset scoring
-            ScoreSystem.IsTSpin = 0;
-            ScoreSystem.IsTSpinLastMove = 0;
-            ScoreSystem.LinesCleared = 0;
-            ScoreSystem.CurrentLevel = 1;
-            ScoreSystem.Score = 0;
-
             if (isReal)
                 IsGameOver = true;
         }
@@ -117,22 +112,22 @@ public class TileMap : MonoBehaviour
             for (var x = 1; x < w - 1; x++)
                 if (PlayGrid[x, y] == 1)
                 {
-                    if (MovementGrid.IsActive[x, y] == false)
+                    if (MovementTileMap.IsActive[x, y] == false)
                     {
                         //Debug.Log("Checking coordinates: " + x + ", " + y + ". Value: " + PlayGrid[x, y]);
-                        MovementGrid.GridCube[x, y] =
+                        MovementTileMap.GridCube[x, y] =
                             Instantiate(Blocks.Tetrominos.Find(block => block.Type == "O").CubeGo[2, 2]);
-                        MovementGrid.GridCube[x, y].name = "Grid cube " + (x - 1) + "_" + (y - 1);
-                        MovementGrid.GridCube[x, y].transform.position = new Vector3(x - 1, y - 1, 0);
-                        var cubeRenderer = MovementGrid.GridCube[x, y].GetComponent<Renderer>();
+                        MovementTileMap.GridCube[x, y].name = "Grid cube " + (x - 1) + "_" + (y - 1);
+                        MovementTileMap.GridCube[x, y].transform.position = new Vector3(x - 1, y - 1, 0);
+                        var cubeRenderer = MovementTileMap.GridCube[x, y].GetComponent<Renderer>();
                         //var cubeCollider = MovementGrid.GridCube[x, y].GetComponent<Collider>();
-                        cubeRenderer.material.SetColor(ColorBlack, MovementGrid.Color[x, y]);
+                        cubeRenderer.material.SetColor(ColorBlack, MovementTileMap.Color[x, y]);
                         //DestroyImmediate(cubeCollider);
-                        MovementGrid.IsActive[x, y] = true;
+                        MovementTileMap.IsActive[x, y] = true;
                     }
 
-                    var cubeRenderer2 = MovementGrid.GridCube[x, y].GetComponent<Renderer>();
-                    cubeRenderer2.material.SetColor(ColorBlack, MovementGrid.Color[x, y]);
+                    var cubeRenderer2 = MovementTileMap.GridCube[x, y].GetComponent<Renderer>();
+                    cubeRenderer2.material.SetColor(ColorBlack, MovementTileMap.Color[x, y]);
                 }
                 else if (PlayGrid[x, y] == 0)
                 {
@@ -145,15 +140,15 @@ public class TileMap : MonoBehaviour
                 IsClear.Add(y);
                 for (var x = 1; x < w - 1; x++)
                 {
-                    MovementGrid.IsClear[x, y] = true;
-                    if (MovementGrid.IsClear[x, y])
+                    MovementTileMap.IsClear[x, y] = true;
+                    if (MovementTileMap.IsClear[x, y])
                     {
-                        LineToAnimate[x, y] = Instantiate(MovementGrid.GridCube[x, y]);
+                        LineToAnimate[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
                         StartCoroutine(lineClearAnimation(x, y));
-                        DestroyImmediate(MovementGrid.GridCube[x, y]);
+                        DestroyImmediate(MovementTileMap.GridCube[x, y]);
                         PlayGrid[x, y] = 0;
-                        MovementGrid.IsClear[x, y] = false;
-                        MovementGrid.IsActive[x, y] = false;
+                        MovementTileMap.IsClear[x, y] = false;
+                        MovementTileMap.IsActive[x, y] = false;
                     }
                 }
             }
@@ -165,23 +160,30 @@ public class TileMap : MonoBehaviour
             if (IsClear.Count == 1)
             {
                 ScoreSystem.CurrentAction += 1;
+                ScoreSystem.Score += 100;
                 ScoreSystem.IsB2B = false;
             }
             else if (IsClear.Count == 2)
             {
                 ScoreSystem.CurrentAction += 3;
+                ScoreSystem.Score += 300;
                 ScoreSystem.IsB2B = false;
             }
             else if (IsClear.Count == 3)
             {
                 ScoreSystem.CurrentAction += 5;
+                ScoreSystem.Score += 500;
                 ScoreSystem.IsB2B = false;
             }
             else if (IsClear.Count == 4)
             {
                 ScoreSystem.CurrentAction += 8;
+                ScoreSystem.Score += 800;
                 if (ScoreSystem.IsB2B)
+                {
                     ScoreSystem.CurrentAction += 4;
+                    ScoreSystem.Score += 400;
+                }
                 ScoreSystem.IsB2B = true;
             }
             else
@@ -191,7 +193,6 @@ public class TileMap : MonoBehaviour
             if (ScoreSystem.IsTSpinLastMove == 1)
             {
                 // Writes 0 to IsTSpin for the last T-Spin to not be counted twice
-                ScoreSystem.IsTSpin = 0;
                 switch (IsClear.Count)
                 {
                     case 1:
@@ -233,7 +234,6 @@ public class TileMap : MonoBehaviour
             if (ScoreSystem.IsTSpinLastMove == 2)
             {
                 // Writes 0 to IsTSpin for the last T-Spin to not be counted twice
-                ScoreSystem.IsTSpin = 0;
                 if (IsClear.Count == 1)
                 {
                     ScoreSystem.CurrentAction += 1;
@@ -251,27 +251,27 @@ public class TileMap : MonoBehaviour
                     if (y >= IsClear[numberOfLine])
                     {
                         PlayGrid[x, y] = PlayGrid[x, y + 1];
-                        MovementGrid.Color[x, y] = MovementGrid.Color[x, y + 1];
-                        MovementGrid.IsActive[x, y] = MovementGrid.IsActive[x, y + 1];
+                        MovementTileMap.Color[x, y] = MovementTileMap.Color[x, y + 1];
+                        MovementTileMap.IsActive[x, y] = MovementTileMap.IsActive[x, y + 1];
                         {
-                            if (MovementGrid.GridCube[x, y] != null)
+                            if (MovementTileMap.GridCube[x, y] != null)
                                 //remove the block on x,y
-                                DestroyImmediate(MovementGrid.GridCube[x, y]);
+                                DestroyImmediate(MovementTileMap.GridCube[x, y]);
 
-                            if (MovementGrid.GridCube[x, y + 1] != null)
+                            if (MovementTileMap.GridCube[x, y + 1] != null)
                             {
                                 // If there is a block above, move it down and copy it, then remove it.
-                                MovementGrid.GridCube[x, y + 1].transform.Translate(Vector3.down * 1, Space.World);
-                                MovementGrid.GridCube[x, y] = Instantiate(MovementGrid.GridCube[x, y + 1]);
-                                DestroyImmediate(MovementGrid.GridCube[x, y + 1]);
-                                MovementGrid.GridCube[x, y].name = "Grid cube " + (x - 1) + "_" + (y - 1) +
+                                MovementTileMap.GridCube[x, y + 1].transform.Translate(Vector3.down * 1, Space.World);
+                                MovementTileMap.GridCube[x, y] = Instantiate(MovementTileMap.GridCube[x, y + 1]);
+                                DestroyImmediate(MovementTileMap.GridCube[x, y + 1]);
+                                MovementTileMap.GridCube[x, y].name = "Grid cube " + (x - 1) + "_" + (y - 1) +
                                                                    "_CreatedAtRound_ " + numberOfLine;
-                                MovementGrid.IsActive[x, y] = true;
+                                MovementTileMap.IsActive[x, y] = true;
                             }
-                            else if (MovementGrid.IsActive[x, y])
+                            else if (MovementTileMap.IsActive[x, y])
                             {
                                 // If there isn't a block above, deactivate the field.
-                                MovementGrid.IsActive[x, y] = false;
+                                MovementTileMap.IsActive[x, y] = false;
                             }
                         }
                     }
@@ -301,7 +301,7 @@ public class TileMap : MonoBehaviour
                         newY = y;
                     Debug.Log(((int) block.Location[0] + x + 1) + "_" + ((int) block.Location[1] + newY - 2));
                     PlayGrid[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 2] = 1;
-                    MovementGrid.Color[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 2] =
+                    MovementTileMap.Color[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 2] =
                         block.Color;
                 }
 
@@ -330,7 +330,7 @@ public class TileMap : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!Menu.IsPaused)
+        if (!Menu.Menus[0].IsPaused && !Menu.Menus[2].IsPaused)
         {
             LockManager();
             GridManager(gridWidth, gridHeight);

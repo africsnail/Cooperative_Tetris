@@ -556,7 +556,7 @@ public class Rotation : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (!Menu.IsPaused)
+        if (!Menu.Menus[0].IsPaused && !Menu.Menus[2].IsPaused)
             Rotate();
     }
 }
