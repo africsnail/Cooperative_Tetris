@@ -22,7 +22,7 @@ public class Menu : MonoBehaviour
     // In-game settings
     private Slider _volumeSlider;
     private Text _volumePercentage;
-    
+
     // Pause animation
     private GameObject[,] _animationCube;
     private GameObject[,] _animationCube2;
@@ -85,7 +85,6 @@ public class Menu : MonoBehaviour
                 id = x;
 
 
-
         if (Menus[id].IsPaused)
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -99,7 +98,6 @@ public class Menu : MonoBehaviour
                 Menus[id].MenuItemSelected.color = new Color(91f / 255f, 91f / 255f, 91f / 255f);
                 MenuScroll(id, "down");
             }
-            
 
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
@@ -139,6 +137,7 @@ public class Menu : MonoBehaviour
                     }
                 }
             }
+
             if (id == 2)
             {
                 if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
@@ -151,6 +150,7 @@ public class Menu : MonoBehaviour
                     _musicMusic.volume = _volume / 100f;
                     PlayerPrefs.SetInt("volume", _volume);
                 }
+
                 if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
                 {
                     _volume += 10;
@@ -283,7 +283,7 @@ public class Menu : MonoBehaviour
         _backgroundMaterial.material = materialGame;
         _musicMusic.Stop();
         _musicMusic.Play();
-        
+
         // Reset scoring
         ScoreSystem.IsTSpinLastMove = 0;
         ScoreSystem.LinesCleared = 0;
@@ -325,7 +325,7 @@ public class Menu : MonoBehaviour
         Destroy(Blocks.PreviewBlock);
 
         Debug.Log("Restarting");
-        
+
         // Reset scoring
         ScoreSystem.IsTSpinLastMove = 0;
         ScoreSystem.LinesCleared = 0;
@@ -399,16 +399,12 @@ public class Menu : MonoBehaviour
 
     private static IEnumerator GameOverCleanup(int x, int y)
     {
-        Debug.Log("Starting line clear coroutine");
-
         {
             while (TileMap.GameOverCube[x, y].transform.position[1] > -10)
             {
-                Debug.Log("waiting");
                 yield return null;
             }
 
-            Debug.Log("Coroutine has concluded");
             Destroy(TileMap.GameOverCube[x, y]);
         }
     }

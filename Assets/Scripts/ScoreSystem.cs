@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ScoreSystem : MonoBehaviour
 {
-    
     //SCORING
     public static int CurrentLevel;
     public static float CurrentAction;
@@ -58,6 +57,7 @@ public class ScoreSystem : MonoBehaviour
             {
                 _scoreGameOverText.text = "Score: \n" + Score;
             }
+
             _scoreGameOverText.text = "Score: \n" + Score;
             _highScoreText.text = "High score: \n" + _highScore;
             IsGameOverScoreSet = true;
@@ -66,7 +66,6 @@ public class ScoreSystem : MonoBehaviour
 
     public static void ScoreCounter()
     {
-
         LinesCleared += CurrentAction;
         if (LinesCleared >= 5 * CurrentLevel)
         {
@@ -76,13 +75,13 @@ public class ScoreSystem : MonoBehaviour
 
         if (CurrentLevel == 16)
             CurrentLevel = 15;
-        
 
-        Blocks.TimeToFall = (float)Math.Pow((0.8f - (CurrentLevel - 1f) * 0.007f), CurrentLevel - 1f);
+
+        Blocks.TimeToFall = (float) Math.Pow((0.8f - (CurrentLevel - 1f) * 0.007f), CurrentLevel - 1f);
 
         CurrentAction = 0;
         IsTSpinLastMove = 0;
-        
-        Debug.Log("Lines cleared: " + LinesCleared + " Current score: " + Score + " Current level: " + CurrentLevel + " Current fall speed: " + Blocks.TimeToFall);
+
+        //Debug.Log("Lines cleared: " + LinesCleared + " Current score: " + Score + " Current level: " + CurrentLevel + " Current fall speed: " + Blocks.TimeToFall);
     }
-    }
+}

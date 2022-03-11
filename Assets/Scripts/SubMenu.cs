@@ -10,6 +10,6 @@ public class SubMenu
     public int SelectedIndex { get; set; } = 1;
     public Text MenuItemSelected { get; set; }
     public int MenuItemCount { get; set; }
-    
-    public  bool IsPaused { get; set; }
+
+    public bool IsPaused { get; set; }
 }

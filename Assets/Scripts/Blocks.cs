@@ -305,7 +305,7 @@ public class Blocks : MonoBehaviour
         foreach (var block in Tetrominos)
             block.TetrominoGo.transform.position =
                 new Vector3(block.Location[0], block.Location[1], block.Location[2]);
-        
+
         SpawnMino("random");
     }
 
@@ -367,12 +367,11 @@ public class Blocks : MonoBehaviour
                         newY = y - 1;
                     else
                         newY = y;
-                    
+
                     if (TileMap.PlayGrid != null && TileMap.PlayGrid[4 + x + 1, 20 + newY - 2] == 1)
                     {
                         spawn = false;
                         Debug.Log(TileMap.PlayGrid[4 + x + 1, 20 + newY - 2]);
-                        
                     }
                 }
         }
@@ -422,7 +421,6 @@ public class Blocks : MonoBehaviour
                         if (holdSpawn)
                         {
                             block.IsHold = false;
-                            Debug.Log("Clearing hold type");
                         }
                     }
 
@@ -563,9 +561,6 @@ public class Blocks : MonoBehaviour
                         ScoreSystem.IsTSpinLastMove = 0;
                         TimeLock = 0.0f;
                         LockCounter++;
-
-                        if (Menu.Menus[0].IsPaused)
-                            Debug.Log("lmao");
                     }
                     // Right Movement
                     else if (Input.GetKeyDown(keybindRight) && CanMove("right"))
@@ -642,7 +637,6 @@ public class Blocks : MonoBehaviour
                 while (block.RotationState != 0)
                 {
                     block.AtSpawn = true;
-                    Debug.Log("Attempting a rotation at spawn");
                     Rotation.Rotate("Ac", 0, 0);
                     block.RotationState -= 1;
                 }
@@ -653,8 +647,7 @@ public class Blocks : MonoBehaviour
                 if (block.RotationState == 0) block.AtSpawn = false;
 
                 holdSpawn = true;
-
-                Debug.Log(HoldType);
+                
                 if (randomType.Contains(HoldType))
                 {
                     SpawnMino(HoldType);
@@ -662,14 +655,14 @@ public class Blocks : MonoBehaviour
                 else
                 {
                     SpawnMino("random");
-                    Debug.Log("spawning random");
                 }
 
                 holdUsed = true;
                 break;
             }
+
             if (Tetrominos.Exists(block => block.IsHold))
-              HoldType = Tetrominos.Find(block => block.IsHold).Type;
+                HoldType = Tetrominos.Find(block => block.IsHold).Type;
         }
     }
 

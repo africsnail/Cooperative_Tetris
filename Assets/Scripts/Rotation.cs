@@ -78,7 +78,6 @@ public class Rotation : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("Detected out of bounds collision");
                             canRotate = false;
                         }
                     }
@@ -479,7 +478,6 @@ public class Rotation : MonoBehaviour
 
                     if (block.Type == "T" && block.Type == "T" && block.AtSpawn == false)
                     {
-                        Debug.Log("Checking for T-Spin");
                         if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]}, block.RotationState) == 2)
                         {
                             Debug.Log("Mini T-Spin");
@@ -526,7 +524,6 @@ public class Rotation : MonoBehaviour
 
                     if (block.Type == "T" && block.AtSpawn == false)
                     {
-                        Debug.Log("Checking for T-Spin");
                         if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]}, block.RotationState) == 2)
                         {
                             Debug.Log("Mini T-Spin");

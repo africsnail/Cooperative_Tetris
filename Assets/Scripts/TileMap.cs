@@ -86,17 +86,16 @@ public class TileMap : MonoBehaviour
                 {
                     GameOverCube[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
                     DestroyImmediate(MovementTileMap.GridCube[x, y]);
-                    Debug.Log("GameOver");
                     var gameOverRigidbody = GameOverCube[x, y].AddComponent<Rigidbody>();
 
                     gameOverRigidbody.AddForce(0, 0, -kick, ForceMode.Impulse);
                     gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
 
-
                     MovementTileMap.IsActive[x, y] = false;
                     MovementTileMap.IsClear[x, y] = false;
                     PlayGrid[x, y] = 0;
                 }
+
             if (isReal)
                 IsGameOver = true;
         }
@@ -105,7 +104,6 @@ public class TileMap : MonoBehaviour
     private void GridManager(int w, int h)
     {
         IsClear = new List<int>();
-        //Debug.Log("......");
         for (var y = 1; y < h - 1; y++)
         {
             var lineClear = true;
@@ -114,15 +112,12 @@ public class TileMap : MonoBehaviour
                 {
                     if (MovementTileMap.IsActive[x, y] == false)
                     {
-                        //Debug.Log("Checking coordinates: " + x + ", " + y + ". Value: " + PlayGrid[x, y]);
                         MovementTileMap.GridCube[x, y] =
                             Instantiate(Blocks.Tetrominos.Find(block => block.Type == "O").CubeGo[2, 2]);
                         MovementTileMap.GridCube[x, y].name = "Grid cube " + (x - 1) + "_" + (y - 1);
                         MovementTileMap.GridCube[x, y].transform.position = new Vector3(x - 1, y - 1, 0);
                         var cubeRenderer = MovementTileMap.GridCube[x, y].GetComponent<Renderer>();
-                        //var cubeCollider = MovementGrid.GridCube[x, y].GetComponent<Collider>();
                         cubeRenderer.material.SetColor(ColorBlack, MovementTileMap.Color[x, y]);
-                        //DestroyImmediate(cubeCollider);
                         MovementTileMap.IsActive[x, y] = true;
                     }
 
@@ -136,7 +131,6 @@ public class TileMap : MonoBehaviour
 
             if (lineClear)
             {
-                //Debug.Log("xd2");
                 IsClear.Add(y);
                 for (var x = 1; x < w - 1; x++)
                 {
@@ -184,6 +178,7 @@ public class TileMap : MonoBehaviour
                     ScoreSystem.CurrentAction += 4;
                     ScoreSystem.Score += 400;
                 }
+
                 ScoreSystem.IsB2B = true;
             }
             else
@@ -203,6 +198,7 @@ public class TileMap : MonoBehaviour
                             ScoreSystem.CurrentAction += 4;
                             ScoreSystem.Score += 400;
                         }
+
                         ScoreSystem.IsB2B = true;
                         Debug.Log("T-Spin Single");
                         break;
@@ -214,6 +210,7 @@ public class TileMap : MonoBehaviour
                             ScoreSystem.CurrentAction += 6;
                             ScoreSystem.Score += 600;
                         }
+
                         ScoreSystem.IsB2B = true;
                         Debug.Log("T-Spin Double");
                         break;
@@ -225,11 +222,13 @@ public class TileMap : MonoBehaviour
                             ScoreSystem.CurrentAction += 8;
                             ScoreSystem.Score += 800;
                         }
+
                         ScoreSystem.IsB2B = true;
                         Debug.Log("T-Spin Triple");
                         break;
                 }
             }
+
             // Checking for Mini T-Spin Line Clear
             if (ScoreSystem.IsTSpinLastMove == 2)
             {
@@ -239,13 +238,12 @@ public class TileMap : MonoBehaviour
                     ScoreSystem.CurrentAction += 1;
                     if (ScoreSystem.IsB2B)
                         ScoreSystem.CurrentAction += 1;
-                    Debug.Log("T-Spin Single");
+                    Debug.Log("Mini T-Spin Single");
                 }
             }
 
             for (var numberOfLine = 0; numberOfLine < IsClear.Count; numberOfLine++)
             {
-                Debug.Log("Moving one row down:" + numberOfLine);
                 for (var y = 0; y < h - 1; y++)
                 for (var x = 1; x < w - 1; x++)
                     if (y >= IsClear[numberOfLine])
@@ -265,7 +263,7 @@ public class TileMap : MonoBehaviour
                                 MovementTileMap.GridCube[x, y] = Instantiate(MovementTileMap.GridCube[x, y + 1]);
                                 DestroyImmediate(MovementTileMap.GridCube[x, y + 1]);
                                 MovementTileMap.GridCube[x, y].name = "Grid cube " + (x - 1) + "_" + (y - 1) +
-                                                                   "_CreatedAtRound_ " + numberOfLine;
+                                                                      "_CreatedAtRound_ " + numberOfLine;
                                 MovementTileMap.IsActive[x, y] = true;
                             }
                             else if (MovementTileMap.IsActive[x, y])
@@ -299,7 +297,6 @@ public class TileMap : MonoBehaviour
                         newY = y - 1;
                     else
                         newY = y;
-                    Debug.Log(((int) block.Location[0] + x + 1) + "_" + ((int) block.Location[1] + newY - 2));
                     PlayGrid[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 2] = 1;
                     MovementTileMap.Color[(int) block.Location[0] + x + 1, (int) block.Location[1] + newY - 2] =
                         block.Color;
@@ -310,7 +307,6 @@ public class TileMap : MonoBehaviour
             while (block.RotationState != 0)
             {
                 block.AtSpawn = true;
-                Debug.Log("Attempting a rotation at spawn");
                 Rotation.Rotate("Ac", 0, 0);
                 block.RotationState -= 1;
             }
@@ -339,8 +335,6 @@ public class TileMap : MonoBehaviour
 
     private IEnumerator lineClearAnimation(int x, int y)
     {
-        Debug.Log("Starting line clear coroutine");
-
         {
             var lineClearRigidbody = LineToAnimate[x, y].AddComponent<Rigidbody>();
             lineClearRigidbody.position += Vector3.back;
@@ -353,6 +347,7 @@ public class TileMap : MonoBehaviour
                 lineClearRigidbody.AddForce(0, -2, 0, ForceMode.Acceleration);
                 yield return null;
             }
+
             Destroy(LineToAnimate[x, y]);
         }
     }
