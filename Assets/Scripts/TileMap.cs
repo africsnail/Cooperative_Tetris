@@ -155,28 +155,33 @@ public class TileMap : MonoBehaviour
             {
                 ScoreSystem.CurrentAction += 1;
                 ScoreSystem.Score += 100;
+                Debug.Log("Single");
                 ScoreSystem.IsB2B = false;
             }
             else if (IsClear.Count == 2)
             {
                 ScoreSystem.CurrentAction += 3;
                 ScoreSystem.Score += 300;
+                Debug.Log("Double");
                 ScoreSystem.IsB2B = false;
             }
             else if (IsClear.Count == 3)
             {
                 ScoreSystem.CurrentAction += 5;
                 ScoreSystem.Score += 500;
+                Debug.Log("Triple");
                 ScoreSystem.IsB2B = false;
             }
             else if (IsClear.Count == 4)
             {
                 ScoreSystem.CurrentAction += 8;
                 ScoreSystem.Score += 800;
+                Debug.Log("Tetris");
                 if (ScoreSystem.IsB2B)
                 {
                     ScoreSystem.CurrentAction += 4;
                     ScoreSystem.Score += 400;
+                    Debug.Log("Back-To-Back");
                 }
 
                 ScoreSystem.IsB2B = true;
@@ -197,6 +202,7 @@ public class TileMap : MonoBehaviour
                         {
                             ScoreSystem.CurrentAction += 4;
                             ScoreSystem.Score += 400;
+                            Debug.Log("Back-To-Back");
                         }
 
                         ScoreSystem.IsB2B = true;
@@ -209,6 +215,7 @@ public class TileMap : MonoBehaviour
                         {
                             ScoreSystem.CurrentAction += 6;
                             ScoreSystem.Score += 600;
+                            Debug.Log("Back-To-Back");
                         }
 
                         ScoreSystem.IsB2B = true;
@@ -221,6 +228,7 @@ public class TileMap : MonoBehaviour
                         {
                             ScoreSystem.CurrentAction += 8;
                             ScoreSystem.Score += 800;
+                            Debug.Log("Back-To-Back");
                         }
 
                         ScoreSystem.IsB2B = true;

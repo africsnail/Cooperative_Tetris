@@ -55,11 +55,11 @@ public class ScoreSystem : MonoBehaviour
             }
             else
             {
-                _scoreGameOverText.text = "Score: \n" + Score;
+                _scoreGameOverText.text = "Score:\n" + Score;
             }
 
-            _scoreGameOverText.text = "Score: \n" + Score;
-            _highScoreText.text = "High score: \n" + _highScore;
+            _scoreGameOverText.text = "Score:\n" + Score;
+            _highScoreText.text = "High score:\n" + _highScore;
             IsGameOverScoreSet = true;
         }
     }

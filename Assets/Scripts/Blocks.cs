@@ -383,6 +383,7 @@ public class Blocks : MonoBehaviour
     private void Preview()
     {
         PreviewBlock = Instantiate(Tetrominos.Find(mino => mino.Type == randomType[rIndex]).TetrominoGo);
+        PreviewBlock.name = "Preview block";
         PreviewBlock.transform.position = previewArea;
     }
 
@@ -524,6 +525,7 @@ public class Blocks : MonoBehaviour
                         while (CanMove("down"))
                         {
                             IsFalling = false;
+                            TimeLock = timeToLock - 0.0001f;
                             block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
                             block.Location = new[] {block.Location[0], block.Location[1] - 1f, block.Location[2]};
                             // Adding two score points per line for hard dropping
