@@ -1,9 +1,13 @@
 using UnityEngine;
 
-public class SubTileMap
+namespace Tetris
 {
-    public bool[,] IsActive { get; set; }
-    public Color[,] Color { get; set; }
-    public bool[,] IsClear { get; set; }
-    public GameObject[,] GridCube { get; set; }
+    public class SubTileMap
+    {
+        public bool[,] IsActive { get; set; }
+        public Color[,] Color { get; set; }
+        public bool[,] IsClear { get; set; }
+        public bool[,] CollisionMap { get; set; }
+        public GameObject[,] GridCube { get; set; }
+    }
 }

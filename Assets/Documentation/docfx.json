@@ -1,0 +1,96 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+		  "src": "..",
+          "files": [
+            "/Scripts/*.cs"
+          ],
+		  "exclude": [
+            "Assets/Plugins/**"
+		  ]
+        }
+      ],
+      "dest": "api",
+      "filter": "filterConfig.yml"
+    }
+  ],
+  "build": {
+    "globalMetadata": 
+    {
+        "_appTitle": "Cooperative Tetris",
+        "_appFooter": "© 2022 Ondřej Sakala. All rights reserved.",
+        "_enableSearch": true,
+        "_disableContribution": true,
+        "_disableBreadcrumb": true,
+        "_appLogoPath": "/images/logo.svg",
+        "_appFaviconPath": "/images/logo.svg"
+    },
+    "fileMetadata": 
+    {
+      "_disableAffix": {
+        "manual/*.md": true,
+        "index.md": true
+      },
+      "_disableToc": {
+        "manual/*.md": true,
+        "index.md": true
+      },
+      "_disableBreadcrumb": {
+        "api/*": false
+      }
+    },
+    "content": [
+      {
+        "files": [
+          "toc.yml",
+          "index.md"
+        ]
+      },
+      {
+        "src": "api",
+        "files": [
+          "*.yml"
+        ],
+        "dest": "api"
+      },
+      {
+        "src": "manual",
+        "files": [
+          "toc.yml",
+          "*.md"
+        ],
+        "dest": "manual"
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "resources/**/*",
+          "**/images/**"
+        ]
+      }
+    ],
+    "overwrite": [
+      {
+        "src": "..",
+        "files": [
+          "Assets/Scripts/**/*.md"
+        ]
+      }
+    ],
+    "dest": "_site",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+        "default",
+        "templates/material"
+      ],
+    "postProcessors": [],
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false
+  }
+}

@@ -1,0 +1,6 @@
+- name: User documentation
+  href: manual/
+- name: Devoloper documentation
+  href: api/
+- name: Source code
+  href: https://github.com/africsnail/Sakala_Tetris

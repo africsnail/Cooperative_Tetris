@@ -1,557 +1,496 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
-public class Rotation : MonoBehaviour
+namespace Tetris
 {
-    public static float RotationOffsetX;
-    public static float RotationOffsetY;
-
-    public string keybindRotateC = "d";
-    public string keybindRotateAc = "a";
-
-
-    public static int FutureRotationC { get; set; }
-    public static int FutureRotationAc { get; set; }
-    public static int[,] RGridCache { get; set; }
-
-    public static bool CanRotate(int fromState, int intoState, int xOffset, int yOffset)
+    public class Rotation : MonoBehaviour
     {
-        int count;
-        if (Math.Abs(intoState - fromState) == 2)
-            count = 2;
-        else if (intoState - fromState == -1 || intoState - fromState == 3)
-            count = -1;
-        else
-            count = 1;
+        public static float RotationOffsetX;
+        public static float RotationOffsetY;
 
-        var canRotate = true;
+        public static readonly List<string> KeybindRotateC = new List<string> {"d", "right", "right"};
+        public static readonly List<string> KeybindRotateAc = new List<string> {"a", "left", "left"};
 
-        foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
+
+        public static readonly List<int> FutureRotationC = new List<int>();
+        public static readonly List<int> FutureRotationAc = new List<int>();
+
+        public static int[,] RGridCache { get; set; }
+
+        // rotation data for other than "I" block rotations
+        private readonly int[][] _rotationSystem = new int[][]
         {
-            int size;
-            if (block.Type == "I" || block.Type == "O")
-                size = 4;
-            else
-                size = 3;
-            RGridCache = new int[size, size];
-            if (count == -1)
-                for (var x = 0; x < size; x++)
-                for (var y = 0; y < size; y++)
-                {
-                    var newX = size - 1 - y;
-                    RGridCache[newX, x] = RotateGridAc(size, block.RGrid, x, y)[newX, x];
-                }
-            else
-                for (var c = 0; c <= count; c++)
-                for (var x = 0; x < size; x++)
-                for (var y = 0; y < size; y++)
-                {
-                    var newY = size - 1 - x;
-                    RGridCache[y, newY] = RotateGridC(size, block.RGrid, x, y)[y, newY];
-                }
+            new[] {0, -1, -1, 0, -1},
+            new[] {0, 0, 1, -2, -2},
 
+            new[] {0, 1, 1, 0, 1},
+            new[] {0, 0, -1, 2, 2},
 
-            for (var x = 0; x < size; x++)
-            for (var y = 0; y < size; y++)
-                if (canRotate)
-                    if (RGridCache[x, y] == 1)
-                    {
-                        int yWithSizeOffset;
-                        if (size == 4)
-                            yWithSizeOffset = y - 1;
-                        else
-                            yWithSizeOffset = y;
-                        var locationX = (int) block.Location[0] + x + xOffset + 1;
-                        var locationY = (int) block.Location[1] + yWithSizeOffset + yOffset - 2;
-                        //int value = playGrid[locationX, locationY];
+            new[] {0, 1, 1, 0, 1},
+            new[] {0, -1, -1, 0, -1},
 
-                        if (locationX <= TileMap.PlayGrid.GetUpperBound(0) &&
-                            locationX >= TileMap.PlayGrid.GetLowerBound(0) &&
-                            locationY <= TileMap.PlayGrid.GetUpperBound(1) &&
-                            locationY >= TileMap.PlayGrid.GetLowerBound(1))
-                        {
-                            if (TileMap.PlayGrid[(int) block.Location[0] + x + xOffset + 1,
-                                    (int) block.Location[1] + yWithSizeOffset + yOffset - 2] != 0)
-                                canRotate = false;
-                        }
-                        else
-                        {
-                            canRotate = false;
-                        }
-                    }
-        }
+            new[] {0, -1, -1, 0, -1},
+            new[] {0, 0, -1, 2, 2}
+        };
 
-
-        return canRotate;
-    }
-
-    private static int IsTSpin(int[] location, int rotationState)
-    {
-        // Declaring T-Block sides
-        var sideA = new[] {0, 0};
-        var sideB = new[] {0, 0};
-        var sideC = new[] {0, 0};
-        var sideD = new[] {0, 0};
-        location[0] += 2;
-        location[1] -= 1;
-
-        switch (rotationState)
+        // rotation data for "I" block rotations
+        private readonly int[][] _rotationSystemI = new int[][]
         {
-            case 0:
-                sideA = new[] {-1, 1};
-                sideB = new[] {1, 1};
-                sideC = new[] {-1, -1};
-                sideD = new[] {1, -1};
-                break;
-            case 1:
-                sideA = new[] {1, 1};
-                sideB = new[] {1, -1};
-                sideC = new[] {-1, 1};
-                sideD = new[] {-1, -1};
-                break;
-            case 2:
-                sideA = new[] {1, 1};
-                sideB = new[] {-1, -1};
-                sideC = new[] {1, 1};
-                sideD = new[] {-1, 1};
-                break;
-            case 3:
-                sideA = new[] {-1, -1};
-                sideB = new[] {-1, 1};
-                sideC = new[] {1, -1};
-                sideD = new[] {1, 1};
-                break;
-        }
+            new[] {0, -2, 1, -2, 1},
+            new[] {0, 0, 0, -1, 2},
 
-        if (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 &&
-            TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1 &&
-            TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 &&
-            TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1)
+            new[] {0, -1, 2, -1, 2},
+            new[] {0, 0, 0, 2, -1},
+
+            new[] {0, 2, -1, 2, -1},
+            new[] {0, 0, 0, 1, 2},
+
+            new[] {0, 1, -2, 1, -2},
+            new[] {0, 0, 0, -2, 1}
+        };
+
+        // rotation states data
+        private readonly int[][] _rotationStates = new int[][]
         {
-            return 1;
-        }
-        else if (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 &&
-                 TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1 &&
-                 (TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 ||
-                  TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1))
+            new[] {0, 1},
+            new[] {1, 2},
+            new[] {2, 3},
+            new[] {3, 0}
+        };
+
+        public bool RotateAttempt(int playerId, int fromState, int intoState, int xOffset, int yOffset,
+            string direction)
         {
-            return 1;
-        }
-        else
-        {
-            if (TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 &&
-                TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1 &&
-                (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 ||
-                 TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1))
-                return 2;
-            else return 0;
-        }
-    }
-
-    private static int NewY(int size, int x)
-    {
-        var newY = size - 1 - x;
-        return newY;
-    }
-
-    private static int NewX(int size, int y)
-    {
-        var newX = size - 1 - y;
-        return newX;
-    }
-
-    private static int[,] RotateGridAc(int size, int[,] gridToRotate, int x, int y)
-    {
-        var rotatedGridAc = new int[size, size];
-        rotatedGridAc[NewX(size, y), x] = gridToRotate[x, y];
-        return rotatedGridAc;
-    }
-
-    private static int[,] RotateGridC(int size, int[,] gridToRotate, int x, int y)
-    {
-        var rotatedGridC = new int[size, size];
-        rotatedGridC[y, NewY(size, x)] = gridToRotate[x, y];
-        return rotatedGridC;
-    }
-
-    private void Rotate()
-    {
-        if (Input.GetKeyDown(keybindRotateC) || Input.GetKeyDown(keybindRotateAc))
-            if (Blocks.IsFalling && Blocks.ActiveSpawn == false)
-                foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
-                {
-                    if (block.RotationState == 3)
-                        FutureRotationC = 0;
-                    else
-                        FutureRotationC = block.RotationState + 1;
-
-                    if (block.RotationState == 0)
-                        FutureRotationAc = 3;
-                    else
-                        FutureRotationAc = block.RotationState - 1;
-
-                    if (Input.GetKeyDown(keybindRotateC))
-                    {
-                        if (block.Type != "I")
-                        {
-                            // Rotate clockwise for non I tetrominos
-                            if (block.RotationState == 0 && FutureRotationC == 1)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationC, 0, 0))
-                                    Rotate("C", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, 0))
-                                    Rotate("C", -1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, 1))
-                                    Rotate("C", -1, 1);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 0, -2))
-                                    Rotate("C", 0, -2);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, -2))
-                                    Rotate("C", -1, -2);
-                            }
-                            else if (block.RotationState == 1 && FutureRotationC == 2)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationC, 0, 0))
-                                    Rotate("C", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, 0))
-                                    Rotate("C", 1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, -1))
-                                    Rotate("C", 1, -1);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 0, 2))
-                                    Rotate("C", 0, 2);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, 2))
-                                    Rotate("C", 1, 2);
-                            }
-                            else if (block.RotationState == 2 && FutureRotationC == 3)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationC, 0, 0))
-                                    Rotate("C", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, 0))
-                                    Rotate("C", 1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, 1))
-                                    Rotate("C", 1, 1);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 0, -2))
-                                    Rotate("C", 0, -2);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, -2))
-                                    Rotate("C", 1, -2);
-                            }
-                            else if (block.RotationState == 3 && FutureRotationC == 0)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationC, 0, 0))
-                                    Rotate("C", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, 0))
-                                    Rotate("C", -1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, -1))
-                                    Rotate("C", -1, -1);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 0, 2))
-                                    Rotate("C", 0, 2);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, 2))
-                                    Rotate("C", -1, 2);
-                            }
-                        }
-                        else
-                        {
-                            // Rotate clockwise for I tetrominos
-                            if (block.RotationState == 0 && FutureRotationC == 1)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationC, 0, 0))
-                                    Rotate("C", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -2, 0))
-                                    Rotate("C", -2, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, 0))
-                                    Rotate("C", 1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -2, -1))
-                                    Rotate("C", -2, -1);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, 2))
-                                    Rotate("C", 1, 2);
-                            }
-                            else if (block.RotationState == 1 && FutureRotationC == 2)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationC, 0, 0))
-                                    Rotate("C", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, 0))
-                                    Rotate("C", -1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 2, 0))
-                                    Rotate("C", 2, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, 2))
-                                    Rotate("C", -1, 2);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 2, -1))
-                                    Rotate("C", 2, -1);
-                            }
-                            else if (block.RotationState == 2 && FutureRotationC == 3)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationC, 0, 0))
-                                    Rotate("C", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 2, 0))
-                                    Rotate("C", 2, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, 0))
-                                    Rotate("C", -1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 2, 1))
-                                    Rotate("C", 2, 1);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -1, 2))
-                                    Rotate("C", -1, 2);
-                            }
-                            else if (block.RotationState == 3 && FutureRotationC == 0)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationC, 0, 0))
-                                    Rotate("C", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, 0))
-                                    Rotate("C", 1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -2, 0))
-                                    Rotate("C", -2, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationC, 1, -2))
-                                    Rotate("C", 1, -2);
-                                else if (CanRotate(block.RotationState, FutureRotationC, -2, 1))
-                                    Rotate("C", -2, 1);
-                            }
-                        }
-                    }
-                    else if (Input.GetKeyDown(keybindRotateAc))
-                    {
-                        if (block.Type != "I")
-                        {
-                            //Rotate anticlockwise for non I tetrominos
-                            if (block.RotationState == 1 && FutureRotationAc == 0)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationAc, 0, 0))
-                                    Rotate("Ac", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, 0))
-                                    Rotate("Ac", 1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, -1))
-                                    Rotate("Ac", 1, -1);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 0, 2))
-                                    Rotate("Ac", 0, 2);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, 2))
-                                    Rotate("Ac", 1, 2);
-                            }
-                            else if (block.RotationState == 2 && FutureRotationAc == 1)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationAc, 0, 0))
-                                    Rotate("Ac", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, 0))
-                                    Rotate("Ac", -1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, 1))
-                                    Rotate("Ac", -1, 1);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 0, -2))
-                                    Rotate("Ac", 0, -2);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, -2))
-                                    Rotate("Ac", -1, -2);
-                            }
-                            else if (block.RotationState == 3 && FutureRotationAc == 2)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationAc, 0, 0))
-                                    Rotate("Ac", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, 0))
-                                    Rotate("Ac", -1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, -1))
-                                    Rotate("Ac", -1, -1);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 0, 2))
-                                    Rotate("Ac", 0, 2);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, 2))
-                                    Rotate("Ac", -1, 2);
-                            }
-                            else if (block.RotationState == 0 && FutureRotationAc == 3)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationAc, 0, 0))
-                                    Rotate("Ac", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, 0))
-                                    Rotate("Ac", 1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, 1))
-                                    Rotate("Ac", 1, 1);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 0, -2))
-                                    Rotate("Ac", 0, -2);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, -2))
-                                    Rotate("Ac", 1, -2);
-                            }
-                        }
-                        else
-                        {
-                            // Rotate anticlockwise for I tetrominos
-                            if (block.RotationState == 1 && FutureRotationAc == 0)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationAc, 0, 0))
-                                    Rotate("Ac", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 2, 0))
-                                    Rotate("Ac", 2, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, 0))
-                                    Rotate("Ac", -1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 2, 1))
-                                    Rotate("Ac", 2, 1);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, -2))
-                                    Rotate("Ac", -1, -2);
-                            }
-                            else if (block.RotationState == 2 && FutureRotationAc == 1)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationAc, 0, 0))
-                                    Rotate("Ac", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, 0))
-                                    Rotate("Ac", 1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -2, 0))
-                                    Rotate("Ac", -2, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, -2))
-                                    Rotate("Ac", 1, -2);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -2, 1))
-                                    Rotate("Ac", -2, 1);
-                            }
-                            else if (block.RotationState == 3 && FutureRotationAc == 2)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationAc, 0, 0))
-                                    Rotate("Ac", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -2, 0))
-                                    Rotate("Ac", -2, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, 0))
-                                    Rotate("Ac", 1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -2, -1))
-                                    Rotate("Ac", -2, -1);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 1, 2))
-                                    Rotate("Ac", 1, 2);
-                            }
-                            else if (block.RotationState == 0 && FutureRotationAc == 3)
-                            {
-                                if (CanRotate(block.RotationState, FutureRotationAc, 0, 0))
-                                    Rotate("Ac", 0, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, 0))
-                                    Rotate("Ac", -1, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 2, 0))
-                                    Rotate("Ac", 2, 0);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, -1, 2))
-                                    Rotate("Ac", -1, 2);
-                                else if (CanRotate(block.RotationState, FutureRotationAc, 2, -1))
-                                    Rotate("Ac", 2, -1);
-                            }
-                        }
-                    }
-                }
-    }
-
-    public static void Rotate(string direction, int xMove, int yMove)
-    {
-        foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive || block.AtSpawn))
-            if (block.IsLocked == false && Blocks.ActiveSpawn == false || block.AtSpawn)
+            if (CanRotate(playerId, fromState, intoState, xOffset, yOffset))
             {
-                if (block.AtSpawn == false)
-                    ScoreSystem.IsTSpinLastMove = 0;
-
-                int size;
-                if (block.Type == "I" || block.Type == "O")
-                {
-                    RotationOffsetX = 1.5f;
-                    RotationOffsetY = 2.5f;
-                    size = 4;
-                }
-                else
-                {
-                    RotationOffsetX = 1f;
-                    RotationOffsetY = 2f;
-                    size = 3;
-                }
-
-
-                if (direction == "C")
-                {
-                    // Moves the tetromino the required distance for a kick
-                    block.TetrominoGo.transform.Translate(new Vector3(xMove, yMove, 0), Space.World);
-                    block.Location[0] += xMove;
-                    block.Location[1] += yMove;
-
-                    // Rotates the tetromino clockwise
-                    block.TetrominoGo.transform.RotateAround(
-                        new Vector3(block.Location[0] + RotationOffsetX,
-                            block.Location[1] - RotationOffsetY, block.Location[2]), Vector3.back,
-                        90.0f);
-
-
-                    RGridCache = new int[size, size];
-                    for (var x = 0; x < size; x++)
-                    for (var y = 0; y < size; y++)
-                        RGridCache[y, NewY(size, x)] = RotateGridC(size, block.RGrid, x, y)[y, NewY(size, x)];
-                    for (var x = 0; x < size; x++)
-                    for (var y = 0; y < size; y++)
-                    {
-                        block.RGrid[x, y] = RGridCache[x, y];
-                        if (block.CubeGo[x, y] != null)
-                            block.CubeGo[x, y].transform.Rotate(Vector3.back, -90.0f);
-                    }
-
-                    if (block.AtSpawn == false) block.RotationState = FutureRotationC;
-
-                    if (block.Type == "T" && block.Type == "T" && block.AtSpawn == false)
-                    {
-                        if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]}, block.RotationState) == 2)
-                        {
-                            Debug.Log("Mini T-Spin");
-                            ScoreSystem.IsTSpinLastMove = 2;
-                            ScoreSystem.CurrentAction += 1;
-                            ScoreSystem.Score += 100;
-                        }
-                        else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
-                                     block.RotationState) == 1)
-                        {
-                            Debug.Log("T-Spin");
-                            ScoreSystem.IsTSpinLastMove = 1;
-                            ScoreSystem.CurrentAction += 4;
-                            ScoreSystem.Score += 400;
-                        }
-                    }
-                }
-                else if (direction == "Ac")
-                {
-                    // Moves the tetromino the required distance for a kick
-                    block.TetrominoGo.transform.Translate(new Vector3(xMove, yMove, 0), Space.World);
-                    block.Location[0] += xMove;
-                    block.Location[1] += yMove;
-
-                    // Rotates the tetromino anti-clockwise
-                    block.TetrominoGo.transform.RotateAround(
-                        new Vector3(block.Location[0] + RotationOffsetX, block.Location[1] - RotationOffsetY,
-                            block.Location[2]), Vector3.back, -90.0f);
-
-
-                    RGridCache = new int[size, size];
-                    for (var x = 0; x < size; x++)
-                    for (var y = 0; y < size; y++)
-                        RGridCache[NewX(size, y), x] = RotateGridAc(size, block.RGrid, x, y)[NewX(size, y), x];
-                    for (var x = 0; x < size; x++)
-                    for (var y = 0; y < size; y++)
-                    {
-                        block.RGrid[x, y] = RGridCache[x, y];
-                        if (block.CubeGo[x, y] != null)
-                            block.CubeGo[x, y].transform.Rotate(Vector3.back, 90.0f);
-                    }
-
-                    if (block.AtSpawn == false) block.RotationState = FutureRotationAc;
-
-                    if (block.Type == "T" && block.AtSpawn == false)
-                    {
-                        if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]}, block.RotationState) == 2)
-                        {
-                            Debug.Log("Mini T-Spin");
-                            ScoreSystem.IsTSpinLastMove = 2;
-                            ScoreSystem.CurrentAction += 1;
-                            ScoreSystem.Score += 100;
-                        }
-                        else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
-                                     block.RotationState) == 1)
-                        {
-                            Debug.Log("T-Spin");
-                            ScoreSystem.IsTSpinLastMove = 1;
-                            ScoreSystem.CurrentAction += 4;
-                            ScoreSystem.Score += 400;
-                        }
-                    }
-                }
-
-                Blocks.TimeLock = 0.0f;
-                Blocks.LockCounter++;
+                Rotate(playerId, direction, xOffset, yOffset);
+                return true;
             }
-    }
+            else return false;
+        }
+
+        public static bool CanRotate(int playerId, int fromState, int intoState, int xOffset, int yOffset)
+        {
+            //getting collision grid for other player collisions
+            foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive && block.Id != playerId))
+            {
+                for (int sizeX = 0; sizeX < block.Size; sizeX++)
+                {
+                    for (int sizeY = 0; sizeY < block.Size; sizeY++)
+                    {
+                        if (block.RGrid[sizeX, sizeY] == 1)
+                        {
+                            TileMap.MovementTileMap.CollisionMap[sizeX + (int) block.Location[0],
+                                (int) block.Location[1] + sizeY - block.Size] = true;
+                        }
+                    }
+                }
+            }
+
+            int rotationType;
+            if (Math.Abs(intoState - fromState) == 2)
+                rotationType = 2;
+            else if (intoState - fromState == -1 || intoState - fromState == 3)
+                rotationType = -1;
+            else
+                rotationType = 1;
+
+            var canRotate = true;
+
+            foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive && block.Id == playerId))
+            {
+                RGridCache = new int[block.Size, block.Size];
+                if (rotationType == -1)
+                    for (var x = 0; x < block.Size; x++)
+                    for (var y = 0; y < block.Size; y++)
+                    {
+                        var newX = block.Size - 1 - y;
+                        RGridCache[newX, x] = RotateGridAc(block.Size, block.RGrid, x, y)[newX, x];
+                    }
+                else
+                    for (var c = 0; c <= rotationType; c++)
+                    for (var x = 0; x < block.Size; x++)
+                    for (var y = 0; y < block.Size; y++)
+                    {
+                        var newY = block.Size - 1 - x;
+                        RGridCache[y, newY] = RotateGridC(block.Size, block.RGrid, x, y)[y, newY];
+                    }
 
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (!Menu.Menus[0].IsPaused && !Menu.Menus[2].IsPaused)
-            Rotate();
+                for (var x = 0; x < block.Size; x++)
+                for (var y = 0; y < block.Size; y++)
+                    if (canRotate)
+                        if (RGridCache[x, y] == 1)
+                        {
+                            int yWithSizeOffset;
+                            if (block.Size == 4)
+                                yWithSizeOffset = y - 1;
+                            else
+                                yWithSizeOffset = y;
+                            var locationX = (int) block.Location[0] + x + xOffset + 1;
+                            var locationY = (int) block.Location[1] + yWithSizeOffset + yOffset - 2;
+                            //int value = playGrid[locationX, locationY];
+
+                            if (locationX <= TileMap.PlayGrid.GetUpperBound(0) &&
+                                locationX >= TileMap.PlayGrid.GetLowerBound(0) &&
+                                locationY <= TileMap.PlayGrid.GetUpperBound(1) &&
+                                locationY >= TileMap.PlayGrid.GetLowerBound(1))
+                            {
+                                if (TileMap.PlayGrid[locationX, locationY] != 0)
+                                {
+                                    canRotate = false;
+                                    TileMap.ClearCollisionMap();
+                                }
+                                else if (TileMap.MovementTileMap.CollisionMap[locationX - 1,
+                                             locationY + 2 - block.Size])
+                                {
+                                    canRotate = false;
+                                    TileMap.ClearCollisionMap();
+                                }
+                            }
+                            else
+                            {
+                                canRotate = false;
+                                TileMap.ClearCollisionMap();
+                            }
+                        }
+            }
+
+
+            return canRotate;
+        }
+
+        private static int IsTSpin(int[] location, int rotationState)
+        {
+            // Declaring T-Block sides
+            var sideA = new[] {0, 0};
+            var sideB = new[] {0, 0};
+            var sideC = new[] {0, 0};
+            var sideD = new[] {0, 0};
+            location[0] += 2;
+            location[1] -= 1;
+
+            switch (rotationState)
+            {
+                case 0:
+                    sideA = new[] {-1, 1};
+                    sideB = new[] {1, 1};
+                    sideC = new[] {-1, -1};
+                    sideD = new[] {1, -1};
+                    break;
+                case 1:
+                    sideA = new[] {1, 1};
+                    sideB = new[] {1, -1};
+                    sideC = new[] {-1, 1};
+                    sideD = new[] {-1, -1};
+                    break;
+                case 2:
+                    sideA = new[] {1, 1};
+                    sideB = new[] {-1, -1};
+                    sideC = new[] {1, 1};
+                    sideD = new[] {-1, 1};
+                    break;
+                case 3:
+                    sideA = new[] {-1, -1};
+                    sideB = new[] {-1, 1};
+                    sideC = new[] {1, -1};
+                    sideD = new[] {1, 1};
+                    break;
+            }
+
+            if (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 &&
+                TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1 &&
+                TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 &&
+                TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1)
+            {
+                return 1;
+            }
+            else if (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 &&
+                     TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1 &&
+                     (TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 ||
+                      TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1))
+            {
+                return 1;
+            }
+            else
+            {
+                if (TileMap.PlayGrid[location[0] + sideC[0], location[1] + sideC[1]] == 1 &&
+                    TileMap.PlayGrid[location[0] + sideD[0], location[1] + sideD[1]] == 1 &&
+                    (TileMap.PlayGrid[location[0] + sideA[0], location[1] + sideA[1]] == 1 ||
+                     TileMap.PlayGrid[location[0] + sideB[0], location[1] + sideB[1]] == 1))
+                    return 2;
+                else return 0;
+            }
+        }
+
+        private static int NewY(int size, int x)
+        {
+            var newY = size - 1 - x;
+            return newY;
+        }
+
+        private static int NewX(int size, int y)
+        {
+            var newX = size - 1 - y;
+            return newX;
+        }
+
+        private static int[,] RotateGridAc(int size, int[,] gridToRotate, int x, int y)
+        {
+            var rotatedGridAc = new int[size, size];
+            rotatedGridAc[NewX(size, y), x] = gridToRotate[x, y];
+            return rotatedGridAc;
+        }
+
+        private static int[,] RotateGridC(int size, int[,] gridToRotate, int x, int y)
+        {
+            var rotatedGridC = new int[size, size];
+            rotatedGridC[y, NewY(size, x)] = gridToRotate[x, y];
+            return rotatedGridC;
+        }
+
+        private void DoRotation()
+        {
+            for (var playerId = 0; playerId < Blocks.PlayerIds.Count; playerId++)
+            {
+                if (Input.GetKeyDown(KeybindRotateC[playerId]) || Input.GetKeyDown(KeybindRotateAc[playerId]))
+                    if (Blocks.IsFalling[playerId] && Blocks.ActiveSpawn[playerId] == false)
+                        foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive && block.Id == playerId))
+                        {
+                            if (block.RotationState == 3)
+                                FutureRotationC[playerId] = 0;
+                            else
+                                FutureRotationC[playerId] = block.RotationState + 1;
+
+                            if (block.RotationState == 0)
+                                FutureRotationAc[playerId] = 3;
+                            else
+                                FutureRotationAc[playerId] = block.RotationState - 1;
+
+                            if (Input.GetKeyDown(KeybindRotateC[playerId]))
+                            {
+                                if (block.Type != "I")
+                                {
+                                    // Rotate clockwise for non I tetrominos
+                                    for (var x = 0; x < 4; x++)
+                                    {
+                                        if (block.RotationState == _rotationStates[x][0] &&
+                                            FutureRotationC[playerId] == _rotationStates[x][1])
+                                        {
+                                            for (var c = 0; c < 5; c++)
+                                            {
+                                                Debug.Log(block.RotationState + ", " + FutureRotationC[playerId]);
+                                                if (RotateAttempt(playerId, block.RotationState,
+                                                        FutureRotationC[playerId], _rotationSystem[x * 2][c],
+                                                        _rotationSystem[x * 2 + 1][c], "C"))
+                                                    break;
+                                            }
+
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    for (var x = 0; x < 4; x++)
+                                    {
+                                        if (block.RotationState == _rotationStates[x][0] &&
+                                            FutureRotationC[playerId] == _rotationStates[x][1])
+                                        {
+                                            for (var c = 0; c < 5; c++)
+                                            {
+                                                Debug.Log(block.RotationState + ", " + FutureRotationC[playerId]);
+                                                if (RotateAttempt(playerId, block.RotationState,
+                                                        FutureRotationC[playerId], _rotationSystemI[x * 2][c],
+                                                        _rotationSystemI[x * 2 + 1][c], "C"))
+                                                    break;
+                                            }
+
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else if (Input.GetKeyDown(KeybindRotateAc[playerId]))
+                            {
+                                if (block.Type != "I")
+                                {
+                                    //Rotate anticlockwise for non I tetrominos
+                                    for (var x = 0; x < 4; x++)
+                                    {
+                                        if (block.RotationState == _rotationStates[x][0] &&
+                                            FutureRotationC[playerId] == _rotationStates[x][1])
+                                        {
+                                            for (var c = 0; c < 5; c++)
+                                            {
+                                                Debug.Log(block.RotationState + ", " + FutureRotationC[playerId]);
+                                                if (RotateAttempt(playerId, block.RotationState,
+                                                        FutureRotationC[playerId], -_rotationSystem[x * 2][c],
+                                                        -_rotationSystem[x * 2 + 1][c], "Ac"))
+                                                    break;
+                                            }
+
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    // Rotate anticlockwise for I tetrominos
+                                    for (var x = 0; x < 4; x++)
+                                    {
+                                        if (block.RotationState == _rotationStates[x][0] &&
+                                            FutureRotationC[playerId] == _rotationStates[x][1])
+                                        {
+                                            for (var c = 0; c < 5; c++)
+                                            {
+                                                if (RotateAttempt(playerId, block.RotationState,
+                                                        FutureRotationC[playerId], -_rotationSystemI[x * 2][c],
+                                                        -_rotationSystemI[x * 2 + 1][c], "Ac"))
+                                                    break;
+                                            }
+
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+            }
+        }
+
+        public static void Rotate(int playerId, string direction, int xMove, int yMove)
+        {
+            foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive || block.AtSpawn)
+                         .Where(block => block.Id == playerId))
+                if (block.IsLocked == false && Blocks.ActiveSpawn[playerId] == false || block.AtSpawn)
+                {
+                    if (block.AtSpawn == false)
+                        ScoreSystem.IsTSpinLastMove = 0;
+
+                    int size;
+                    if (block.Type == "I" || block.Type == "O")
+                    {
+                        RotationOffsetX = 1.5f;
+                        RotationOffsetY = 2.5f;
+                        size = 4;
+                    }
+                    else
+                    {
+                        RotationOffsetX = 1f;
+                        RotationOffsetY = 2f;
+                        size = 3;
+                    }
+
+
+                    if (direction == "C")
+                    {
+                        // Moves the tetromino the required distance for a kick
+                        block.TetrominoGo.transform.Translate(new Vector3(xMove, yMove, 0), Space.World);
+                        block.Location[0] += xMove;
+                        block.Location[1] += yMove;
+
+                        // Rotates the tetromino clockwise
+                        block.TetrominoGo.transform.RotateAround(
+                            new Vector3(block.Location[0] + RotationOffsetX,
+                                block.Location[1] - RotationOffsetY, block.Location[2]), Vector3.back,
+                            90.0f);
+
+
+                        RGridCache = new int[size, size];
+                        for (var x = 0; x < size; x++)
+                        for (var y = 0; y < size; y++)
+                            RGridCache[y, NewY(size, x)] = RotateGridC(size, block.RGrid, x, y)[y, NewY(size, x)];
+                        for (var x = 0; x < size; x++)
+                        for (var y = 0; y < size; y++)
+                        {
+                            block.RGrid[x, y] = RGridCache[x, y];
+                            if (block.CubeGo[x, y] != null)
+                                block.CubeGo[x, y].transform.Rotate(Vector3.back, -90.0f);
+                        }
+
+                        if (block.AtSpawn == false) block.RotationState = FutureRotationC[playerId];
+
+                        if (block.Type == "T" && block.Type == "T" && block.AtSpawn == false)
+                        {
+                            if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
+                                    block.RotationState) == 2)
+                            {
+                                Debug.Log("Mini T-Spin");
+                                ScoreSystem.IsTSpinLastMove = 2;
+                                ScoreSystem.CurrentAction += 1;
+                                ScoreSystem.Score += 100;
+                            }
+                            else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
+                                         block.RotationState) == 1)
+                            {
+                                Debug.Log("T-Spin");
+                                ScoreSystem.IsTSpinLastMove = 1;
+                                ScoreSystem.CurrentAction += 4;
+                                ScoreSystem.Score += 400;
+                            }
+                        }
+                    }
+                    else if (direction == "Ac")
+                    {
+                        // Moves the tetromino the required distance for a kick
+                        block.TetrominoGo.transform.Translate(new Vector3(xMove, yMove, 0), Space.World);
+                        block.Location[0] += xMove;
+                        block.Location[1] += yMove;
+
+                        // Rotates the tetromino anti-clockwise
+                        block.TetrominoGo.transform.RotateAround(
+                            new Vector3(block.Location[0] + RotationOffsetX, block.Location[1] - RotationOffsetY,
+                                block.Location[2]), Vector3.back, -90.0f);
+
+
+                        RGridCache = new int[size, size];
+                        for (var x = 0; x < size; x++)
+                        for (var y = 0; y < size; y++)
+                            RGridCache[NewX(size, y), x] = RotateGridAc(size, block.RGrid, x, y)[NewX(size, y), x];
+                        for (var x = 0; x < size; x++)
+                        for (var y = 0; y < size; y++)
+                        {
+                            block.RGrid[x, y] = RGridCache[x, y];
+                            if (block.CubeGo[x, y] != null)
+                                block.CubeGo[x, y].transform.Rotate(Vector3.back, 90.0f);
+                        }
+
+                        if (block.AtSpawn == false) block.RotationState = FutureRotationAc[playerId];
+
+                        if (block.Type == "T" && block.AtSpawn == false)
+                        {
+                            if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
+                                    block.RotationState) == 2)
+                            {
+                                Debug.Log("Mini T-Spin");
+                                ScoreSystem.IsTSpinLastMove = 2;
+                                ScoreSystem.CurrentAction += 1;
+                                ScoreSystem.Score += 100;
+                            }
+                            else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
+                                         block.RotationState) == 1)
+                            {
+                                Debug.Log("T-Spin");
+                                ScoreSystem.IsTSpinLastMove = 1;
+                                ScoreSystem.CurrentAction += 4;
+                                ScoreSystem.Score += 400;
+                            }
+                        }
+                    }
+
+                    Blocks.TimeLock[playerId] = 0.0f;
+                    Blocks.LockCounter[playerId]++;
+                }
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            if (!Menu.Menus[0].IsPaused && !Menu.Menus[2].IsPaused)
+                DoRotation();
+        }
     }
 }
