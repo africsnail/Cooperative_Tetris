@@ -68,16 +68,26 @@
 <p>Maturitní projekt Kooperativní Tetris vychází ze známé arkádové hry <a href="https://en.wikipedia.org/wiki/Tetris">Tetris</a>,
 která byla vytvořena již roku 1984 <a href="https://en.wikipedia.org/wiki/Alexey_Pajitnov">Alexeyem Pajitnovem</a>. Jde o vlastní
 implementaci této klasické hry v oblíbeném herním enginu <a href="https://en.wikipedia.org/wiki/Unity_(game_engine)">Unity</a>.
-Nejdůležitějším originálním prvkem této implementace hry je kooperativní režim, ve kterém se hrácí pole rozšíří pro další hráče, kteří
-následně spolupracují a snaží se dosáhnout společného skóre.</p>
+Nejdůležitějším originálním prvkem této implementace hry je kooperativní režim, ve kterém se hrácí pole rozšíří pro
+další hráče, kteří následně spolupracují a snaží se dosáhnout společného skóre.</p>
 <h2 id="pravidla">Pravidla</h2>
 <ul>
-<li>Hráči mají za úkol vyčistit jedotlivé řádky tím, že je zaplní <a href="https://en.wikipedia.org/wiki/Tetromino">tetrominy</a> (dále
-nazýváno pouze <em>bloky</em>).</li>
+<li>Hráči mají za úkol vyčistit jedotlivé řádky tím, že je zaplní <a href="https://en.wikipedia.org/wiki/Tetromino">tetrominy</a> (
+dále nazýváno pouze <em>bloky</em>).</li>
 <li>Každý hráč může v jednom okamžiku ovládat pouze jeden blok.</li>
 <li>Gravitace se s roustoucí úrovní postupně zvyšuje, což zrychluje tempo hry.</li>
 <li>Skóre i obtížnost je pro všechny hráče společná.</li>
 <li>Hra je prohraná, když není kde vygenerovat další blok.</li>
+</ul>
+<h2 id="rozložení-herních-prvků">Rozložení herních prvků</h2>
+<img src="../images/layout.png">
+<ul>
+<li><span style="color:red"><strong>Červený</strong></span> rámeček: Zde se zobrazují <strong>bloky &quot;ve frontě&quot;</strong>, které hráči dostanou po
+uzamčení aktivního bloku (<em>a nebo pokud použili tlačítko podržení a nedrží zatím žádný blok</em>).</li>
+<li><span style="color:blue"><strong>Modrý</strong></span> ráměček: V tomto prostoru se zobrazují <strong>podržené</strong> bloky.</li>
+<li><span style="color:purple"><strong>Fialové</strong></span> ráměčky: Prostor, ve kterém se objeví <strong>nové bloky</strong> po uzamčení předešlých.</li>
+<li><mark style="background:white"> <span style="color:black"><strong>Černý</strong></span></mark> ráměček: Aktuální rychlostní úroveň</li>
+<li><mark style="background:black"> <span style="color:white"><strong>Bílý</strong></span></mark> ráměček: Aktuální skóre (viz. <a href="#bod">bodování</a>)</li>
 </ul>
 <h2 id="ovládání">Ovládání</h2>
 <p><em><strong>Pohyb:</strong></em></p>
@@ -114,6 +124,7 @@ nazýváno pouze <em>bloky</em>).</li>
 <img src="../images/TetrisControls_3_cz.png"></li>
 </ul>
 <h2 id="bodování">Bodování</h2>
+<p><a name="bod"> </a></p>
 <p>Následující tabulka vysvětluje bodování hry:</p>
 <table>
 <thead>
@@ -191,7 +202,8 @@ nazýváno pouze <em>bloky</em>).</li>
 </tr>
 </tbody>
 </table>
-<p>*Mechanika <strong>T-Spinu</strong> a <strong>Mini T-Spinu</strong> popsána podrobně <a href="https://tetris.fandom.com/wiki/T-Spin"><strong>zde</strong></a>, **<strong>Složité úkony</strong>: Tetris, Mini T-Spin Single, T-Spin Single, T-Spin Double, T-Spin Triple</p>
+<p>*Mechanika <strong>T-Spinu</strong> a <strong>Mini T-Spinu</strong> popsána podrobně <a href="https://tetris.fandom.com/wiki/T-Spin"><strong>zde</strong></a>, **<strong>Složité
+úkony</strong>: Tetris, Mini T-Spin Single, T-Spin Single, T-Spin Double, T-Spin Triple</p>
 </article>
           </div>
         </div>

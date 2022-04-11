@@ -49,12 +49,12 @@ references:
   commentId: F:Tetris.Blocks.HoldType
   fullName: Tetris.Blocks.HoldType
   nameWithType: Blocks.HoldType
-- uid: Tetris.Blocks.holdUsed
-  name: holdUsed
-  href: api/Tetris.Blocks.html#Tetris_Blocks_holdUsed
-  commentId: F:Tetris.Blocks.holdUsed
-  fullName: Tetris.Blocks.holdUsed
-  nameWithType: Blocks.holdUsed
+- uid: Tetris.Blocks.HoldUsed
+  name: HoldUsed
+  href: api/Tetris.Blocks.html#Tetris_Blocks_HoldUsed
+  commentId: F:Tetris.Blocks.HoldUsed
+  fullName: Tetris.Blocks.HoldUsed
+  nameWithType: Blocks.HoldUsed
 - uid: Tetris.Blocks.InitializePlayer(System.Int32)
   name: InitializePlayer(Int32)
   href: api/Tetris.Blocks.html#Tetris_Blocks_InitializePlayer_System_Int32_
@@ -904,6 +904,19 @@ references:
   isSpec: "True"
   fullName: Tetris.TileMap.ClearCollisionMap
   nameWithType: TileMap.ClearCollisionMap
+- uid: Tetris.TileMap.ClearGridCubes
+  name: ClearGridCubes()
+  href: api/Tetris.TileMap.html#Tetris_TileMap_ClearGridCubes
+  commentId: M:Tetris.TileMap.ClearGridCubes
+  fullName: Tetris.TileMap.ClearGridCubes()
+  nameWithType: TileMap.ClearGridCubes()
+- uid: Tetris.TileMap.ClearGridCubes*
+  name: ClearGridCubes
+  href: api/Tetris.TileMap.html#Tetris_TileMap_ClearGridCubes_
+  commentId: Overload:Tetris.TileMap.ClearGridCubes
+  isSpec: "True"
+  fullName: Tetris.TileMap.ClearGridCubes
+  nameWithType: TileMap.ClearGridCubes
 - uid: Tetris.TileMap.GameOver(System.Boolean)
   name: GameOver(Boolean)
   href: api/Tetris.TileMap.html#Tetris_TileMap_GameOver_System_Boolean_

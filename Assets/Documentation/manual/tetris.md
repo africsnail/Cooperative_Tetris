@@ -25,8 +25,8 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
   uzamčení aktivního bloku (_a nebo pokud použili tlačítko podržení a nedrží zatím žádný blok_).
 - <span style="color:blue">**Modrý</span> ráměček**: V tomto prostoru se zobrazují **podržené** bloky.
 - <span style="color:purple">**Fialové</span> ráměčky**: Prostor, ve kterém se objeví **nové bloky** po uzamčení předešlých.
-- **Bílý ráměček**: Aktuální skóre (viz. [bodování](#Bodování))
-- **Černý rámeřek**: Aktuální rychlostní úroveň
+- <mark style = "background:white"> <span style="color:black">**Černý</span></mark> ráměček**: Aktuální rychlostní úroveň
+- <mark style = "background:black"> <span style="color:white">**Bílý</span></mark> ráměček**: Aktuální skóre (viz. [bodování](#bod))
 
 ## Ovládání
 
@@ -64,6 +64,7 @@ _**Ostatní:**_
   <img src="../images/TetrisControls_3_cz.png">
 
 ## Bodování
+<a name = "bod"> </a>
 
 Následující tabulka vysvětluje bodování hry:
 
