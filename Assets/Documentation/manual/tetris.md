@@ -73,3 +73,4 @@ Následující tabulka vysvětluje bodování hry:
 
 *Mechanika **T-Spinu** a **Mini T-Spinu** popsána podrobně [**zde**](https://tetris.fandom.com/wiki/T-Spin), ****Složité úkony**: Tetris, Mini T-Spin Single, T-Spin Single, T-Spin Double, T-Spin Triple
 
+TEST
