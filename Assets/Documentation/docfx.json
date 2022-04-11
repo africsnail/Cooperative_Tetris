@@ -26,12 +26,13 @@
         "_disableBreadcrumb": true,
         "_appLogoPath": "/images/logo.svg",
         "_appFaviconPath": "/images/logo.svg"
+        
     },
     "fileMetadata": 
     {
       "_disableAffix": {
         "manual/*.md": true,
-        "index.md": true
+        "index.md": false
       },
       "_disableToc": {
         "manual/*.md": true,

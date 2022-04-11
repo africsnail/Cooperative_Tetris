@@ -177,33 +177,33 @@ namespace Tetris
                 if (IsClear.Count == 1)
                 {
                     ScoreSystem.CurrentAction += 1;
-                    ScoreSystem.Score += 100;
+                    ScoreSystem.Score += 100 * ScoreSystem.CurrentLevel;
                     Debug.Log("Single");
                     ScoreSystem.IsB2B = false;
                 }
                 else if (IsClear.Count == 2)
                 {
                     ScoreSystem.CurrentAction += 3;
-                    ScoreSystem.Score += 300;
+                    ScoreSystem.Score += 300 * ScoreSystem.CurrentLevel;
                     Debug.Log("Double");
                     ScoreSystem.IsB2B = false;
                 }
                 else if (IsClear.Count == 3)
                 {
                     ScoreSystem.CurrentAction += 5;
-                    ScoreSystem.Score += 500;
+                    ScoreSystem.Score += 500 * ScoreSystem.CurrentLevel;
                     Debug.Log("Triple");
                     ScoreSystem.IsB2B = false;
                 }
                 else if (IsClear.Count == 4)
                 {
                     ScoreSystem.CurrentAction += 8;
-                    ScoreSystem.Score += 800;
+                    ScoreSystem.Score += 800 * ScoreSystem.CurrentLevel;
                     Debug.Log("Tetris");
                     if (ScoreSystem.IsB2B)
                     {
                         ScoreSystem.CurrentAction += 4;
-                        ScoreSystem.Score += 400;
+                        ScoreSystem.Score += 400 * ScoreSystem.CurrentLevel;
                         Debug.Log("Back-To-Back");
                     }
 
@@ -221,11 +221,11 @@ namespace Tetris
                     {
                         case 1:
                             ScoreSystem.CurrentAction += 4;
-                            ScoreSystem.Score += 400;
+                            ScoreSystem.Score += 400 * ScoreSystem.CurrentLevel;
                             if (ScoreSystem.IsB2B)
                             {
                                 ScoreSystem.CurrentAction += 4;
-                                ScoreSystem.Score += 400;
+                                ScoreSystem.Score += 400 * ScoreSystem.CurrentLevel;
                                 Debug.Log("Back-To-Back");
                             }
 
@@ -234,11 +234,11 @@ namespace Tetris
                             break;
                         case 2:
                             ScoreSystem.CurrentAction += 8;
-                            ScoreSystem.Score += 800;
+                            ScoreSystem.Score += 800 * ScoreSystem.CurrentLevel;
                             if (ScoreSystem.IsB2B)
                             {
                                 ScoreSystem.CurrentAction += 6;
-                                ScoreSystem.Score += 600;
+                                ScoreSystem.Score += 600 * ScoreSystem.CurrentLevel;
                                 Debug.Log("Back-To-Back");
                             }
 
@@ -247,11 +247,11 @@ namespace Tetris
                             break;
                         case 3:
                             ScoreSystem.CurrentAction += 12;
-                            ScoreSystem.Score += 1200;
+                            ScoreSystem.Score += 1200 * ScoreSystem.CurrentLevel;
                             if (ScoreSystem.IsB2B)
                             {
                                 ScoreSystem.CurrentAction += 8;
-                                ScoreSystem.Score += 800;
+                                ScoreSystem.Score += 800 * ScoreSystem.CurrentLevel;
                                 Debug.Log("Back-To-Back");
                             }
 

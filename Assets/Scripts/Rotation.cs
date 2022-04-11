@@ -421,7 +421,7 @@ namespace Tetris
                                 Debug.Log("Mini T-Spin");
                                 ScoreSystem.IsTSpinLastMove = 2;
                                 ScoreSystem.CurrentAction += 1;
-                                ScoreSystem.Score += 100;
+                                ScoreSystem.Score += 100 * ScoreSystem.CurrentLevel;
                             }
                             else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
                                          block.RotationState) == 1)
@@ -429,7 +429,7 @@ namespace Tetris
                                 Debug.Log("T-Spin");
                                 ScoreSystem.IsTSpinLastMove = 1;
                                 ScoreSystem.CurrentAction += 4;
-                                ScoreSystem.Score += 400;
+                                ScoreSystem.Score += 400 * ScoreSystem.CurrentLevel;
                             }
                         }
                     }
@@ -468,7 +468,7 @@ namespace Tetris
                                 Debug.Log("Mini T-Spin");
                                 ScoreSystem.IsTSpinLastMove = 2;
                                 ScoreSystem.CurrentAction += 1;
-                                ScoreSystem.Score += 100;
+                                ScoreSystem.Score += 100 * ScoreSystem.CurrentLevel;
                             }
                             else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
                                          block.RotationState) == 1)
@@ -476,7 +476,7 @@ namespace Tetris
                                 Debug.Log("T-Spin");
                                 ScoreSystem.IsTSpinLastMove = 1;
                                 ScoreSystem.CurrentAction += 4;
-                                ScoreSystem.Score += 400;
+                                ScoreSystem.Score += 400 * ScoreSystem.CurrentLevel;
                             }
                         }
                     }
