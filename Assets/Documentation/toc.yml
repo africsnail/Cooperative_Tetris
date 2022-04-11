@@ -1,6 +1,6 @@
-- name: User documentation
+- name: Uživatelská dokumentace
   href: manual/
-- name: Devoloper documentation
+- name: Vývojářská dokumentace
   href: api/
-- name: Source code
+- name: Zdrojový kód
   href: https://github.com/africsnail/Sakala_Tetris

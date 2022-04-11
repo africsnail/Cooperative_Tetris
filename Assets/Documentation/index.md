@@ -1,6 +1,6 @@
-# **Cooperative Tetris**
-_Welcome to the website of the Cooperative Tetris maturita project!_
-## Table of contents
-1. [**User documentation**](./manual/tetris.md)
-2. [**Developer documentation**](xref:Tetris)
-3. [**Source code**](https://github.com/africsnail/Sakala_Tetris)
+# **Kooperativní Tetris**
+Vítejte na webové stránce maturitního projektu!
+## Obsah
+1. [**Uživatelská dokumentace**](./manual/tetris.md)
+2. [**Vývojářská dokumentace**](xref:Tetris)
+3. [**Zdrojový kód**](https://github.com/africsnail/Cooperative_Tetris)
