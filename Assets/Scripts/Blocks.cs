@@ -246,7 +246,7 @@ namespace Tetris
                 RemovePlayer(PlayerIds.Count - 1);
             }
 
-            if (!Menu.Menus[0].IsPaused && !Menu.Menus[2].IsPaused)
+            if (!Menu.Menus[0].IsPaused && !Menu.Menus[1].IsPaused && !Menu.Menus[2].IsPaused)
             {
                 for (int playerId = 0; playerId < PlayerIds.Count; playerId++)
                     SpawnMino(playerId, "random");
@@ -689,19 +689,20 @@ namespace Tetris
         ///     Checks if player's <see cref="StartArea" /> are occupied by locked blocks
         /// </summary>
         /// <param name="playerId">Player id</param>
+        /// <param name="type">Block type</param>
         /// <returns>bool</returns>
-        private bool CanSpawn(int playerId)
+        private bool CanSpawn(int playerId, string type)
         {
             spawn = true;
-            foreach (var block in Tetrominos.Where(block => block.Type == "O" && block.Id == playerId))
+            if (type == "random")
+                type = randomType[rIndex];
+            foreach (var block in Tetrominos.Where(block => block.Type == type && block.Id == playerId))
             {
                 for (var x = 0; x < block.Size; x++)
                 for (var y = 0; y < block.Size; y++)
                     if (block.RGrid[x, y] == 1)
-                    {
                         if (TileMap.PlayGrid != null && TileMap.PlayGrid[(int)StartArea[playerId][0] + x + 1, (int)StartArea[playerId][1] + y + 1] == 1)
                             spawn = false;
-                    }
             }
 
             if (spawn) return true;
@@ -726,7 +727,7 @@ namespace Tetris
         {
             if ((ActiveSpawn[playerId] || holdSpawn[playerId]) && TileMap.IsGameOver == false)
             {
-                if (CanSpawn(playerId))
+                if (CanSpawn(playerId, type))
                 {
                     // timeSpawn += Time.deltaTime;
                     // if (timeSpawn >= timeToSpawn)

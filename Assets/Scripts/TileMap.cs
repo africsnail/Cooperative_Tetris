@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 namespace Tetris
 {
@@ -12,7 +14,7 @@ namespace Tetris
         // Grid dimensions
         public static int GridHeight = 21;
         public static int GridWidth = 12;
-        
+
         public static bool IsGameOver;
         private static readonly int ColorId = Shader.PropertyToID("_Color");
         public static List<int> IsClear;
@@ -28,7 +30,9 @@ namespace Tetris
         public static GameObject[,] GameOverCube { get; set; }
 
         public static int[,] PlayGrid { get; set; }
+
         public static SubTileMap MovementTileMap { get; set; }
+
         // Update is called once per frame
         private void Awake()
         {
@@ -37,7 +41,7 @@ namespace Tetris
 
         private void Update()
         {
-            if (!Menu.Menus[0].IsPaused && !Menu.Menus[2].IsPaused)
+            if (!Menu.Menus[0].IsPaused && !Menu.Menus[1].IsPaused && !Menu.Menus[2].IsPaused)
             {
                 LockManager();
                 GridManager(GridWidth, GridHeight);
@@ -100,30 +104,54 @@ namespace Tetris
                     if (MovementTileMap.GridCube[x, y] != null)
                     {
                         GameOverCube[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
+
                         DestroyImmediate(MovementTileMap.GridCube[x, y]);
                         var gameOverRigidbody = GameOverCube[x, y].AddComponent<Rigidbody>();
 
-                        gameOverRigidbody.AddForce(0, 0, -kick, ForceMode.Impulse);
-                        gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
+                            gameOverRigidbody.AddForce(0, 0, -kick, ForceMode.Impulse);
+                            gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
 
-                        MovementTileMap.IsActive[x, y] = false;
-                        MovementTileMap.IsClear[x, y] = false;
-                        PlayGrid[x, y] = 0;
+                            MovementTileMap.IsActive[x, y] = false;
+                            MovementTileMap.IsClear[x, y] = false;
+                            PlayGrid[x, y] = 0;
+                        
                     }
-
-                if (isReal)
+                
+                foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
                 {
-                    foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
-                        block.TetrominoGo.transform.position = Blocks.SpawnArea;
-                    IsGameOver = true;
+                    for (var x = 0; x < block.Size; x++)
+                    for (var y = 0; y < block.Size; y++)
+                        if (block.CubeGo[x, y] != null)
+                        {
+                            GameOverCube[x + (int) block.Location[0] + 1, y + (int) block.Location[1] - block.Size + 1] =
+                                Instantiate(block.CubeGo[x, y]);
+                            var gameOverRigidbody =
+                                GameOverCube[x + (int) block.Location[0] + 1, y + (int) block.Location[1] - block.Size + 1]
+                                    .AddComponent<Rigidbody>();
+                            GameOverCube[x + (int) block.Location[0] + 1, y + (int) block.Location[1] - block.Size + 1].transform
+                                .position += block.TetrominoGo.transform.position;
+                            gameOverRigidbody.AddForce(0, 0, -kick, ForceMode.Impulse);
+                            gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
+                        }
                 }
+                foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
+                    block.TetrominoGo.transform.position = Blocks.SpawnArea;
+                IsGameOver = true;
+                
             }
+        }
+
+        public static void ClearGridCubes()
+        {
+            for (var x = 1; x < GridWidth - 1; x++)
+            for (var y = 1; y < GridHeight; y++)
+                DestroyImmediate(MovementTileMap.GridCube[x, y]);
         }
 
         private void GridManager(int w, int h)
         {
             IsClear = new List<int>();
-            for (var y = 1; y < h - 1; y++)
+            for (var y = 1; y < h; y++)
             {
                 var lineClear = true;
                 for (var x = 1; x < w - 1; x++)
@@ -310,9 +338,13 @@ namespace Tetris
                 for (var y = 0; y < block.Size; y++)
                     if (block.RGrid[x, y] == 1)
                     {
+                        if (block.Size == 4)
+                            y -= 1;
                         PlayGrid[(int) block.Location[0] + x + 1, (int) block.Location[1] + y - 2] = 1;
                         MovementTileMap.Color[(int) block.Location[0] + x + 1, (int) block.Location[1] + y - 2] =
                             block.Color;
+                        if (block.Size == 4)
+                            y += 1;
                     }
 
                 block.TetrominoGo.transform.position = Blocks.SpawnArea;

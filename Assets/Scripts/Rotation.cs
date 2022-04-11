@@ -485,7 +485,7 @@ namespace Tetris
         // Update is called once per frame
         private void Update()
         {
-            if (!Menu.Menus[0].IsPaused && !Menu.Menus[2].IsPaused)
+            if (!Menu.Menus[0].IsPaused && !Menu.Menus[1].IsPaused && !Menu.Menus[2].IsPaused)
                 DoRotation();
         }
     }

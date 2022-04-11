@@ -263,11 +263,17 @@ namespace Tetris
                 for (var x = 0; x < w; x++)
                 for (var y = 0; y < h; y++)
                 {
-                    if (_animationCube[x, y] != null) Destroy(_animationCube[x, y]);
-
+                    Debug.Log("x, y: " + x + ", " + y);
+                    Debug.Log("X: " + _animationCube.GetUpperBound(0));
+                    if (x > 0 && y > 0)
+                        if (_animationCube[x, y] != null) Destroy(_animationCube[x, y]);
+                    
                     if (x < block.Size && y < block.Size)
+                    {
+                        Debug.Log("Block id: " + block.Id);
                         if (AnimationCube2[block.Id][x, y] != null)
                             Destroy(AnimationCube2[block.Id][x, y]);
+                    }
                 }
         }
 
@@ -277,16 +283,19 @@ namespace Tetris
             foreach (var block in Tetrominos.Where(block => block.IsActive))
                 block.TetrominoGo.transform.position = SpawnArea;
 
-            // Clear animation blocks
-            ClearAnimationCubes(GridWidth - 1, GridHeight);
+            // Clear animation cubes
+            if (!IsGameOver)
+                ClearAnimationCubes(GridWidth - 1, GridHeight);
 
-            GameOver(false);
+            // Clear grid cubes
+            ClearGridCubes();
 
-            // Clear all grid cubes
-            for (var x = 1; x < GridWidth - 1; x++)
-            for (var y = 1; y < GridHeight; y++)
-                if (GameOverCube[x, y] != null)
-                    StartCoroutine(GameOverCleanup(x, y));
+            // Clear all GameOver animation cubes
+            if (IsGameOver)
+                for (var x = 1; x < GridWidth - 1; x++)
+                for (var y = 1; y < GridHeight; y++)
+                    if (GameOverCube[x, y] != null)
+                        StartCoroutine(GameOverCleanup(x, y));
 
             // Unpause menus and reset BGM
             Menus[0].IsPaused = false;
@@ -420,7 +429,6 @@ namespace Tetris
             else if (type == "remove")
             {
                 NeedToRemovePlayer = true;
-                //GameObject.Find("Area Light").transform.Translate(Vector3.left * 10f);
                 GameObject.Find("Holding area").transform.Translate(Vector3.left * 10f);
                 if (PlayerCount == 1)
                 {
@@ -514,14 +522,16 @@ namespace Tetris
         private static IEnumerator GameOverCleanup(int x, int y)
         {
             {
-                while (GameOverCube[x, y].transform.position[1] > -10) yield return null;
-
+                while (GameOverCube[x, y].transform.position[1] > -3) yield return null;
+                
                 Destroy(GameOverCube[x, y]);
+                Debug.Log("Cleanup x y:" + x + ", " + y);
             }
         }
 
         private IEnumerator MenuOpenAnimation(int w, int h)
         {
+            Debug.Log("Initializing animation cubes with x: " + w + ", y: " + h);
             _animationCube = new GameObject[w, h];
 
             for (var x = 1; x < w; x++)
@@ -536,17 +546,17 @@ namespace Tetris
                 }
 
             AnimationCube2 = new GameObject[PlayerIds.Count][,];
-            foreach (var mino in Tetrominos.Where(block => block.IsActive))
+            foreach (var block in Tetrominos.Where(block => block.IsActive))
             {
-                AnimationCube2[mino.Id] = new GameObject[mino.Size, mino.Size];
-                for (var x = 0; x < mino.Size; x++)
-                for (var y = 0; y < mino.Size; y++)
-                    if (mino.CubeGo[x, y] != null)
+                AnimationCube2[block.Id] = new GameObject[block.Size, block.Size];
+                for (var x = 0; x < block.Size; x++)
+                for (var y = 0; y < block.Size; y++)
+                    if (block.CubeGo[x, y] != null)
                     {
-                        AnimationCube2[mino.Id][x, y] = Instantiate(mino.CubeGo[x, y]);
-                        var animationRigidbody2 = AnimationCube2[mino.Id][x, y].AddComponent<Rigidbody>();
-                        AnimationCube2[mino.Id][x, y].transform.position += mino.TetrominoGo.transform.position;
-                        AnimationCube2[mino.Id][x, y].name = "Animation cube (Blocks) " + x + "_" + y;
+                        AnimationCube2[block.Id][x, y] = Instantiate(block.CubeGo[x, y]);
+                        var animationRigidbody2 = AnimationCube2[block.Id][x, y].AddComponent<Rigidbody>();
+                        AnimationCube2[block.Id][x, y].transform.position += block.TetrominoGo.transform.position;
+                        AnimationCube2[block.Id][x, y].name = "Animation cube (Blocks) " + x + "_" + y;
                         animationRigidbody2.AddForce(0, 0, -1, ForceMode.Impulse);
                         animationRigidbody2.AddTorque(0, 0, 0.5f, ForceMode.Impulse);
                     }
