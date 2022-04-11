@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "/run/media/africsnail/4A8ABE538ABE3AF1/Users/Africsnail/Tetris/Assets/Documentation",
+  "source_base_path": "/mnt/windows/Users/Africsnail/Tetris/Assets/Documentation",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -11,160 +11,6 @@
         }
       },
       "is_incremental": false
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_1.png",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_1.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_1.png.meta",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_1.png.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_1_cz.png",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_1_cz.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_1_cz.png.meta",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_1_cz.png.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_2.png",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_2.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_2.png.meta",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_2.png.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_2_cz.png",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_2_cz.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_2_cz.png.meta",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_2_cz.png.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_3.png",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_3.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_3.png.meta",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_3.png.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_3_cz.png",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_3_cz.png"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/TetrisControls_3_cz.png.meta",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/TetrisControls_3_cz.png.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/logo.svg",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/logo.svg"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "_site/images/logo.svg.meta",
-      "output": {
-        "resource": {
-          "relative_path": "_site/images/logo.svg.meta"
-        }
-      },
-      "is_incremental": false,
-      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -446,7 +292,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "L8gnvWlJf0UDn1qk0Pi6Gb5CUhnEX9E9zOUwnMURTNs="
+          "hash": "GfzIcOMW0Brf4eCS5Cr6LA3A9VSyNs5qYw4KMLQQwOA="
         }
       },
       "is_incremental": false,
@@ -458,7 +304,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/tetris.html",
-          "hash": "Do9EitoTqrIXshEfM7i8Olf+Ht6R1lomad3plbTqdOE="
+          "hash": "DLMEQhKkzG11eP4UwH5imvjmSrfb99Hmm6l6E2iCdf8="
         }
       },
       "is_incremental": false,
@@ -482,7 +328,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "f6cmJKePBb5XZ5TqCoxgp0v511bnhMjsJZQj6srrmNE="
+          "hash": "fNuWSp/oBN79950y0y4aMv7d9DewyMG8w6/Wtn+GJWc="
         }
       },
       "is_incremental": false,
