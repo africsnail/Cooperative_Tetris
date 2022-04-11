@@ -97,8 +97,6 @@ namespace Tetris
 
             CurrentAction = 0;
             IsTSpinLastMove = 0;
-
-            //Debug.Log("Lines cleared: " + LinesCleared + " Current score: " + Score + " Current level: " + CurrentLevel + " Current fall speed: " + Blocks.TimeToFall);
         }
     }
 }

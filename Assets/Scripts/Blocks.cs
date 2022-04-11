@@ -236,14 +236,12 @@ namespace Tetris
         {
             if (Menu.NeedToAddPlayer)
             {
-                Debug.Log("Initializing player " + PlayerIds.Count);
                 Menu.NeedToAddPlayer = false;
                 InitializePlayer(PlayerIds.Count);
             }
 
             if (Menu.NeedToRemovePlayer)
             {
-                Debug.Log("Removing player " + (PlayerIds.Count - 1));
                 Menu.NeedToRemovePlayer = false;
                 RemovePlayer(PlayerIds.Count - 1);
             }
@@ -631,10 +629,6 @@ namespace Tetris
                     {
                         if (block.RGrid[sizeX, sizeY] == 1)
                         {
-                            Debug.Log("Bounds: " + TileMap.MovementTileMap.CollisionMap.GetUpperBound(0) + ", " +
-                                      TileMap.MovementTileMap.CollisionMap.GetUpperBound(1));
-                            Debug.Log("Coordinates: " + (block.Location[0] + sizeX) + ", " +
-                                      (block.Location[1] - sizeY - block.Size));
                             TileMap.MovementTileMap.CollisionMap[sizeX + (int) block.Location[0],
                                 (int) block.Location[1] + sizeY - block.Size] = true;
                         }
@@ -1025,8 +1019,6 @@ namespace Tetris
                         block.Location = new[] {SpawnArea[0], SpawnArea[1], SpawnArea[2]};
                         if (HoldBlock[playerId] != null) DestroyImmediate(HoldBlock[playerId]);
 
-                        Debug.Log(HoldType);
-
                         block.TetrominoGo.transform.position = SpawnArea;
                         while (block.RotationState != 0)
                         {
@@ -1043,16 +1035,11 @@ namespace Tetris
                         holdSpawn[playerId] = true;
 
                         if (randomType.Contains(HoldType[playerId]))
-                        {
                             SpawnMino(playerId, HoldType[playerId]);
-                            Debug.Log("Attempting to spawn hold block: " + HoldType);
-                        }
+                        
                         else
-                        {
                             SpawnMino(playerId, "random");
-                            Debug.Log("Attempting to spawn random hold block");
-                        }
-
+                        
                         holdUsed[playerId] = true;
                         break;
                     }

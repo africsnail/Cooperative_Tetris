@@ -8,16 +8,14 @@ namespace Tetris
 {
     public class TileMap : MonoBehaviour
     {
+        // VARIABLES
         // Grid dimensions
         public static int GridHeight = 21;
         public static int GridWidth = 12;
+        
         public static bool IsGameOver;
-
         private static readonly int ColorId = Shader.PropertyToID("_Color");
-
         public static List<int> IsClear;
-        // VARIABLES
-
         public GameObject blockPrefab;
 
         // Game Over timer
@@ -31,8 +29,6 @@ namespace Tetris
 
         public static int[,] PlayGrid { get; set; }
         public static SubTileMap MovementTileMap { get; set; }
-
-
         // Update is called once per frame
         private void Awake()
         {
@@ -281,7 +277,7 @@ namespace Tetris
                         MovementTileMap.IsActive[x, y] = MovementTileMap.IsActive[x, y + 1];
                         {
                             if (MovementTileMap.GridCube[x, y] != null)
-                                //remove the block on x,y
+                                // Remove the block on x,y
                                 DestroyImmediate(MovementTileMap.GridCube[x, y]);
 
                             if (MovementTileMap.GridCube[x, y + 1] != null)
@@ -349,7 +345,6 @@ namespace Tetris
             {
                 var lineClearRigidbody = LineToAnimate[x, y].AddComponent<Rigidbody>();
                 lineClearRigidbody.position += Vector3.back;
-                //lineClearRigidbody.AddForce(0, 0, 0, ForceMode.Impulse);
                 lineClearRigidbody.AddForce(0, 0, -0.5f, ForceMode.Impulse);
                 lineClearRigidbody.AddTorque(0, -10, 1.1f, ForceMode.Impulse);
 

@@ -51,7 +51,7 @@ namespace Tetris
             new[] {0, 0, 0, -2, 1}
         };
 
-        // rotation states data
+        // Rotation states data
         private readonly int[][] _rotationStates = new int[][]
         {
             new[] {0, 1},
@@ -73,7 +73,7 @@ namespace Tetris
 
         public static bool CanRotate(int playerId, int fromState, int intoState, int xOffset, int yOffset)
         {
-            //getting collision grid for other player collisions
+            // Getting collision grid for other player collisions
             foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive && block.Id != playerId))
             {
                 for (int sizeX = 0; sizeX < block.Size; sizeX++)
@@ -131,7 +131,6 @@ namespace Tetris
                                 yWithSizeOffset = y;
                             var locationX = (int) block.Location[0] + x + xOffset + 1;
                             var locationY = (int) block.Location[1] + yWithSizeOffset + yOffset - 2;
-                            //int value = playGrid[locationX, locationY];
 
                             if (locationX <= TileMap.PlayGrid.GetUpperBound(0) &&
                                 locationX >= TileMap.PlayGrid.GetLowerBound(0) &&
@@ -281,7 +280,6 @@ namespace Tetris
                                         {
                                             for (var c = 0; c < 5; c++)
                                             {
-                                                Debug.Log(block.RotationState + ", " + FutureRotationC[playerId]);
                                                 if (RotateAttempt(playerId, block.RotationState,
                                                         FutureRotationC[playerId], _rotationSystem[x * 2][c],
                                                         _rotationSystem[x * 2 + 1][c], "C"))
@@ -301,7 +299,6 @@ namespace Tetris
                                         {
                                             for (var c = 0; c < 5; c++)
                                             {
-                                                Debug.Log(block.RotationState + ", " + FutureRotationC[playerId]);
                                                 if (RotateAttempt(playerId, block.RotationState,
                                                         FutureRotationC[playerId], _rotationSystemI[x * 2][c],
                                                         _rotationSystemI[x * 2 + 1][c], "C"))
@@ -317,7 +314,7 @@ namespace Tetris
                             {
                                 if (block.Type != "I")
                                 {
-                                    //Rotate anticlockwise for non I tetrominos
+                                    // Rotate anticlockwise for non I tetrominos
                                     for (var x = 0; x < 4; x++)
                                     {
                                         if (block.RotationState == _rotationStates[x][0] &&
@@ -325,7 +322,6 @@ namespace Tetris
                                         {
                                             for (var c = 0; c < 5; c++)
                                             {
-                                                Debug.Log(block.RotationState + ", " + FutureRotationC[playerId]);
                                                 if (RotateAttempt(playerId, block.RotationState,
                                                         FutureRotationC[playerId], -_rotationSystem[x * 2][c],
                                                         -_rotationSystem[x * 2 + 1][c], "Ac"))
