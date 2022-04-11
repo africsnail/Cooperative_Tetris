@@ -144,8 +144,18 @@ namespace Tetris
         public static void ClearGridCubes()
         {
             for (var x = 1; x < GridWidth - 1; x++)
-            for (var y = 1; y < GridHeight; y++)
-                DestroyImmediate(MovementTileMap.GridCube[x, y]);
+            {
+                for (var y = 1; y < GridHeight; y++)
+                {
+                    if (MovementTileMap.GridCube[x, y] != null)
+                    {
+                        DestroyImmediate(MovementTileMap.GridCube[x, y]);
+                        MovementTileMap.IsActive[x, y] = false;
+                        MovementTileMap.IsClear[x, y] = false;
+                        PlayGrid[x, y] = 0;
+                    }
+                }
+            }
         }
 
         private void GridManager(int w, int h)
@@ -167,9 +177,6 @@ namespace Tetris
                             cubeRenderer.material.SetColor(ColorId, MovementTileMap.Color[x, y]);
                             MovementTileMap.IsActive[x, y] = true;
                         }
-
-                        var cubeRenderer2 = MovementTileMap.GridCube[x, y].GetComponent<Renderer>();
-                        cubeRenderer2.material.SetColor(ColorId, MovementTileMap.Color[x, y]);
                     }
                     else if (PlayGrid[x, y] == 0)
                     {

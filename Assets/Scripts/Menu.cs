@@ -263,14 +263,11 @@ namespace Tetris
                 for (var x = 0; x < w; x++)
                 for (var y = 0; y < h; y++)
                 {
-                    Debug.Log("x, y: " + x + ", " + y);
-                    Debug.Log("X: " + _animationCube.GetUpperBound(0));
                     if (x > 0 && y > 0)
                         if (_animationCube[x, y] != null) Destroy(_animationCube[x, y]);
                     
                     if (x < block.Size && y < block.Size)
                     {
-                        Debug.Log("Block id: " + block.Id);
                         if (AnimationCube2[block.Id][x, y] != null)
                             Destroy(AnimationCube2[block.Id][x, y]);
                     }
@@ -283,12 +280,12 @@ namespace Tetris
             foreach (var block in Tetrominos.Where(block => block.IsActive))
                 block.TetrominoGo.transform.position = SpawnArea;
 
+            // Clear grid cubes
+            ClearGridCubes();
+            
             // Clear animation cubes
             if (!IsGameOver)
                 ClearAnimationCubes(GridWidth - 1, GridHeight);
-
-            // Clear grid cubes
-            ClearGridCubes();
 
             // Clear all GameOver animation cubes
             if (IsGameOver)
@@ -332,6 +329,8 @@ namespace Tetris
             ScoreSystem.Score = 0;
             ScoreSystem.IsGameOverScoreSet = false;
             ScoreSystem.NewRecordText.enabled = false;
+            
+            Debug.Log("Restarting");
         }
 
         private void SwitchPlayerCount(string type)

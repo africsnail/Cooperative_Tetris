@@ -1020,14 +1020,20 @@ namespace Tetris
 
                         if (block.RotationState == 0) block.AtSpawn = false;
 
-                        holdSpawn[playerId] = true;
+
 
                         if (randomType.Contains(HoldType[playerId]))
+                        {
+                            holdSpawn[playerId] = true;
                             SpawnMino(playerId, HoldType[playerId]);
-                        
+                        }
+
                         else
+                        {
+                            ActiveSpawn[playerId] = true;
                             SpawnMino(playerId, "random");
-                        
+                        }
+
                         holdUsed[playerId] = true;
                         break;
                     }
