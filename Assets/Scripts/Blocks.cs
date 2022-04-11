@@ -695,25 +695,12 @@ namespace Tetris
             spawn = true;
             foreach (var block in Tetrominos.Where(block => block.Type == "O" && block.Id == playerId))
             {
-                int size;
-                if (block.Type == "I" || block.Type == "O")
-                    size = 4;
-                else
-                    size = 3;
-                for (var x = 0; x < size; x++)
-                for (var y = 0; y < size; y++)
+                for (var x = 0; x < block.Size; x++)
+                for (var y = 0; y < block.Size; y++)
                     if (block.RGrid[x, y] == 1)
                     {
-                        int newY;
-                        if (size == 4)
-                            newY = y - 1;
-                        else
-                            newY = y;
-
-                        if (TileMap.PlayGrid != null && TileMap.PlayGrid[4 + x + 1, 20 + newY - 2] == 1)
-                        {
+                        if (TileMap.PlayGrid != null && TileMap.PlayGrid[(int)StartArea[playerId][0] + x + 1, (int)StartArea[playerId][1] + y + 1] == 1)
                             spawn = false;
-                        }
                     }
             }
 
