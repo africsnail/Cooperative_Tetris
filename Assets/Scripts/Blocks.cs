@@ -192,7 +192,7 @@ namespace Tetris
         /// <summary>
         ///     List for holdUsed bool
         /// </summary>
-        public List<bool> holdUsed = new List<bool>();
+        public static List<bool> HoldUsed = new List<bool>();
 
         /// <summary>
         ///     List for holdSpawn bool
@@ -277,7 +277,7 @@ namespace Tetris
             lockDeepestRow.Add(new int());
             timeBeginAutoRepeat.Add(new float());
             timeSoftDrop.Add(new float());
-            holdUsed.Add(new bool());
+            HoldUsed.Add(new bool());
             holdSpawn.Add(new bool());
             PreviewBlock.Add(new GameObject());
             HoldBlock.Add(new GameObject());
@@ -309,7 +309,7 @@ namespace Tetris
             lockDeepestRow.RemoveAt(playerId);
             timeBeginAutoRepeat.RemoveAt(playerId);
             timeSoftDrop.RemoveAt(playerId);
-            holdUsed.RemoveAt(playerId);
+            HoldUsed.RemoveAt(playerId);
             holdSpawn.RemoveAt(playerId);
             PreviewBlock.RemoveAt(playerId);
             HoldBlock.RemoveAt(playerId);
@@ -813,7 +813,7 @@ namespace Tetris
                                 IsFalling[playerId] = false;
                                 ActiveSpawn[playerId] = true;
                                 TimeLock[playerId] = 0.0f;
-                                holdUsed[playerId] = false;
+                                HoldUsed[playerId] = false;
                             }
                             else if (CanMove(playerId, "down") && CanMoveToPlayer(playerId, "down"))
                             {
@@ -848,7 +848,7 @@ namespace Tetris
                             block.IsLocked = true;
                             ActiveSpawn[playerId] = true;
                             block.IsActive = false;
-                            holdUsed[playerId] = false;
+                            HoldUsed[playerId] = false;
                             TimeLock[playerId] = 0.0f;
                         }
                     }
@@ -998,7 +998,7 @@ namespace Tetris
         {
             for (int playerId = 0; playerId < PlayerIds.Count; playerId++)
             {
-                if (holdUsed[playerId] == false && Input.GetKeyDown(KeybindHold[playerId]))
+                if (HoldUsed[playerId] == false && Input.GetKeyDown(KeybindHold[playerId]))
                 {
                     foreach (var block in Tetrominos.Where(block => block.IsActive && block.Id == playerId))
                     {
@@ -1034,7 +1034,7 @@ namespace Tetris
                             SpawnMino(playerId, "random");
                         }
 
-                        holdUsed[playerId] = true;
+                        HoldUsed[playerId] = true;
                         break;
                     }
 

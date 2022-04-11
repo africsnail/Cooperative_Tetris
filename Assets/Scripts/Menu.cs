@@ -315,7 +315,9 @@ namespace Tetris
                 // Clear preview block
                 Destroy(PreviewBlock[c]);
                 Destroy(HoldBlock[c]);
+                // Reset hold variables
                 HoldType[c] = null;
+                HoldUsed[c] = false;
             }
 
             // Clear held block

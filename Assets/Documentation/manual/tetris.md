@@ -5,17 +5,28 @@
 Maturitní projekt Kooperativní Tetris vychází ze známé arkádové hry [Tetris](https://en.wikipedia.org/wiki/Tetris),
 která byla vytvořena již roku 1984 [Alexeyem Pajitnovem](https://en.wikipedia.org/wiki/Alexey_Pajitnov). Jde o vlastní
 implementaci této klasické hry v oblíbeném herním enginu [Unity](https://en.wikipedia.org/wiki/Unity_(game_engine)).
-Nejdůležitějším originálním prvkem této implementace hry je kooperativní režim, ve kterém se hrácí pole rozšíří pro další hráče, kteří
-následně spolupracují a snaží se dosáhnout společného skóre.
+Nejdůležitějším originálním prvkem této implementace hry je kooperativní režim, ve kterém se hrácí pole rozšíří pro
+další hráče, kteří následně spolupracují a snaží se dosáhnout společného skóre.
 
 ## Pravidla
 
-- Hráči mají za úkol vyčistit jedotlivé řádky tím, že je zaplní [tetrominy](https://en.wikipedia.org/wiki/Tetromino) (dále
-  nazýváno pouze *bloky*).
+- Hráči mají za úkol vyčistit jedotlivé řádky tím, že je zaplní [tetrominy](https://en.wikipedia.org/wiki/Tetromino) (
+  dále nazýváno pouze *bloky*).
 - Každý hráč může v jednom okamžiku ovládat pouze jeden blok.
 - Gravitace se s roustoucí úrovní postupně zvyšuje, což zrychluje tempo hry.
 - Skóre i obtížnost je pro všechny hráče společná.
 - Hra je prohraná, když není kde vygenerovat další blok.
+
+## Rozložení herních prvků
+
+<img src="../images/layout.png">
+
+- <span style="color:red">**Červený</span> rámeček**: Zde se zobrazují **bloky "ve frontě"**, které hráči dostanou po
+  uzamčení aktivního bloku (_a nebo pokud použili tlačítko podržení a nedrží zatím žádný blok_).
+- <span style="color:blue">**Modrý</span> ráměček**: V tomto prostoru se zobrazují **podržené** bloky.
+- <span style="color:purple">**Fialové</span> ráměčky**: Prostor, ve kterém se objeví **nové bloky** po uzamčení předešlých.
+- **Bílý ráměček**: Aktuální skóre (viz. [bodování](#Bodování))
+- **Černý rámeřek**: Aktuální rychlostní úroveň
 
 ## Ovládání
 
@@ -53,6 +64,7 @@ _**Ostatní:**_
   <img src="../images/TetrisControls_3_cz.png">
 
 ## Bodování
+
 Následující tabulka vysvětluje bodování hry:
 
 | Úkon               | Počet bodů    | Popis                                          |
@@ -71,4 +83,5 @@ Následující tabulka vysvětluje bodování hry:
 | Tvrdý pád          | 2 x *m*       | Blok je pomocí tvrdého pádu shozen o *m* řádků |
 | Back-to-Back       | 0.5 x úkony   | Bonus za dva po sobě jdoucí *složité úkony***  |
 
-*Mechanika **T-Spinu** a **Mini T-Spinu** popsána podrobně [**zde**](https://tetris.fandom.com/wiki/T-Spin), ****Složité úkony**: Tetris, Mini T-Spin Single, T-Spin Single, T-Spin Double, T-Spin Triple
+*Mechanika **T-Spinu** a **Mini T-Spinu** popsána podrobně [**zde**](https://tetris.fandom.com/wiki/T-Spin), ****Složité
+úkony**: Tetris, Mini T-Spin Single, T-Spin Single, T-Spin Double, T-Spin Triple
