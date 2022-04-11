@@ -1,15 +1,6 @@
 {
-  "sitemap": {
-    "fileOptions": {
-      "api/*": {
-        "changefreq": "daily"
-      }
-    },
-    "baseUrl": "https://normanderwan.github.io/DocFxForUnity/",
-    "changefreq": "weekly"
-  },
   "homepages": [],
-  "source_base_path": "C:/Users/Africsnail/Tetris/Assets/Documentation",
+  "source_base_path": "/run/media/africsnail/4A8ABE538ABE3AF1/Users/Africsnail/Tetris/Assets/Documentation",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -22,15 +13,428 @@
       "is_incremental": false
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_1.png",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_1.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_1.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_1_cz.png",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_1_cz.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_1_cz.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_1_cz.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_2.png",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_2.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_2.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_2_cz.png",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_2_cz.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_2_cz.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_2_cz.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_3.png",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_3.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_3.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_3_cz.png",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_3_cz.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/TetrisControls_3_cz.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/TetrisControls_3_cz.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/logo.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "_site/images/logo.svg.meta",
+      "output": {
+        "resource": {
+          "relative_path": "_site/images/logo.svg.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.Blocks.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.Blocks.html",
+          "hash": "VQ49jNtviXidQvaEck60DqYu4+07kyukmdwU89vYo3E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.Menu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.Menu.html",
+          "hash": "QnM1Nrr3feXhKZWoub2X43V5RILRoN0oIDKZ5UoMW2I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.Rotation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.Rotation.html",
+          "hash": "0BCiGQotJv9GwhAdQhX5Bhf308gnuFTOI5/eWYVZUOc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.ScoreSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.ScoreSystem.html",
+          "hash": "bRrGO1SG1Z8e5kWw+dtd2qwc5c7dpC1038ps4kqcNqA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.SubMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.SubMenu.html",
+          "hash": "9hxpSCMJfjCu+CjgLmvTq1KRkVza8iTBn/cIXn6iKz0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.SubTileMap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.SubTileMap.html",
+          "hash": "6MC5XU3bzh9mdWHWwkzMOKNfdKhb5ZH8ayJQ6bsvpU8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.Tetromino.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.Tetromino.html",
+          "hash": "vRCAKDrxtKuwek8ALBZuOF/q88t/pU8GYrYaL/svhFM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.TileMap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.TileMap.html",
+          "hash": "a3akk81HlsnCHSTg61MGK197VwRv4M8sr1L4mWtBXeA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Tetris.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Tetris.html",
+          "hash": "9+zMyv8d1FmVbmTWpS0z08dD+lhieuZ+yC6BPBajNv0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "/eRskZlMuET/Vr4U91gLH2365kE9jfmX7m3sT0vqlRo="
+          "hash": "tUy4GjoiC+Y4soB2d5ewU38wh1AlOxu3PqVAnQEOIbQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_1.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_1.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_1.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_1_cz.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_1_cz.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_1_cz.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_1_cz.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_2.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_2.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_2.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_2_cz.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_2_cz.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_2_cz.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_2_cz.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_3.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_3.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_3.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_3.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_3_cz.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_3_cz.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/TetrisControls_3_cz.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/TetrisControls_3_cz.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.svg.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.svg.meta"
         }
       },
       "is_incremental": false,
@@ -42,22 +446,43 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "tZax4Lo6Mx2fTB7CqMLXhkD3Iqwp18mgtw+ttCO3qAo="
+          "hash": "L8gnvWlJf0UDn1qk0Pi6Gb5CUhnEX9E9zOUwnMURTNs="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
+      "type": "Conceptual",
+      "source_relative_path": "manual/tetris.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/tetris.html",
+          "hash": "DLMEQhKkzG11eP4UwH5imvjmSrfb99Hmm6l6E2iCdf8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "manual/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "manual/toc.html",
+          "hash": "/w6ri8QdycKrm5Ft5WZLOpTlwoYOucD42zwv2fzSxvU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "Z7E+A4C89NhrZSNZ3D1DEHX3ZrIOFpA1hFW2KO8UObc="
+          "hash": "f6cmJKePBb5XZ5TqCoxgp0v511bnhMjsJZQj6srrmNE="
         }
       },
       "is_incremental": false,
@@ -67,18 +492,29 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because config changed.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "ConfigChanged"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 1,
+          "total_file_count": 2,
+          "skipped_file_count": 2
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 9,
+          "skipped_file_count": 9
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

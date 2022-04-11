@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>U&#382;ivatelsk&#225; dokumentace | Cooperative Tetris </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="U&#382;ivatelsk&#225; dokumentace | Cooperative Tetris ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="..//images/logo.svg">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="..//images/logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-12">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="uživatelská-dokumentace">Uživatelská dokumentace</h1>
+
+<h2 id="o-projektu">O projektu</h2>
+<p>Maturitní projekt Kooperativní Tetris vychází ze známé arkádové hry <a href="https://en.wikipedia.org/wiki/Tetris">Tetris</a>,
+která byla vytvořena již roku 1984 <a href="https://en.wikipedia.org/wiki/Alexey_Pajitnov">Alexeyem Pajitnovem</a>. Jde o vlastní
+implementaci této klasické hry v oblíbeném herním enginu <a href="https://en.wikipedia.org/wiki/Unity_(game_engine)">Unity</a>.
+Nejdůležitějším originálním prvkem této implementace hry je kooperativní režim, ve kterém se hrácí pole rozšíří pro další hráče, kteří
+následně spolupracují a snaží se dosáhnout společného skóre.</p>
+<h2 id="pravidla">Pravidla</h2>
+<ul>
+<li>Hráči mají za úkol vyčistit jedotlivé řádky tím, že je zaplní <a href="https://en.wikipedia.org/wiki/Tetromino">tetrominy</a> (dále
+nazýváno pouze <em>bloky</em>).</li>
+<li>Každý hráč může v jednom okamžiku ovládat pouze jeden blok.</li>
+<li>Gravitace se s roustoucí úrovní postupně zvyšuje, což zrychluje tempo hry.</li>
+<li>Skóre i obtížnost je pro všechny hráče společná.</li>
+<li>Hra je prohraná, když není kde vygenerovat další blok.</li>
+</ul>
+<h2 id="ovládání">Ovládání</h2>
+<p><em><strong>Pohyb:</strong></em></p>
+<ul>
+<li><strong>Pohyb doprava</strong>: Přesune blok o 1 kostku doprava + spustí automatické opakování, pokud je držen po dobu 0,3 s.</li>
+<li><strong>Přesun doleva</strong>: Přesune blok o 1 kostku doleva + spustí automatické opakování, pokud je držen po dobu 0,3 s.</li>
+<li><strong>Měkký pád</strong>: Přesune blok dolů 20krát rychleji, než je normální rychlost pádu.</li>
+<li><strong>Tvrdý pád</strong>: Přesune blok na zem a okamžitě zablokuje aktivní blok.</li>
+</ul>
+<p><em><strong>Rotace:</strong></em></p>
+<ul>
+<li><strong>Rotace po směru hodinových ručiček</strong>: Otočí blok o 90° ve směru hodinových ručiček</li>
+<li><strong>Otočení proti směru hodinových ručiček</strong>: Otočí blok o 90° proti směru hodinových ručiček.</li>
+</ul>
+<p><em><strong>Ostatní:</strong></em></p>
+<ul>
+<li><strong>Podržet</strong>: Přesune aktuálně aktivní blok do oblasti podržení a okamžitě vytvoří nový blok.</li>
+</ul>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Po použití funkce podržení musí být blok uzamčen, aby se funkce znovu aktivovala.</p>
+</div>
+<h2 id="rozložení-ovládacích-prvků">Rozložení ovládacích prvků</h2>
+<p><strong>Rozložení ovládacích prvků pro každého hráče závisí na počtu hráčů:</strong></p>
+<ul>
+<li>Hra jednoho hráče
+<br><br>
+<img src="../images/TetrisControls_1_cz.png"></li>
+<li>Kooperace dvou hráčů
+<br><br>
+<img src="../images/TetrisControls_2_cz.png"></li>
+<li>Kooperace tří hráčů
+<br><br>
+<img src="../images/TetrisControls_3_cz.png"></li>
+</ul>
+<h2 id="bodování">Bodování</h2>
+<p>Následující tabulka vysvětluje bodování hry:</p>
+<table>
+<thead>
+<tr>
+<th>Úkon</th>
+<th>Počet bodů</th>
+<th>Popis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single</td>
+<td>100 x úroveň</td>
+<td>1 vyčištěný řádek</td>
+</tr>
+<tr>
+<td>Double</td>
+<td>300 x úroveň</td>
+<td>2 naráz vyčistěné řádky</td>
+</tr>
+<tr>
+<td>Triple</td>
+<td>500 x úroveň</td>
+<td>3 naráz vyčištěné řádky</td>
+</tr>
+<tr>
+<td>Tetris</td>
+<td>800 x úroveň</td>
+<td>4 naráz vyčištěné řádky</td>
+</tr>
+<tr>
+<td>Mini T-Spin*</td>
+<td>100 x úroveň</td>
+<td>Jedodušší forma T-Spinu, bez vyčíštěného řádku</td>
+</tr>
+<tr>
+<td>Mini T-Spin Single</td>
+<td>200 x úroveň</td>
+<td>Jednodušší forma T-Spinu, 1 vyčištěný řádek</td>
+</tr>
+<tr>
+<td>T-Spin*</td>
+<td>400 x úroveň</td>
+<td>T-Spin, bez vyčištěného řádku</td>
+</tr>
+<tr>
+<td>T-Spin Single</td>
+<td>800 x úroveň</td>
+<td>T-Spin, 1 vyčištěný řádek</td>
+</tr>
+<tr>
+<td>T-Spin Double</td>
+<td>1200 x úroveň</td>
+<td>T-Spin, 2 naráz vyčištěné řádky</td>
+</tr>
+<tr>
+<td>T-Spin Triple</td>
+<td>1600 x úroveň</td>
+<td>T-Spin, 3 naráz vyčištěné řádky</td>
+</tr>
+<tr>
+<td>Měkký pád</td>
+<td>1 x <em>n</em></td>
+<td>Blok je pomocí měkkého pádu shozen o <em>n</em> řádků</td>
+</tr>
+<tr>
+<td>Tvrdý pád</td>
+<td>2 x <em>m</em></td>
+<td>Blok je pomocí tvrdého pádu shozen o <em>m</em> řádků</td>
+</tr>
+<tr>
+<td>Back-to-Back</td>
+<td>0.5 x úkony</td>
+<td>Bonus za dva po sobě jdoucí <em>složité úkony</em>**</td>
+</tr>
+</tbody>
+</table>
+<p>*Mechanika <strong>T-Spinu</strong> a <strong>Mini T-Spinu</strong> popsána podrobně <a href="https://tetris.fandom.com/wiki/T-Spin"><strong>zde</strong></a>, **<strong>Složité úkony</strong>: Tetris, Mini T-Spin Single, T-Spin Single, T-Spin Double, T-Spin Triple</p>
+</article>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            © 2022 Ondřej Sakala. All rights reserved.
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
