@@ -150,3 +150,4 @@ Následující tabulka vysvětluje bodování hry:
 
 ### 8.3 Ostatní
 - **Hudba**: _8bit Dungeon Boss - Kevin MacLeod_ https://incompetech.com/music/royalty-free/
+- **Pozadí**: https://assetstore.unity.com/packages/2d/textures-materials/sky/starfield-skybox-92717
