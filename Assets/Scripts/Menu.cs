@@ -276,7 +276,7 @@ namespace Tetris
 
         private void RestartGame()
         {
-            // Clear currently active falling blocks
+            // Return falling blocks to spawn and rotate them to default state
             foreach (var block in Tetrominos.Where(block => block.IsActive))
             {
                 while (block.RotationState != 0)
@@ -284,6 +284,8 @@ namespace Tetris
                     block.AtSpawn = true;
                     Rotation.Rotate(block.Id, "Ac", 0, 0);
                     block.RotationState -= 1;
+                    block.AtSpawn = false;
+                    Debug.Log("rotating ac");
                 }
                 block.TetrominoGo.transform.position = SpawnArea;
             }
