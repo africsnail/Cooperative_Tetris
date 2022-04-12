@@ -562,11 +562,14 @@ namespace Tetris
                 AnimationCube2[block.Id] = new GameObject[block.Size, block.Size];
                 for (var x = 0; x < block.Size; x++)
                 for (var y = 0; y < block.Size; y++)
-                    if (block.CubeGo[x, y] != null)
+                    if (block.RGrid[x, y] == 1)
                     {
-                        AnimationCube2[block.Id][x, y] = Instantiate(block.CubeGo[x, y]);
+                        AnimationCube2[block.Id][x, y] = Instantiate(Tetrominos.Find(mino => mino.Type == "O").CubeGo[2,2]);
                         var animationRigidbody2 = AnimationCube2[block.Id][x, y].AddComponent<Rigidbody>();
-                        AnimationCube2[block.Id][x, y].transform.position += block.TetrominoGo.transform.position;
+                        AnimationCube2[block.Id][x, y].GetComponent<Renderer>().material.SetColor(ColorId, block.Color);
+                        AnimationCube2[block.Id][x, y].transform.position = new Vector3(
+                            (int) block.Location[0] + x,
+                            (int) block.Location[1] + y - block.Size, 0);
                         AnimationCube2[block.Id][x, y].name = "Animation cube (Blocks) " + x + "_" + y;
                         animationRigidbody2.AddForce(0, 0, -1, ForceMode.Impulse);
                         animationRigidbody2.AddTorque(0, 0, 0.5f, ForceMode.Impulse);
