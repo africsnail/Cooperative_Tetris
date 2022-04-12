@@ -1,6 +1,9 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: docs
+  name: Uživatelská dokumentace
+  href: manual/tetris.html
 - uid: Tetris
   name: Tetris
   href: api/Tetris.html
@@ -293,6 +296,12 @@ references:
   commentId: T:Tetris.Menu
   fullName: Tetris.Menu
   nameWithType: Menu
+- uid: Tetris.Menu.Animations
+  name: Animations
+  href: api/Tetris.Menu.html#Tetris_Menu_Animations
+  commentId: F:Tetris.Menu.Animations
+  fullName: Tetris.Menu.Animations
+  nameWithType: Menu.Animations
 - uid: Tetris.Menu.blockPrefab2
   name: blockPrefab2
   href: api/Tetris.Menu.html#Tetris_Menu_blockPrefab2

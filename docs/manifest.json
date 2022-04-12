@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Blocks.html",
-          "hash": "6P50Y1nfk8tYmHzosJbqP5+3JZBk44Zb2SnPrizZA1k="
+          "hash": "UvAPk91peQtFsTRn0Fb3y7BiU8T2nb+9kwu9RWQoSA4="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Menu.html",
-          "hash": "gLIIWQpOMMUfsoUDjCWa1HUfhlYC7+5xPzBO+buxaIg="
+          "hash": "UJbxd6rxJdVeEsdzYodD5w2TXQItLI0DBYGE67ZWl3Q="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Rotation.html",
-          "hash": "NIZbd9F9TmcVHGC5IGexOf7DRcwCzkkL7AjDXpFL8OI="
+          "hash": "Gbhs+JOLJkJsKSkjnvnQgmdBIjY8qgZZV9d8J6fob9Y="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.ScoreSystem.html",
-          "hash": "fHSr/8XJBWsLWc9WyFJ7x4RyJ7btZ8N+ejSYvTcTN7Y="
+          "hash": "XbAlRwS6/hUwQTqxZAUyvxnCbmfvJ2jjsLz/I/F9pes="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.SubMenu.html",
-          "hash": "+ZADQl1dted54CNA7MHkRkWuwVctxRUNO7nbk3kj3jg="
+          "hash": "ax0pLExoSHtVMqjqUBvtt4VIhcTxSrOzqvbFtJ+GPd0="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.SubTileMap.html",
-          "hash": "kQ48jo3bvVlNbhvOLsu93cS1LZaMsZbo54ZZ0EFcF8Q="
+          "hash": "DksRvXIF2gIMAS3geUp+E6Olwze+cr9HVvjMX7XJCjQ="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Tetromino.html",
-          "hash": "MXuyEQ9AZtoeZWCJ4KORYZUmY/B7nuVKsiMfynwgw1M="
+          "hash": "63rKEifh/PNtaR0DcP8Ihr7HMMs6lo4OoltkzFWs0Lo="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.TileMap.html",
-          "hash": "Mr+j2y/GYKeB9XiEnJ7nHt8O8poI3GhftHfP0vxVwMg="
+          "hash": "SrsIwyj+hc9GPDa4l1B8bdwbtxNtMjijhVk7bpc+6gE="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.html",
-          "hash": "ub5AQqgsOVWkD2QxwU8RzMgkkMasAdbIsN9vAARrKWE="
+          "hash": "Pqt6wMiXhZgdhU6nO2Qr33XhzXaFfJfQPjYQOHmHplI="
         }
       },
       "is_incremental": false,
@@ -332,6 +332,28 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/menu.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/menu.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/menu.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/menu.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/settings.png",
       "output": {
         "resource": {
@@ -358,7 +380,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "eXkYDPiBsaDZ0yLs06iujlKneFLtePOyGF8FH3rbwNc="
+          "hash": "HT0vxFMVkq8NCsx5eUx3e0Yd5NeZzEksEj2Yp1Y8fBI="
         }
       },
       "is_incremental": false,
@@ -370,7 +392,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/tetris.html",
-          "hash": "BIbkyUI1Mnq7Vu13lamlrePVRT2KUFX//dQGHXyLIpU="
+          "hash": "nqfoACEjoH/KEiu4Qsde2uxwurfVn9m6TuaeWDTiEso="
         }
       },
       "is_incremental": false,
@@ -382,7 +404,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/toc.html",
-          "hash": "/w6ri8QdycKrm5Ft5WZLOpTlwoYOucD42zwv2fzSxvU="
+          "hash": "EoNBxg95hPJ+caHzYRDmJAV77XKFg34RDXoWLMdwVRw="
         }
       },
       "is_incremental": false,
@@ -404,23 +426,25 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because config changed.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ConfigChanged"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 2,
-          "skipped_file_count": 1
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 9,
-          "skipped_file_count": 9
+          "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

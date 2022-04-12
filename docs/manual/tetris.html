@@ -8,7 +8,7 @@
     <title>U&#382;ivatelsk&#225; dokumentace | Cooperative Tetris </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="U&#382;ivatelsk&#225; dokumentace | Cooperative Tetris ">
-    <meta name="generator" content="docfx 2.59.1.0">
+    <meta name="generator" content="docfx 2.59.2.0">
     
     <link rel="shortcut icon" href="..//images/logo.svg">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -61,37 +61,50 @@
       <div role="main" class="container body-content hide-when-search">
         <div class="article row grid">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="">
+            <article class="content wrap" id="_content" data-uid="docs">
 <h1 id="uživatelská-dokumentace">Uživatelská dokumentace</h1>
 
-<h2 id="o-projektu">O projektu</h2>
+<h2 id="1-o-projektu">1. O projektu</h2>
 <p>Maturitní projekt Kooperativní Tetris vychází ze známé arkádové hry <a href="https://en.wikipedia.org/wiki/Tetris">Tetris</a>,
 která byla vytvořena již roku 1984 <a href="https://en.wikipedia.org/wiki/Alexey_Pajitnov">Alexeyem Pajitnovem</a>. Jde o vlastní
 implementaci této klasické hry v oblíbeném herním enginu <a href="https://en.wikipedia.org/wiki/Unity_(game_engine)">Unity</a>.
 Nejdůležitějším originálním prvkem této implementace hry je kooperativní režim, ve kterém se hrácí pole rozšíří pro
 další hráče, kteří následně spolupracují a snaží se dosáhnout společného skóre.</p>
-<h2 id="pravidla">Pravidla</h2>
+<h2 id="2-instalace-a-spuštění">2. Instalace a spuštění</h2>
+<h2 id="3-pravidla">3. Pravidla</h2>
 <ul>
-<li>Hráči mají za úkol vyčistit jedotlivé řádky tím, že je zaplní <a href="https://en.wikipedia.org/wiki/Tetromino">tetrominy</a> (
-dále nazýváno pouze <em>bloky</em>).</li>
-<li>Každý hráč může v jednom okamžiku ovládat pouze jeden blok.</li>
-<li>Gravitace se s roustoucí úrovní postupně zvyšuje, což zrychluje tempo hry.</li>
-<li>Skóre i obtížnost je pro všechny hráče společná.</li>
+<li>Hráči mají za úkol <strong>vyčistit jedotlivé řádky</strong> tím, že je zaplní <a href="https://en.wikipedia.org/wiki/Tetromino">tetrominy</a> (dále nazýváno pouze <em><strong>bloky</strong></em>).</li>
+<li>Každý hráč může v jednom okamžiku ovládat pouze jeden blok. (viz. <a href="#controls">ovládání</a>)</li>
+<li>Gravitace se s roustoucí úrovní postupně zvyšuje, což zrychluje hru a zvyšuje obtížnost a skóre.</li>
+<li>Skóre i obtížnost je společná pro všechny hráče.</li>
 <li>Hra je prohraná, když není kde vygenerovat další blok.</li>
 </ul>
-<h2 id="rozložení-herních-prvků">Rozložení herních prvků</h2>
+<h2 id="4-popis-herního-pole">4. Popis herního pole</h2>
+<h3 id="41-ukázka">4.1 Ukázka</h3>
 <img src="../images/layout.png">
+<h3 id="42-legenda">4.2 Legenda</h3>
+<h4 id="421-prvky-související-s-bloky">4.2.1 Prvky související s bloky</h4>
 <ul>
 <li><span style="color:red"><strong>Červený</strong></span> rámeček: Zde se zobrazují <strong>bloky &quot;ve frontě&quot;</strong>, které hráči dostanou po
 uzamčení aktivního bloku (<em>a nebo pokud použili tlačítko podržení a nedrží zatím žádný blok</em>).</li>
 <li><span style="color:blue"><strong>Modrý</strong></span> ráměček: V tomto prostoru se zobrazují <strong>podržené</strong> bloky.</li>
 <li><span style="color:purple"><strong>Fialové</strong></span> ráměčky: Prostor, ve kterém se objeví <strong>nové bloky</strong> po uzamčení předešlých.</li>
-<li><mark style="background:white"> <span style="color:black"><strong>Černý</strong></span></mark> ráměček: Aktuální rychlostní úroveň</li>
+</ul>
+<h4 id="422-informační-prvky">4.2.2 Informační prvky</h4>
+<ul>
+<li><strong>Černý</strong> rámeček: Aktuální rychlostní úroveň</li>
 <li><mark style="background:black"> <span style="color:white"><strong>Bílý</strong></span></mark> ráměček: Aktuální skóre (viz. <a href="#bod">bodování</a>)</li>
 </ul>
-<h2 id="rozložení-menu">Rozložení menu</h2>
-<h3 id="legenda">Legenda:</h3>
-<p><strong>Menu pozastavené hry</strong>:</p>
+<h2 id="5-rozložení-menu">5. Rozložení menu</h2>
+<h3 id="51-ukázky">5.1 Ukázky:</h3>
+<h4 id="511-menu-pozastavené-hry">5.1.1 Menu pozastavené hry</h4>
+  <img src="../images/menu.png" width="300">
+<h4 id="512-menu-prohrané-hry">5.1.2 Menu prohrané hry</h4>
+  <img src="../images/gameover.png" width="300">
+<h4 id="513-nastavení">5.1.3 Nastavení</h4>
+  <img src="../images/settings.png" width="300">
+<h3 id="52-legenda">5.2 Legenda:</h3>
+<h4 id="521-menu-pozastavené-hry">5.2.1 Menu pozastavené hry:</h4>
 <ul>
 <li><strong>Settings</strong>: Otevře menu s nastavením.</li>
 <li><strong>Restart</strong>: Restartuje hru (počet hráčů zůstává stejný).</li>
@@ -99,55 +112,74 @@ uzamčení aktivního bloku (<em>a nebo pokud použili tlačítko podržení a n
 <li><strong>Add player</strong>: Přidá do hry hráče, rozšíří hrací pole.</li>
 <li><strong>Remove player</strong>: Odebere ze hry hráče, zúží hrací pole.</li>
 </ul>
-<p><strong>Menu prohrané hry</strong>:</p>
+<h4 id="522-menu-prohrané-hry">5.2.2 Menu prohrané hry:</h4>
 <ul>
 <li><strong>Score</strong>: Dosažené skóre</li>
 <li><strong>High score</strong>: Nejvyšší dosažené skóre</li>
-<li><strong>Restart</strong>: Restartuje hru (počet hráčů zůstává stejný).</li>
+<li><strong>Restart</strong>: Restartuje hru.
+<ul>
+<li><em>Počet hráčů zůstává stejný.</em></li>
+</ul>
+</li>
 <li><strong>Exit</strong>: Opustí hru.</li>
 </ul>
-<h3 id="ukázky">Ukázky:</h3>
+<h4 id="523-nastavení">5.2.3 Nastavení:</h4>
 <ul>
-<li><p><strong>Menu pozastavené hry</strong></p>
-<img src="../images/settings.png" width="300">
-</li>
-<li><p><strong>Menu prohrané hry</strong></p>
-<img src="../images/gameover.png" width="300">
-</li>
+<li><strong>Volume</strong>: Nastavení hlasitosti.
+<ul>
+<li><em>Ovládání pomocí pravé a levé šipky</em></li>
 </ul>
-<h2 id="ovládání">Ovládání</h2>
-<h3 id="pohyb">Pohyb:</h3>
+</li>
+<li><strong>Animations</strong>: Přepíná stav animací.
+<ul>
+<li><em>OFF = vypnuté animace, ON = zapnuté animace</em></li>
+</ul>
+</li>
+<li><strong>Back</strong>: Vrátí Vás do menu pozastavené hry.</li>
+</ul>
+<h2 id="-6-ovládání"><a id="controls"> </a>6. Ovládání</h2>
+<h3 id="61-rozložení-ovládacích-prvků">6.1 Rozložení ovládacích prvků</h3>
+<h4 id="611-hra-jednoho-hráče">6.1.1 Hra jednoho hráče:</h4>
+<p><br><br>
+<img src="../images/TetrisControls_1_cz.png"></p>
+<h4 id="612-kooperace-dvou-hráčů">6.1.2 Kooperace dvou hráčů:</h4>
+<p><br><br>
+<img src="../images/TetrisControls_2_cz.png"></p>
+<h4 id="613-kooperace-tří-hráčů">6.1.3 Kooperace tří hráčů:</h4>
+<p><br><br>
+<img src="../images/TetrisControls_3_cz.png"></p>
+<h3 id="621-legenda">6.2.1 Legenda</h3>
+<h4 id="621-pohyb">6.2.1 Pohyb:</h4>
 <ul>
 <li><strong>Pohyb doprava</strong>: Přesune blok o 1 kostku doprava + spustí automatické opakování, pokud je držen po dobu 0,3 s.</li>
 <li><strong>Přesun doleva</strong>: Přesune blok o 1 kostku doleva + spustí automatické opakování, pokud je držen po dobu 0,3 s.</li>
-<li><strong>Měkký pád</strong>: Přesune blok dolů 20krát rychleji, než je normální rychlost pádu.</li>
-<li><strong>Tvrdý pád</strong>: Přesune blok na zem a okamžitě zablokuje aktivní blok.</li>
+<li><strong>Měkký pád</strong>: Přesune blok dolů 20krát rychleji, než je normální rychlost pádu.
+<ul>
+<li><em>Za měkký pád jsou přičítány body viz. <a href="#bod">bodování</a></em></li>
 </ul>
-<h3 id="rotace">Rotace:</h3>
+</li>
+<li><strong>Tvrdý pád</strong>: Přesune blok na zem a okamžitě zablokuje aktivní blok.
+<ul>
+<li><em>Za tvrdý pád jsou přičítány body viz. <a href="#bod">bodování</a></em></li>
+</ul>
+</li>
+</ul>
+<h4 id="622-rotace">6.2.2 Rotace:</h4>
 <ul>
 <li><strong>Rotace po směru hodinových ručiček</strong>: Otočí blok o 90° ve směru hodinových ručiček</li>
 <li><strong>Otočení proti směru hodinových ručiček</strong>: Otočí blok o 90° proti směru hodinových ručiček.</li>
 </ul>
-<h3 id="ostatní">Ostatní:</h3>
+<h4 id="623-ostatní">6.2.3 Ostatní:</h4>
 <ul>
-<li><strong>Podržet</strong>: Přesune aktuálně aktivní blok do oblasti podržení a okamžitě vytvoří nový blok.</li>
+<li><strong>Podržet</strong>: Přesune aktuálně aktivní blok do oblasti podržení a okamžitě vytvoří nový blok.
+<ul>
+<li><em>Po použití funkce podržení musí být blok uzamčen, aby se funkce znovu aktivovala.</em></li>
 </ul>
-<div class="TIP">
-<h5>Tip</h5>
-<p>Po použití funkce podržení musí být blok uzamčen, aby se funkce znovu aktivovala.</p>
-</div>
-<h2 id="rozložení-ovládacích-prvků">Rozložení ovládacích prvků</h2>
-<h3 id="hra-jednoho-hráče">Hra jednoho hráče:</h3>
-<p><br><br>
-<img src="../images/TetrisControls_1_cz.png"></p>
-<h3 id="kooperace-dvou-hráčů">Kooperace dvou hráčů:</h3>
-<p><br><br>
-<img src="../images/TetrisControls_2_cz.png"></p>
-<h3 id="kooperace-tří-hráčů">Kooperace tří hráčů:</h3>
-<p><br><br>
-<img src="../images/TetrisControls_3_cz.png"></p>
-<h2 id="bodování">Bodování</h2>
+</li>
+</ul>
+<h2 id="7-bodování">7. Bodování</h2>
 <p><a name="bod"> </a></p>
+<h3 id="71-tabulka-bodování">7.1 Tabulka bodování</h3>
 <p>Následující tabulka vysvětluje bodování hry:</p>
 <table>
 <thead>
