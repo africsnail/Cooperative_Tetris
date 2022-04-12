@@ -9,8 +9,11 @@
      
 # ----[ Visual Studio / MonoDevelop generated ]------- #
 ExportedObj/
+.vscode/
 .consulo/
+.idea/
 *.csproj
+*.dotsettings
 *.unityproj
 *.sln
 *.suo
@@ -37,8 +40,8 @@ Thumbs.db
 ios
 ios.app
 
-# include meta files
-!*.*.meta
+# Meta
+*.meta
 
 # Builds
 *.apk
