@@ -98,42 +98,52 @@ namespace Tetris
             if (IsGameOver == false)
             {
                 var kick = 3f;
-                GameOverCube = new GameObject[GridWidth - 1, GridHeight];
+                if (Menu.Animations == 1)
+                    GameOverCube = new GameObject[GridWidth - 1, GridHeight];
+                
                 for (var x = 1; x < GridWidth - 1; x++)
                 for (var y = 1; y < GridHeight; y++)
                     if (MovementTileMap.GridCube[x, y] != null)
                     {
-                        GameOverCube[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
+                        if (Menu.Animations == 1)
+                            GameOverCube[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
 
                         DestroyImmediate(MovementTileMap.GridCube[x, y]);
-                        var gameOverRigidbody = GameOverCube[x, y].AddComponent<Rigidbody>();
-
-                            gameOverRigidbody.AddForce(0, 0, -kick, ForceMode.Impulse);
-                            gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
-
-                            MovementTileMap.IsActive[x, y] = false;
-                            MovementTileMap.IsClear[x, y] = false;
-                            PlayGrid[x, y] = 0;
-                        
-                    }
-                
-                foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
-                {
-                    for (var x = 0; x < block.Size; x++)
-                    for (var y = 0; y < block.Size; y++)
-                        if (block.CubeGo[x, y] != null)
+                        if (Menu.Animations == 1)
                         {
-                            GameOverCube[x + (int) block.Location[0] + 1, y + (int) block.Location[1] - block.Size + 1] =
-                                Instantiate(block.CubeGo[x, y]);
-                            var gameOverRigidbody =
-                                GameOverCube[x + (int) block.Location[0] + 1, y + (int) block.Location[1] - block.Size + 1]
-                                    .AddComponent<Rigidbody>();
-                            GameOverCube[x + (int) block.Location[0] + 1, y + (int) block.Location[1] - block.Size + 1].transform
-                                .position += block.TetrominoGo.transform.position;
+                            var gameOverRigidbody = GameOverCube[x, y].AddComponent<Rigidbody>();
                             gameOverRigidbody.AddForce(0, 0, -kick, ForceMode.Impulse);
                             gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
                         }
+                        MovementTileMap.IsActive[x, y] = false;
+                        MovementTileMap.IsClear[x, y] = false;
+                        PlayGrid[x, y] = 0;
+                    }
+
+                if (Menu.Animations == 1)
+                {
+                    foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
+                    {
+                        for (var x = 0; x < block.Size; x++)
+                        for (var y = 0; y < block.Size; y++)
+                            if (block.CubeGo[x, y] != null)
+                            {
+                                GameOverCube[x + (int) block.Location[0] + 1,
+                                        y + (int) block.Location[1] - block.Size + 1] =
+                                    Instantiate(block.CubeGo[x, y]);
+                                var gameOverRigidbody =
+                                    GameOverCube[x + (int) block.Location[0] + 1,
+                                            y + (int) block.Location[1] - block.Size + 1]
+                                        .AddComponent<Rigidbody>();
+                                GameOverCube[x + (int) block.Location[0] + 1,
+                                        y + (int) block.Location[1] - block.Size + 1].transform
+                                    .position += block.TetrominoGo.transform.position;
+                                gameOverRigidbody.AddForce(0, 0, -kick, ForceMode.Impulse);
+                                gameOverRigidbody.AddTorque(0, 5, 5, ForceMode.Impulse);
+                            }
+                    }
                 }
+
                 foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive))
                     block.TetrominoGo.transform.position = Blocks.SpawnArea;
                 IsGameOver = true;
@@ -191,8 +201,11 @@ namespace Tetris
                         MovementTileMap.IsClear[x, y] = true;
                         if (MovementTileMap.IsClear[x, y])
                         {
-                            LineToAnimate[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
-                            StartCoroutine(lineClearAnimation(x, y));
+                            if (Menu.Animations == 1)
+                            {
+                                LineToAnimate[x, y] = Instantiate(MovementTileMap.GridCube[x, y]);
+                                StartCoroutine(lineClearAnimation(x, y));
+                            }
                             DestroyImmediate(MovementTileMap.GridCube[x, y]);
                             PlayGrid[x, y] = 0;
                             MovementTileMap.IsClear[x, y] = false;

@@ -28,9 +28,10 @@ namespace Tetris
 
         // In-game settings
         private Slider _volumeSlider;
-        
+
         // Animation toggle
-        public static bool Animations;
+        public static int Animations = 1;
+        private Text _animationToggle;
 
         // Menus
         public static SubMenu[] Menus { get; private set; }
@@ -73,7 +74,8 @@ namespace Tetris
                     Menus[0].CanvasCanvas.enabled = true;
                     _backgroundMaterial.material = materialMenu;
                     _musicMusic.Pause();
-                    StartCoroutine(MenuOpenAnimation(GridWidth - 1, GridHeight));
+                    if (Animations == 1)
+                        StartCoroutine(MenuOpenAnimation(GridWidth - 1, GridHeight));
                     GetRenderer(GridWidth - 1, GridHeight);
                 }
                 else
@@ -83,7 +85,8 @@ namespace Tetris
                     _backgroundMaterial.material = materialGame;
                     _musicMusic.Play();
                     GetRenderer(GridWidth - 1, GridHeight);
-                    ClearAnimationCubes(GridWidth - 1, GridHeight);
+                    if (Animations == 1)
+                        ClearAnimationCubes(GridWidth - 1, GridHeight);
                 }
             }
 
@@ -159,7 +162,7 @@ namespace Tetris
                         if (Menus[1].SelectedIndex == 1) RestartGame();
                     }
                 }
-
+                // In-game settings
                 if (id == 2)
                 {
                     if (Menus[2].SelectedIndex == 1)
@@ -187,6 +190,24 @@ namespace Tetris
                         }
                     }
                     else if (Menus[2].SelectedIndex == 2)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+                        {
+                            if (Animations == 1)
+                            {
+                                Animations = 0;
+                                _animationToggle.text = "OFF";
+                            }
+                            else if (Animations == 0)
+                            {
+                                Animations = 1;
+                                _animationToggle.text = "ON";
+                            }
+
+                            PlayerPrefs.SetInt("animations", Animations);
+                        }
+                    }
+                    else if (Menus[2].SelectedIndex == 3)
                     {
                         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                         {
@@ -253,10 +274,16 @@ namespace Tetris
                 // Read audio preferences and set the needed variables
                 _volumePercentage = Menus[2].MenuItem[1].transform.GetChild(0).GetComponent<Text>();
                 _volumeSlider = Menus[2].MenuItem[1].transform.GetChild(1).GetComponent<Slider>();
+                _animationToggle = Menus[2].MenuItem[2].transform.GetChild(0).GetComponent<Text>();
                 _volume = PlayerPrefs.GetInt("volume");
                 _volumeSlider.value = PlayerPrefs.GetInt("volume") / 100f;
                 _volumePercentage.text = PlayerPrefs.GetInt("volume") + "%";
                 _musicMusic.volume = PlayerPrefs.GetInt("volume") / 100f;
+                // Read animation preferences and set the needed variables
+                Animations = PlayerPrefs.GetInt("animations");
+                if (Animations == 1)
+                    _animationToggle.text = "ON";
+                else _animationToggle.text = "OFF";
             }
         }
 
@@ -298,10 +325,11 @@ namespace Tetris
             
             // Clear animation cubes
             if (!IsGameOver)
-                ClearAnimationCubes(GridWidth - 1, GridHeight);
+                if (Animations == 1)
+                    ClearAnimationCubes(GridWidth - 1, GridHeight);
 
             // Clear all GameOver animation cubes
-            if (IsGameOver)
+            if (IsGameOver && Animations == 1)
                 for (var x = 1; x < GridWidth - 1; x++)
                 for (var y = 1; y < GridHeight; y++)
                     if (GameOverCube[x, y] != null)
