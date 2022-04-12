@@ -45,26 +45,28 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 
 ### Ukázky:
 - **Menu pozastavené hry**
+
   <img src="../images/settings.png">
 
 - **Menu prohrané hry**
-- 
+
   <img src="../images/gameover.png">
+
 ## Ovládání
 
-###Pohyb:
+### Pohyb:
 
 - **Pohyb doprava**: Přesune blok o 1 kostku doprava + spustí automatické opakování, pokud je držen po dobu 0,3 s.
 - **Přesun doleva**: Přesune blok o 1 kostku doleva + spustí automatické opakování, pokud je držen po dobu 0,3 s.
 - **Měkký pád**: Přesune blok dolů 20krát rychleji, než je normální rychlost pádu.
 - **Tvrdý pád**: Přesune blok na zem a okamžitě zablokuje aktivní blok.
 
-###Rotace:
+### Rotace:
 
 - **Rotace po směru hodinových ručiček**: Otočí blok o 90° ve směru hodinových ručiček
 - **Otočení proti směru hodinových ručiček**: Otočí blok o 90° proti směru hodinových ručiček.
 
-###Ostatní:
+### Ostatní:
 
 - **Podržet**: Přesune aktuálně aktivní blok do oblasti podržení a okamžitě vytvoří nový blok.
 
