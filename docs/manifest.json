@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "/mnt/windows/Users/Africsnail/Tetris/Assets/Documentation",
+  "source_base_path": "C:/Users/Africsnail/Tetris/Assets/Documentation",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Blocks.html",
-          "hash": "IfqLXReYVcyf12feoPV8Y9WNcCQIP5JzCxOkihlxFuA="
+          "hash": "6P50Y1nfk8tYmHzosJbqP5+3JZBk44Zb2SnPrizZA1k="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Menu.html",
-          "hash": "QnM1Nrr3feXhKZWoub2X43V5RILRoN0oIDKZ5UoMW2I="
+          "hash": "gLIIWQpOMMUfsoUDjCWa1HUfhlYC7+5xPzBO+buxaIg="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Rotation.html",
-          "hash": "0BCiGQotJv9GwhAdQhX5Bhf308gnuFTOI5/eWYVZUOc="
+          "hash": "NIZbd9F9TmcVHGC5IGexOf7DRcwCzkkL7AjDXpFL8OI="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.ScoreSystem.html",
-          "hash": "bRrGO1SG1Z8e5kWw+dtd2qwc5c7dpC1038ps4kqcNqA="
+          "hash": "fHSr/8XJBWsLWc9WyFJ7x4RyJ7btZ8N+ejSYvTcTN7Y="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.SubMenu.html",
-          "hash": "9hxpSCMJfjCu+CjgLmvTq1KRkVza8iTBn/cIXn6iKz0="
+          "hash": "+ZADQl1dted54CNA7MHkRkWuwVctxRUNO7nbk3kj3jg="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.SubTileMap.html",
-          "hash": "6MC5XU3bzh9mdWHWwkzMOKNfdKhb5ZH8ayJQ6bsvpU8="
+          "hash": "kQ48jo3bvVlNbhvOLsu93cS1LZaMsZbo54ZZ0EFcF8Q="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Tetromino.html",
-          "hash": "vRCAKDrxtKuwek8ALBZuOF/q88t/pU8GYrYaL/svhFM="
+          "hash": "MXuyEQ9AZtoeZWCJ4KORYZUmY/B7nuVKsiMfynwgw1M="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.TileMap.html",
-          "hash": "ZIEW7MZNX/h0uZcfvzqx/Tnq8TVNowJ9YVstJ/MmdH4="
+          "hash": "Mr+j2y/GYKeB9XiEnJ7nHt8O8poI3GhftHfP0vxVwMg="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.html",
-          "hash": "9+zMyv8d1FmVbmTWpS0z08dD+lhieuZ+yC6BPBajNv0="
+          "hash": "ub5AQqgsOVWkD2QxwU8RzMgkkMasAdbIsN9vAARrKWE="
         }
       },
       "is_incremental": false,
@@ -266,6 +266,28 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/gameover.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/gameover.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/gameover.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/gameover.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/layout.png",
       "output": {
         "resource": {
@@ -309,12 +331,34 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/settings.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/settings.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/settings.png.meta",
+      "output": {
+        "resource": {
+          "relative_path": "images/settings.png.meta"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "GfzIcOMW0Brf4eCS5Cr6LA3A9VSyNs5qYw4KMLQQwOA="
+          "hash": "f2msipg7EEulO+n6DrhcGeS7cmcym2gM6upm3fQlBQg="
         }
       },
       "is_incremental": false,
@@ -326,7 +370,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/tetris.html",
-          "hash": "ZDlCnnbMHE1qnv0BOg722rOa5FXlNYazbtGnCzYzGAI="
+          "hash": "DO5IPoeX7qnXudYfYxHLs1mpcHK9zmnb5dBrLVxIlG4="
         }
       },
       "is_incremental": false,
@@ -360,23 +404,25 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because docfx version changed from 2.58.9.0 to 2.59.1.0.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "DocfxVersionChanged"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 2,
-          "skipped_file_count": 1
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 9,
-          "skipped_file_count": 9
+          "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,

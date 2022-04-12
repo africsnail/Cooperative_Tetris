@@ -28,21 +28,43 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 - <mark style = "background:white"> <span style="color:black">**Černý</span></mark> ráměček**: Aktuální rychlostní úroveň
 - <mark style = "background:black"> <span style="color:white">**Bílý</span></mark> ráměček**: Aktuální skóre (viz. [bodování](#bod))
 
+## Rozložení menu
+### Legenda: 
+**Menu pozastavené hry**:
+- **Settings**: Otevře menu s nastavením.
+- **Restart**: Restartuje hru (počet hráčů zůstává stejný).
+- **Exit**: Opustí hru.
+- **Add player**: Přidá do hry hráče, rozšíří hrací pole.
+- **Remove player**: Odebere ze hry hráče, zúží hrací pole.
+
+**Menu prohrané hry**:
+- **Score**: Dosažené skóre
+- **High score**: Nejvyšší dosažené skóre
+- **Restart**: Restartuje hru (počet hráčů zůstává stejný).
+- **Exit**: Opustí hru.
+
+### Ukázky:
+- **Menu pozastavené hry**
+  <img src="../images/settings.png">
+
+- **Menu prohrané hry**
+- 
+  <img src="../images/gameover.png">
 ## Ovládání
 
-_**Pohyb:**_
+###Pohyb:
 
 - **Pohyb doprava**: Přesune blok o 1 kostku doprava + spustí automatické opakování, pokud je držen po dobu 0,3 s.
 - **Přesun doleva**: Přesune blok o 1 kostku doleva + spustí automatické opakování, pokud je držen po dobu 0,3 s.
 - **Měkký pád**: Přesune blok dolů 20krát rychleji, než je normální rychlost pádu.
 - **Tvrdý pád**: Přesune blok na zem a okamžitě zablokuje aktivní blok.
 
-_**Rotace:**_
+###Rotace:
 
 - **Rotace po směru hodinových ručiček**: Otočí blok o 90° ve směru hodinových ručiček
 - **Otočení proti směru hodinových ručiček**: Otočí blok o 90° proti směru hodinových ručiček.
 
-_**Ostatní:**_
+###Ostatní:
 
 - **Podržet**: Přesune aktuálně aktivní blok do oblasti podržení a okamžitě vytvoří nový blok.
 
@@ -50,16 +72,13 @@ _**Ostatní:**_
 > Po použití funkce podržení musí být blok uzamčen, aby se funkce znovu aktivovala.
 
 ## Rozložení ovládacích prvků
-
-**Rozložení ovládacích prvků pro každého hráče závisí na počtu hráčů:**
-
-- Hra jednoho hráče
+### Hra jednoho hráče
   <br/><br/>
   <img src="../images/TetrisControls_1_cz.png">
-- Kooperace dvou hráčů
+### Kooperace dvou hráčů
   <br/><br/>
   <img src="../images/TetrisControls_2_cz.png">
-- Kooperace tří hráčů
+### Kooperace tří hráčů
   <br/><br/>
   <img src="../images/TetrisControls_3_cz.png">
 
