@@ -7,6 +7,9 @@ using static Tetris.TileMap;
 
 namespace Tetris
 {
+    /// <summary>
+    /// Manages all menus and their behavior
+    /// </summary>
     public class Menu : MonoBehaviour
     {
         // Key bindings
@@ -63,6 +66,9 @@ namespace Tetris
             MenuControls();
         }
 
+        /// <summary>
+        /// Controls for all menus
+        /// </summary>
         private void MenuControls()
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !Menus[2].IsPaused)
@@ -235,7 +241,11 @@ namespace Tetris
             }
         }
 
-
+        /// <summary>
+        /// Switches selected item in a menu
+        /// </summary>
+        /// <param name="id">Menu id</param>
+        /// <param name="direction">Direction of scrolling</param>
         private void MenuScroll(int id, string direction)
         {
             if (direction == "up")
@@ -249,7 +259,12 @@ namespace Tetris
                 Menus[id].SelectedIndex = Menus[id].MenuItemCount - 1;
             Menus[id].MenuItemSelected = Menus[id].MenuItem[Menus[id].SelectedIndex];
         }
-
+        
+        /// <summary>
+        /// Initializes a menu and needed variables
+        /// </summary>
+        /// <param name="id">menu id</param>
+        /// <param name="menuName">menu's name</param>
         private void InitializeMenu(int id, string menuName)
         {
             Menus[id].Canvas = GameObject.Find(menuName);
@@ -296,7 +311,11 @@ namespace Tetris
                 }
             }
         }
-
+        /// <summary>
+        /// Clears menu open animation cubes 
+        /// </summary>
+        /// <param name="w">width of the grid</param>
+        /// <param name="h">height of the grid</param>
         private void ClearAnimationCubes(int w, int h)
         {
             foreach (var block in Tetrominos.Where(block => block.IsActive))
@@ -313,7 +332,9 @@ namespace Tetris
                     }
                 }
         }
-
+        /// <summary>
+        /// Restarts the game
+        /// </summary>
         private void RestartGame()
         {
             // Return falling blocks to spawn and rotate them to default state
@@ -385,7 +406,10 @@ namespace Tetris
             
             Debug.Log("Restarting");
         }
-
+        /// <summary>
+        /// Switches player count
+        /// </summary>
+        /// <param name="type">add or remove</param>
         private void SwitchPlayerCount(string type)
         {
             Debug.Log("Switching player count");
@@ -525,7 +549,11 @@ namespace Tetris
             }
         }
 
-
+        /// <summary>
+        /// Gets renderer of all locked and active cubes and disables it if a menu is open
+        /// </summary>
+        /// <param name="w">grid width</param>
+        /// <param name="h">grid height</param>
         private void GetRenderer(int w, int h)
         {
             var playerId = 0;
@@ -580,7 +608,12 @@ namespace Tetris
                 Debug.Log("Cleanup x y:" + x + ", " + y);
             }
         }
-
+        /// <summary>
+        /// Makes block fall
+        /// </summary>
+        /// <param name="w">grid width</param>
+        /// <param name="h">grid height</param>
+        /// <returns></returns>
         private IEnumerator MenuOpenAnimation(int w, int h)
         {
             Debug.Log("Initializing animation cubes with x: " + w + ", y: " + h);

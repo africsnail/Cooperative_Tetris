@@ -47,7 +47,9 @@ namespace Tetris
                 GridManager(GridWidth, GridHeight);
             }
         }
-
+        /// <summary>
+        /// Initializes the play grid
+        /// </summary>
         public void InitializeGrid()
         {
             Border = new GameObject
@@ -85,14 +87,19 @@ namespace Tetris
                     }
                 }
         }
-
+        /// <summary>
+        /// Clears the collision map, which is used for detecting player to player collisions
+        /// </summary>
         public static void ClearCollisionMap()
         {
             for (int x = 0; x < GridWidth; x++)
             for (int y = 0; y < GridHeight; y++)
                 MovementTileMap.CollisionMap[x, y] = false;
         }
-
+        /// <summary>
+        /// Starts the game over animation, resets the play grid
+        /// </summary>
+        /// <param name="isReal"></param>
         public static void GameOver(bool isReal)
         {
             if (IsGameOver == false)
@@ -150,7 +157,9 @@ namespace Tetris
                 
             }
         }
-
+        /// <summary>
+        /// Clears the GameObject grid cubes
+        /// </summary>
         public static void ClearGridCubes()
         {
             for (var x = 1; x < GridWidth - 1; x++)
@@ -167,7 +176,12 @@ namespace Tetris
                 }
             }
         }
-
+        /// <summary>
+        /// Manages the grid + clears the cleared lines and shifts the rest down
+        /// </summary>
+        /// <param name="w"></param>
+        /// <param name="h"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         private void GridManager(int w, int h)
         {
             IsClear = new List<int>();
@@ -349,7 +363,9 @@ namespace Tetris
                 IsClear.Clear();
             }
         }
-
+        /// <summary>
+        /// Manages block's lock state
+        /// </summary>
         private void LockManager()
         {
             foreach (var block in Blocks.Tetrominos.Where(block => block.IsLocked))
@@ -381,7 +397,12 @@ namespace Tetris
                 block.IsLocked = false;
             }
         }
-
+        /// <summary>
+        /// Animation of clearing the lines
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         private IEnumerator lineClearAnimation(int x, int y)
         {
             {

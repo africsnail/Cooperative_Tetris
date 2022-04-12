@@ -4,7 +4,7 @@ uid: docs
 
 # Uživatelská dokumentace
 
-## 1. O projektu
+## <a id = "1"> </a>1. O projektu
 
 Maturitní projekt Kooperativní Tetris vychází ze známé arkádové hry [Tetris](https://en.wikipedia.org/wiki/Tetris),
 která byla vytvořena již roku 1984 [Alexeyem Pajitnovem](https://en.wikipedia.org/wiki/Alexey_Pajitnov). Jde o vlastní
@@ -12,17 +12,17 @@ implementaci této klasické hry v oblíbeném herním enginu [Unity](https://en
 Nejdůležitějším originálním prvkem této implementace hry je kooperativní režim, ve kterém se hrácí pole rozšíří pro
 další hráče, kteří následně spolupracují a snaží se dosáhnout společného skóre.
 
-## 2. Instalace a spuštění
+## <a id = "2"> </a>2. Instalace a spuštění
 
-## 3. Pravidla
+## <a id = "3"> </a>3. Pravidla
 
 - Hráči mají za úkol **vyčistit jedotlivé řádky** tím, že je zaplní [tetrominy](https://en.wikipedia.org/wiki/Tetromino) (dále nazýváno pouze ***bloky***).
-- Každý hráč může v jednom okamžiku ovládat pouze jeden blok. (viz. [ovládání](#controls))
+- Každý hráč může v jednom okamžiku ovládat pouze jeden blok. (viz. [ovládání](#6))
 - Gravitace se s roustoucí úrovní postupně zvyšuje, což zrychluje hru a zvyšuje obtížnost a skóre.
 - Skóre i obtížnost je společná pro všechny hráče.
 - Hra je prohraná, když není kde vygenerovat další blok.
 
-## 4. Popis herního pole
+## <a id = "4"> </a>4. Popis herního pole
 
 ### 4.1 Ukázka
 
@@ -38,7 +38,7 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 - **Černý** rámeček: Aktuální rychlostní úroveň
 - <mark style = "background:black"> <span style="color:white">**Bílý</span></mark> ráměček**: Aktuální skóre (viz. [bodování](#bod))
 
-## 5. Rozložení menu
+## <a id = "5"> </a>5. Rozložení menu
 
 ### 5.1 Ukázky:
 #### 5.1.1 Menu pozastavené hry
@@ -77,7 +77,7 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 - **Back**: Vrátí Vás do menu pozastavené hry.
 
 
-## <a id = "controls"> </a>6. Ovládání
+## <a id = "6"> </a>6. Ovládání
 
 ### 6.1 Rozložení ovládacích prvků
 #### 6.1.1 Hra jednoho hráče:
@@ -96,9 +96,9 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 - **Pohyb doprava**: Přesune blok o 1 kostku doprava + spustí automatické opakování, pokud je držen po dobu 0,3 s.
 - **Přesun doleva**: Přesune blok o 1 kostku doleva + spustí automatické opakování, pokud je držen po dobu 0,3 s.
 - **Měkký pád**: Přesune blok dolů 20krát rychleji, než je normální rychlost pádu.
-  - _Za měkký pád jsou přičítány body viz. [bodování](#bod)_
+  - _Za měkký pád jsou přičítány body viz. [bodování](#7)_
 - **Tvrdý pád**: Přesune blok na zem a okamžitě zablokuje aktivní blok.
-  - _Za tvrdý pád jsou přičítány body viz. [bodování](#bod)_
+  - _Za tvrdý pád jsou přičítány body viz. [bodování](#7)_
 
 #### 6.2.2 Rotace:
 
@@ -111,7 +111,7 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
   - _Po použití funkce podržení musí být blok uzamčen, aby se funkce znovu aktivovala._
   
 
-## 7. Bodování
+## <a id = "7"> </a>7. Bodování
 <a name = "bod"> </a>
 
 ### 7.1 Tabulka bodování
@@ -136,10 +136,17 @@ Následující tabulka vysvětluje bodování hry:
 *Mechanika **T-Spinu** a **Mini T-Spinu** popsána podrobně [**zde**](https://tetris.fandom.com/wiki/T-Spin), ****Složité
 úkony**: Tetris, Mini T-Spin Single, T-Spin Single, T-Spin Double, T-Spin Triple
 
-## 8. Zdroje
+## <a id = "8"> </a>8. Zdroje
 
 ### 8.1 Použité knihovny
+- **Unity** https://unity.com/
+- **C#** https://dotnet.microsoft.com/en-us/languages/csharp
+- **DocFX** https://dotnet.github.io/docfx/
 
 ### 8.2 Dokumentace
+- **Unity** https://docs.unity.com/
+- **C#** https://docs.microsoft.com/en-us/dotnet/csharp/
+- **DocFX** https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html
 
 ### 8.3 Ostatní
+- **Hudba**: _8bit Dungeon Boss - Kevin MacLeod_ https://incompetech.com/music/royalty-free/

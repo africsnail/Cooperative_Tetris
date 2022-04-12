@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Tetris
 {
+    /// <summary>
+    /// Manages rotation of blocks
+    /// </summary>
     public class Rotation : MonoBehaviour
     {
         public static float RotationOffsetX;
@@ -59,7 +62,16 @@ namespace Tetris
             new[] {2, 3},
             new[] {3, 0}
         };
-
+        /// <summary>
+        /// Attempts a rotation, returns true if successful 
+        /// </summary>
+        /// <param name="playerId">player id</param>
+        /// <param name="fromState">from rotation state</param>
+        /// <param name="intoState">into rotation state</param>
+        /// <param name="xOffset">x axis move</param>
+        /// <param name="yOffset">y axis move</param>
+        /// <param name="direction">direction</param>
+        /// <returns></returns>
         public bool RotateAttempt(int playerId, int fromState, int intoState, int xOffset, int yOffset,
             string direction)
         {
@@ -72,7 +84,15 @@ namespace Tetris
             }
             else return false;
         }
-
+        /// <summary>
+        /// Returns if a block is able to rotate, checks for wall and player collisions
+        /// </summary>
+        /// <param name="playerId">player id</param>
+        /// <param name="fromState">from rotation state</param>
+        /// <param name="intoState">into rotation state</param>
+        /// <param name="xOffset">x axis move</param>
+        /// <param name="yOffset">y axis move</param>
+        /// <returns></returns>
         public static bool CanRotate(int playerId, int fromState, int intoState, int xOffset, int yOffset)
         {
             // Getting collision grid for other player collisions
@@ -163,7 +183,12 @@ namespace Tetris
             TileMap.ClearCollisionMap();
             return canRotate;
         }
-
+        /// <summary>
+        /// Checks if a block has T-Spun
+        /// </summary>
+        /// <param name="location">block location</param>
+        /// <param name="rotationState">block rotation state</param>
+        /// <returns></returns>
         private static int IsTSpin(int[] location, int rotationState)
         {
             // Declaring T-Block sides
@@ -252,7 +277,9 @@ namespace Tetris
             rotatedGridC[y, NewY(size, x)] = gridToRotate[x, y];
             return rotatedGridC;
         }
-
+        /// <summary>
+        /// Governs the [Super Rotation System](https://tetris.fandom.com/wiki/SRS) 
+        /// </summary>
         private void DoRotation()
         {
             for (var playerId = 0; playerId < Blocks.PlayerIds.Count; playerId++)
@@ -359,7 +386,13 @@ namespace Tetris
                         }
             }
         }
-
+        /// <summary>
+        /// Rotates the block
+        /// </summary>
+        /// <param name="playerId">player id</param>
+        /// <param name="direction">direction of rotation</param>
+        /// <param name="xMove">x axis move</param>
+        /// <param name="yMove">y axis move</param>
         public static void Rotate(int playerId, string direction, int xMove, int yMove)
         {
             foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive || block.AtSpawn)

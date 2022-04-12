@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Rotation.html",
-          "hash": "Gbhs+JOLJkJsKSkjnvnQgmdBIjY8qgZZV9d8J6fob9Y="
+          "hash": "eclLgTxzDvOkqnUDnwtBwcX0n8ZDzHq/z1SqoV/bHLc="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Tetromino.html",
-          "hash": "63rKEifh/PNtaR0DcP8Ihr7HMMs6lo4OoltkzFWs0Lo="
+          "hash": "wm/LYMhZgAmUTh9lTa8Z8qWCSpGaRYG5tKK1xyQ8sYA="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.TileMap.html",
-          "hash": "SrsIwyj+hc9GPDa4l1B8bdwbtxNtMjijhVk7bpc+6gE="
+          "hash": "Ys8twBMGC3tMFCiv1+7pHzbxWnK24IPX982Wotj5fR8="
         }
       },
       "is_incremental": false,
@@ -392,7 +392,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/tetris.html",
-          "hash": "2TBpI1VAHtbn30JPvrlPgMppdFGVzQtDD1RNaGHZv7k="
+          "hash": "xCYg4okqHxHOyOYdAqfc5P2yDKW9lXz3Z1BDPqf73AI="
         }
       },
       "is_incremental": false,

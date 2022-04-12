@@ -1,2 +1,8 @@
-﻿- name: Documentation
+﻿- name: Cover
+  href: ../cover/toc.yml
+- name: Affdavit
+  href: ../affdavit/toc.yml
+- name: Contents
+  href: ../contents/toc.yml
+- name: Documentation
   href: ../manual/toc.yml
