@@ -46,11 +46,11 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 ### Ukázky:
 - **Menu pozastavené hry**
 
-  <img src="../images/settings.png">
+  <img src="../images/settings.png" width="300">
 
 - **Menu prohrané hry**
 
-  <img src="../images/gameover.png">
+  <img src="../images/gameover.png" width="300">
 
 ## Ovládání
 
@@ -74,13 +74,13 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 > Po použití funkce podržení musí být blok uzamčen, aby se funkce znovu aktivovala.
 
 ## Rozložení ovládacích prvků
-### Hra jednoho hráče
+### Hra jednoho hráče:
   <br/><br/>
   <img src="../images/TetrisControls_1_cz.png">
-### Kooperace dvou hráčů
+### Kooperace dvou hráčů:
   <br/><br/>
   <img src="../images/TetrisControls_2_cz.png">
-### Kooperace tří hráčů
+### Kooperace tří hráčů:
   <br/><br/>
   <img src="../images/TetrisControls_3_cz.png">
 

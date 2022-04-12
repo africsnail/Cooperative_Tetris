@@ -358,7 +358,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "f2msipg7EEulO+n6DrhcGeS7cmcym2gM6upm3fQlBQg="
+          "hash": "eXkYDPiBsaDZ0yLs06iujlKneFLtePOyGF8FH3rbwNc="
         }
       },
       "is_incremental": false,
@@ -370,7 +370,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/tetris.html",
-          "hash": "YlmVflXT58au1/CnrPwLYfZXmsLHhE5PKKasjVGoERo="
+          "hash": "BIbkyUI1Mnq7Vu13lamlrePVRT2KUFX//dQGHXyLIpU="
         }
       },
       "is_incremental": false,
@@ -414,7 +414,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 2,
-          "skipped_file_count": 2
+          "skipped_file_count": 1
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,

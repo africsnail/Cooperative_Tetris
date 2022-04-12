@@ -31,8 +31,8 @@
     "fileMetadata": 
     {
       "_disableAffix": {
-        "manual/*.md": true,
-        "index.md": false
+        "manual/*.md": false,
+        "index.md": true
       },
       "_disableToc": {
         "manual/*.md": true,
