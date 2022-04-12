@@ -197,11 +197,14 @@ namespace Tetris
                             {
                                 Animations = 0;
                                 _animationToggle.text = "OFF";
+                                _animationToggle.color = Color.red;
                             }
-                            else if (Animations == 0)
+                            else
                             {
                                 Animations = 1;
                                 _animationToggle.text = "ON";
+                                _animationToggle.color = Color.green;
+                                
                             }
 
                             PlayerPrefs.SetInt("animations", Animations);
@@ -282,8 +285,15 @@ namespace Tetris
                 // Read animation preferences and set the needed variables
                 Animations = PlayerPrefs.GetInt("animations");
                 if (Animations == 1)
+                {
                     _animationToggle.text = "ON";
-                else _animationToggle.text = "OFF";
+                    _animationToggle.color = Color.green;
+                }
+                else
+                {
+                    _animationToggle.text = "OFF";
+                    _animationToggle.color = Color.red;
+                }
             }
         }
 

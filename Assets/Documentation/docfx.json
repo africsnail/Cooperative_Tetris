@@ -16,6 +16,63 @@
       "filter": "filterConfig.yml"
     }
   ],
+  "pdf": {
+    "excludeDefaultToc": true, 
+    "content": [
+      {
+        "files": [
+          "manual/**.yml"
+        ],
+        "exclude": [
+          "**/toc.yml",
+          "**/toc.md"
+        ]
+      },
+      {
+        "files": [
+          "manual/tetris.md",
+          "manual/toc.yml"
+        ],
+        "exclude": [
+          "**/bin/**",
+          "**/obj/**",
+          "**/toc.yml",
+          "**/toc.md"
+        ]
+      },
+      {
+        "files": "pdf/toc.yml"
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ],
+        "exclude": [
+          "**/bin/**",
+          "**/obj/**",
+          "_site_pdf/**"
+        ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [
+          "apidoc/**.md"
+        ],
+        "exclude": [
+          "**/bin/**",
+          "**/obj/**",
+          "_site_pdf/**"
+        ]
+      }
+    ],
+    "wkhtmltopdf": {
+      "additionalArguments": "--enable-local-file-access"
+    },
+    "dest": "_site_pdf"
+  },
   "build": {
     "globalMetadata": 
     {
