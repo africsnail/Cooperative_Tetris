@@ -1,2 +1,3 @@
 ﻿/Assets/Scripts/*.meta
 *.meta
+.idea/*
