@@ -278,7 +278,15 @@ namespace Tetris
         {
             // Clear currently active falling blocks
             foreach (var block in Tetrominos.Where(block => block.IsActive))
+            {
+                while (block.RotationState != 0)
+                {
+                    block.AtSpawn = true;
+                    Rotation.Rotate(block.Id, "Ac", 0, 0);
+                    block.RotationState -= 1;
+                }
                 block.TetrominoGo.transform.position = SpawnArea;
+            }
 
             // Clear grid cubes
             ClearGridCubes();
@@ -504,10 +512,10 @@ namespace Tetris
             }
 
             var animationRenderer = new Renderer[w][];
-            for (var index = 0; index < w; index++) animationRenderer[index] = new Renderer[h];
+            for (var index = 1; index < w; index++) animationRenderer[index] = new Renderer[h];
 
             var animationCollider = new Collider[w][];
-            for (var index = 0; index < w; index++) animationCollider[index] = new Collider[h];
+            for (var index = 1; index < w; index++) animationCollider[index] = new Collider[h];
 
             for (var x = 1; x < w; x++)
             for (var y = 1; y < h; y++)
