@@ -66,6 +66,8 @@ namespace Tetris
             if (CanRotate(playerId, fromState, intoState, xOffset, yOffset))
             {
                 Rotate(playerId, direction, xOffset, yOffset);
+                Debug.Log("Rotating player: " + playerId + " " + direction + " moving by x: " + xOffset + ", y:" +
+                          yOffset + " (from state " + fromState + " to " + intoState + ")");
                 return true;
             }
             else return false;
@@ -77,14 +79,12 @@ namespace Tetris
             foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive && block.Id != playerId))
             {
                 for (int sizeX = 0; sizeX < block.Size; sizeX++)
+                for (int sizeY = 0; sizeY < block.Size; sizeY++)
                 {
-                    for (int sizeY = 0; sizeY < block.Size; sizeY++)
+                    if (block.RGrid[sizeX, sizeY] == 1)
                     {
-                        if (block.RGrid[sizeX, sizeY] == 1)
-                        {
-                            TileMap.MovementTileMap.CollisionMap[sizeX + (int) block.Location[0],
-                                (int) block.Location[1] + sizeY - block.Size] = true;
-                        }
+                        TileMap.MovementTileMap.CollisionMap[sizeX + (int) block.Location[0],
+                            (int) block.Location[1] + sizeY - block.Size] = true;
                     }
                 }
             }
@@ -99,6 +99,7 @@ namespace Tetris
 
             var canRotate = true;
 
+            // Rotate the grid
             foreach (var block in Blocks.Tetrominos.Where(block => block.IsActive && block.Id == playerId))
             {
                 RGridCache = new int[block.Size, block.Size];
@@ -118,19 +119,14 @@ namespace Tetris
                         RGridCache[y, newY] = RotateGridC(block.Size, block.RGrid, x, y)[y, newY];
                     }
 
-
+                // Check for collisions
                 for (var x = 0; x < block.Size; x++)
                 for (var y = 0; y < block.Size; y++)
                     if (canRotate)
                         if (RGridCache[x, y] == 1)
                         {
-                            int yWithSizeOffset;
-                            if (block.Size == 4)
-                                yWithSizeOffset = y - 1;
-                            else
-                                yWithSizeOffset = y;
                             var locationX = (int) block.Location[0] + x + xOffset + 1;
-                            var locationY = (int) block.Location[1] + yWithSizeOffset + yOffset - 2;
+                            var locationY = (int) block.Location[1] + y + yOffset - block.Size + 1;
 
                             if (locationX <= TileMap.PlayGrid.GetUpperBound(0) &&
                                 locationX >= TileMap.PlayGrid.GetLowerBound(0) &&
@@ -139,25 +135,32 @@ namespace Tetris
                             {
                                 if (TileMap.PlayGrid[locationX, locationY] != 0)
                                 {
+                                    Debug.Log("Cannot rotate due to player to wall collision" );
                                     canRotate = false;
                                     TileMap.ClearCollisionMap();
                                 }
                                 else if (TileMap.MovementTileMap.CollisionMap[locationX - 1,
-                                             locationY + 2 - block.Size])
+                                             locationY - 1])
                                 {
+                                    Debug.Log("Cannot rotate due to player to player collision on " + (locationX - 1) + ", " + (locationY - 1));
                                     canRotate = false;
                                     TileMap.ClearCollisionMap();
                                 }
                             }
                             else
                             {
+                                Debug.Log("Cannot rotate due to outside-bound collision");
                                 canRotate = false;
                                 TileMap.ClearCollisionMap();
                             }
                         }
             }
 
-
+            if (canRotate)
+            {
+                Debug.Log("Can rotate");
+            }
+            TileMap.ClearCollisionMap();
             return canRotate;
         }
 
@@ -323,7 +326,7 @@ namespace Tetris
                                             for (var c = 0; c < 5; c++)
                                             {
                                                 if (RotateAttempt(playerId, block.RotationState,
-                                                        FutureRotationC[playerId], -_rotationSystem[x * 2][c],
+                                                        FutureRotationAc[playerId], -_rotationSystem[x * 2][c],
                                                         -_rotationSystem[x * 2 + 1][c], "Ac"))
                                                     break;
                                             }
@@ -343,7 +346,7 @@ namespace Tetris
                                             for (var c = 0; c < 5; c++)
                                             {
                                                 if (RotateAttempt(playerId, block.RotationState,
-                                                        FutureRotationC[playerId], -_rotationSystemI[x * 2][c],
+                                                        FutureRotationAc[playerId], -_rotationSystemI[x * 2][c],
                                                         -_rotationSystemI[x * 2 + 1][c], "Ac"))
                                                     break;
                                             }

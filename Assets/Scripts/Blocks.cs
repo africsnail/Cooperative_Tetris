@@ -677,10 +677,7 @@ namespace Tetris
                     }
                 }
             }
-
-            for (int x = 0; x < TileMap.GridWidth; x++)
-            for (int y = 0; y < TileMap.GridHeight; y++)
-                TileMap.MovementTileMap.CollisionMap[x, y] = false;
+            TileMap.ClearCollisionMap();
             if (move) return true;
             return false;
         }
@@ -805,6 +802,7 @@ namespace Tetris
 
                     if (IsFalling[playerId] && ActiveSpawn[playerId] == false)
                         foreach (var block in Tetrominos.Where(block => block.IsActive && block.Id == playerId))
+                        {
                             if (CanMove(playerId, "down") == false && TimeLock[playerId] >= timeToLock ||
                                 LockCounter[playerId] >= 15 && CanMove(playerId, "down") == false)
                             {
@@ -815,12 +813,13 @@ namespace Tetris
                                 TimeLock[playerId] = 0.0f;
                                 HoldUsed[playerId] = false;
                             }
-                            else if (CanMove(playerId, "down") && CanMoveToPlayer(playerId, "down"))
+                            if (CanMove(playerId, "down") && CanMoveToPlayer(playerId, "down"))
                             {
                                 TimeLock[playerId] = 0.0f;
                                 block.TetrominoGo.transform.Translate(Vector3.down * 1, Space.World);
                                 block.Location = new[] {block.Location[0], block.Location[1] - 1.0f, block.Location[2]};
                             }
+                        }
                 }
             }
         }
