@@ -28,6 +28,9 @@ namespace Tetris
 
         // In-game settings
         private Slider _volumeSlider;
+        
+        // Animation toggle
+        public static bool Animations;
 
         // Menus
         public static SubMenu[] Menus { get; private set; }
@@ -399,7 +402,7 @@ namespace Tetris
             PlayGrid = new int[GridWidth, GridHeight];
             LineToAnimate = new GameObject[GridWidth, GridHeight];
             for (var x = 0; x < GridWidth; x++)
-            for (var y = 0; y < GridHeight; y++)
+            for (var y = 0; y < GridHeight - 5; y++)
                 if (x < 1 || x > GridWidth - 2 || y < 1)
                 {
                     PlayGrid[x, y] = 1;

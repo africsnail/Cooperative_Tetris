@@ -12,7 +12,7 @@ namespace Tetris
     {
         // VARIABLES
         // Grid dimensions
-        public static int GridHeight = 21;
+        public static int GridHeight = 26;
         public static int GridWidth = 12;
 
         public static bool IsGameOver;
@@ -65,7 +65,7 @@ namespace Tetris
             };
             LineToAnimate = new GameObject[GridWidth, GridHeight];
             for (var x = 0; x < GridWidth; x++)
-            for (var y = 0; y < GridHeight; y++)
+            for (var y = 0; y < GridHeight - 5; y++)
                 if (x < 1 || x > GridWidth - 2 || y < 1)
                 {
                     PlayGrid[x, y] = 1;
