@@ -32,6 +32,7 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 ### 4.1 Ukázka
 
 <img src="../images/layout.png">
+<div style="page-break-after: always;"></div>
 
 ### 4.2 Legenda
 #### 4.2.1 Prvky související s bloky
@@ -55,6 +56,8 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 
   <img src="../images/menu.png" width="300">
 
+<div style="page-break-after: always;"></div>
+
 #### 5.2.2 Menu prohrané hry
 
   <img src="../images/gameover.png" width="300">
@@ -71,6 +74,8 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 - **Exit**: Opustí hru.
 - **Add player**: Přidá do hry hráče, rozšíří hrací pole.
 - **Remove player**: Odebere ze hry hráče, zúží hrací pole.
+
+<div style="page-break-after: always;"></div>
 
 #### 5.3.2 Menu prohrané hry:
 - **Score**: Dosažené skóre
@@ -120,7 +125,8 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 
 - **Podržet**: Přesune aktuálně aktivní blok do oblasti podržení a okamžitě vytvoří nový blok.
   - _Po použití funkce podržení musí být blok uzamčen, aby se funkce znovu aktivovala._
-  
+
+<div style="page-break-after: always;"></div>
 
 ## <a id = "7"> </a>7. Bodování
 <a name = "bod"> </a>
