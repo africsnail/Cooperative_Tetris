@@ -43,38 +43,43 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 - **Černý** rámeček: Aktuální rychlostní úroveň
 - <mark style = "background:black"> <span style="color:white">**Bílý</span></mark> ráměček**: Aktuální skóre (viz. [bodování](#bod))
 
-## <a id = "5"> </a>5. Rozložení menu
+## <a id = "5"> </a>5. Menu
+### 5.1 Navigace v menu
+- Do menu pozastavené hry, zpět do hry nebo zpět z nastavení se dostanete stisknutím klávesy `Esc`.
+- Pro procházení nabídky položek využijte _šipek nahoru a dolů_.
+- Po vybrání položky menu stiskněte klávesu `Enter` nebo _mezerník_.
 
-### 5.1 Ukázky:
-#### 5.1.1 Menu pozastavené hry
+### 5.2 Ukázky:
+
+#### 5.2.1 Menu pozastavené hry
 
   <img src="../images/menu.png" width="300">
 
-#### 5.1.2 Menu prohrané hry
+#### 5.2.2 Menu prohrané hry
 
   <img src="../images/gameover.png" width="300">
 
-#### 5.1.3 Nastavení
+#### 5.2.3 Nastavení
 
   <img src="../images/settings.png" width="300">
 
 
-### 5.2 Legenda:
-#### 5.2.1 Menu pozastavené hry:
+### 5.3 Legenda:
+#### 5.3.1 Menu pozastavené hry:
 - **Settings**: Otevře menu s nastavením.
 - **Restart**: Restartuje hru (počet hráčů zůstává stejný).
 - **Exit**: Opustí hru.
 - **Add player**: Přidá do hry hráče, rozšíří hrací pole.
 - **Remove player**: Odebere ze hry hráče, zúží hrací pole.
 
-#### 5.2.2 Menu prohrané hry:
+#### 5.3.2 Menu prohrané hry:
 - **Score**: Dosažené skóre
 - **High score**: Nejvyšší dosažené skóre
 - **Restart**: Restartuje hru.
   - _Počet hráčů zůstává stejný._
 - **Exit**: Opustí hru.
 
-#### 5.2.3 Nastavení:
+#### 5.3.3 Nastavení:
 - **Volume**: Nastavení hlasitosti.
   - _Ovládání pomocí pravé a levé šipky_
 - **Animations**: Přepíná stav animací.
@@ -82,7 +87,6 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
 - **Scoring alerts**: Přepíná stav upozornění bodovaných úkonů.
   - _OFF = vypnuté upozornění, ON = zapnuté upozornění_
 - **Back**: Vrátí Vás do menu pozastavené hry.
-
 
 ## <a id = "6"> </a>6. Ovládání
 
