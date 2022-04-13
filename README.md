@@ -13,3 +13,6 @@ Složky nutné pro importování projektu do Unity
 4. Klikněte na tlačítko `open`
 5. Zvolte staženou složku
 6. Po načetní projektu otevřete v Unity složku `./Scenes` a rozklikněte soubor `Tetris.unity`
+
+# Web projektu
+**Webovou stránku** s vývojářskou a uživatelskou dokumentací najdete zde: https://africsnail.github.io/Cooperative_Tetris/
