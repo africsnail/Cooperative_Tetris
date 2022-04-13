@@ -3,6 +3,8 @@
 Složka slouží jako output pro DocFX. Je v ní tedy vygenerovaná webová stránka.
 ### `/Assets`
 Složka se zdrojovým kódem. **Podstatný** zdrojový kód se nachází v `/Assets/Scripts`.
+### `/Logs`,`/Packages`, `/ProjectSettings`, `/UserSettings`
+Složky nutné pro importování projektu do Unity
 
 # Návod k importování do Unity
 1. Naistalujte si Unity Hub
