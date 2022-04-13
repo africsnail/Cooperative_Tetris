@@ -1,0 +1,450 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris.SubMenu
+  commentId: T:Tetris.SubMenu
+  id: SubMenu
+  parent: Tetris
+  children:
+  - Tetris.SubMenu.Canvas
+  - Tetris.SubMenu.CanvasCanvas
+  - Tetris.SubMenu.IsPaused
+  - Tetris.SubMenu.Menu
+  - Tetris.SubMenu.MenuItem
+  - Tetris.SubMenu.MenuItemCount
+  - Tetris.SubMenu.MenuItemSelected
+  - Tetris.SubMenu.SelectedIndex
+  langs:
+  - csharp
+  - vb
+  name: SubMenu
+  nameWithType: SubMenu
+  fullName: Tetris.SubMenu
+  type: Class
+  source:
+    id: SubMenu
+    path: ''
+    startLine: 2420
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nClass used for each menu\n"
+  example: []
+  syntax:
+    content: public class SubMenu
+    content.vb: Public Class SubMenu
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Tetris.SubMenu.Canvas
+  commentId: P:Tetris.SubMenu.Canvas
+  id: Canvas
+  parent: Tetris.SubMenu
+  langs:
+  - csharp
+  - vb
+  name: Canvas
+  nameWithType: SubMenu.Canvas
+  fullName: Tetris.SubMenu.Canvas
+  type: Property
+  source:
+    id: Canvas
+    path: ''
+    startLine: 2425
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets the Canvas&apos;s parent GameObject\n"
+  example: []
+  syntax:
+    content: public GameObject Canvas { get; set; }
+    parameters: []
+    return:
+      type: GameObject
+    content.vb: Public Property Canvas As GameObject
+  overload: Tetris.SubMenu.Canvas*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubMenu.CanvasCanvas
+  commentId: P:Tetris.SubMenu.CanvasCanvas
+  id: CanvasCanvas
+  parent: Tetris.SubMenu
+  langs:
+  - csharp
+  - vb
+  name: CanvasCanvas
+  nameWithType: SubMenu.CanvasCanvas
+  fullName: Tetris.SubMenu.CanvasCanvas
+  type: Property
+  source:
+    id: CanvasCanvas
+    path: ''
+    startLine: 2430
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets the Canvas\n"
+  example: []
+  syntax:
+    content: public Canvas CanvasCanvas { get; set; }
+    parameters: []
+    return:
+      type: Canvas
+    content.vb: Public Property CanvasCanvas As Canvas
+  overload: Tetris.SubMenu.CanvasCanvas*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubMenu.MenuItem
+  commentId: P:Tetris.SubMenu.MenuItem
+  id: MenuItem
+  parent: Tetris.SubMenu
+  langs:
+  - csharp
+  - vb
+  name: MenuItem
+  nameWithType: SubMenu.MenuItem
+  fullName: Tetris.SubMenu.MenuItem
+  type: Property
+  source:
+    id: MenuItem
+    path: ''
+    startLine: 2435
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets the Text of a menu item\n"
+  example: []
+  syntax:
+    content: public Text[] MenuItem { get; set; }
+    parameters: []
+    return:
+      type: Text[]
+    content.vb: Public Property MenuItem As Text()
+  overload: Tetris.SubMenu.MenuItem*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubMenu.Menu
+  commentId: P:Tetris.SubMenu.Menu
+  id: Menu
+  parent: Tetris.SubMenu
+  langs:
+  - csharp
+  - vb
+  name: Menu
+  nameWithType: SubMenu.Menu
+  fullName: Tetris.SubMenu.Menu
+  type: Property
+  source:
+    id: Menu
+    path: ''
+    startLine: 2440
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets the GameObject of a menu item\n"
+  example: []
+  syntax:
+    content: public GameObject[] Menu { get; set; }
+    parameters: []
+    return:
+      type: GameObject[]
+    content.vb: Public Property Menu As GameObject()
+  overload: Tetris.SubMenu.Menu*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubMenu.SelectedIndex
+  commentId: P:Tetris.SubMenu.SelectedIndex
+  id: SelectedIndex
+  parent: Tetris.SubMenu
+  langs:
+  - csharp
+  - vb
+  name: SelectedIndex
+  nameWithType: SubMenu.SelectedIndex
+  fullName: Tetris.SubMenu.SelectedIndex
+  type: Property
+  source:
+    id: SelectedIndex
+    path: ''
+    startLine: 2445
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets index of a currently selected <xref href=\"Tetris.SubMenu.MenuItem\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public int SelectedIndex { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property SelectedIndex As Integer
+  overload: Tetris.SubMenu.SelectedIndex*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubMenu.MenuItemSelected
+  commentId: P:Tetris.SubMenu.MenuItemSelected
+  id: MenuItemSelected
+  parent: Tetris.SubMenu
+  langs:
+  - csharp
+  - vb
+  name: MenuItemSelected
+  nameWithType: SubMenu.MenuItemSelected
+  fullName: Tetris.SubMenu.MenuItemSelected
+  type: Property
+  source:
+    id: MenuItemSelected
+    path: ''
+    startLine: 2450
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets the Text of a currently selected <xref href=\"Tetris.SubMenu.MenuItem\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public Text MenuItemSelected { get; set; }
+    parameters: []
+    return:
+      type: Text
+    content.vb: Public Property MenuItemSelected As Text
+  overload: Tetris.SubMenu.MenuItemSelected*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubMenu.MenuItemCount
+  commentId: P:Tetris.SubMenu.MenuItemCount
+  id: MenuItemCount
+  parent: Tetris.SubMenu
+  langs:
+  - csharp
+  - vb
+  name: MenuItemCount
+  nameWithType: SubMenu.MenuItemCount
+  fullName: Tetris.SubMenu.MenuItemCount
+  type: Property
+  source:
+    id: MenuItemCount
+    path: ''
+    startLine: 2455
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets the number of <xref href=\"Tetris.SubMenu.MenuItem\" data-throw-if-not-resolved=\"false\"></xref>s in the submenu\n"
+  example: []
+  syntax:
+    content: public int MenuItemCount { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property MenuItemCount As Integer
+  overload: Tetris.SubMenu.MenuItemCount*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubMenu.IsPaused
+  commentId: P:Tetris.SubMenu.IsPaused
+  id: IsPaused
+  parent: Tetris.SubMenu
+  langs:
+  - csharp
+  - vb
+  name: IsPaused
+  nameWithType: SubMenu.IsPaused
+  fullName: Tetris.SubMenu.IsPaused
+  type: Property
+  source:
+    id: IsPaused
+    path: ''
+    startLine: 2460
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets menu&apos;s pause state\n"
+  example: []
+  syntax:
+    content: public bool IsPaused { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsPaused As Boolean
+  overload: Tetris.SubMenu.IsPaused*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Tetris.SubMenu.Canvas*
+  commentId: Overload:Tetris.SubMenu.Canvas
+  name: Canvas
+  nameWithType: SubMenu.Canvas
+  fullName: Tetris.SubMenu.Canvas
+- uid: GameObject
+  isExternal: true
+  name: GameObject
+  nameWithType: GameObject
+  fullName: GameObject
+- uid: Tetris.SubMenu.CanvasCanvas*
+  commentId: Overload:Tetris.SubMenu.CanvasCanvas
+  name: CanvasCanvas
+  nameWithType: SubMenu.CanvasCanvas
+  fullName: Tetris.SubMenu.CanvasCanvas
+- uid: Canvas
+  commentId: '!:Canvas'
+  isExternal: true
+  name: Canvas
+  nameWithType: Canvas
+  fullName: Canvas
+- uid: Tetris.SubMenu.MenuItem*
+  commentId: Overload:Tetris.SubMenu.MenuItem
+  name: MenuItem
+  nameWithType: SubMenu.MenuItem
+  fullName: Tetris.SubMenu.MenuItem
+- uid: Text[]
+  isExternal: true
+  name: Text[]
+  nameWithType: Text[]
+  fullName: Text[]
+  nameWithType.vb: Text()
+  fullName.vb: Text()
+  name.vb: Text()
+  spec.csharp:
+  - uid: Text
+    name: Text
+    nameWithType: Text
+    fullName: Text
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Text
+    name: Text
+    nameWithType: Text
+    fullName: Text
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Tetris.SubMenu.Menu*
+  commentId: Overload:Tetris.SubMenu.Menu
+  name: Menu
+  nameWithType: SubMenu.Menu
+  fullName: Tetris.SubMenu.Menu
+- uid: GameObject[]
+  isExternal: true
+  name: GameObject[]
+  nameWithType: GameObject[]
+  fullName: GameObject[]
+  nameWithType.vb: GameObject()
+  fullName.vb: GameObject()
+  name.vb: GameObject()
+  spec.csharp:
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Tetris.SubMenu.MenuItem
+  commentId: P:Tetris.SubMenu.MenuItem
+  isExternal: true
+- uid: Tetris.SubMenu.SelectedIndex*
+  commentId: Overload:Tetris.SubMenu.SelectedIndex
+  name: SelectedIndex
+  nameWithType: SubMenu.SelectedIndex
+  fullName: Tetris.SubMenu.SelectedIndex
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Tetris.SubMenu.MenuItemSelected*
+  commentId: Overload:Tetris.SubMenu.MenuItemSelected
+  name: MenuItemSelected
+  nameWithType: SubMenu.MenuItemSelected
+  fullName: Tetris.SubMenu.MenuItemSelected
+- uid: Text
+  isExternal: true
+  name: Text
+  nameWithType: Text
+  fullName: Text
+- uid: Tetris.SubMenu.MenuItemCount*
+  commentId: Overload:Tetris.SubMenu.MenuItemCount
+  name: MenuItemCount
+  nameWithType: SubMenu.MenuItemCount
+  fullName: Tetris.SubMenu.MenuItemCount
+- uid: Tetris.SubMenu.IsPaused*
+  commentId: Overload:Tetris.SubMenu.IsPaused
+  name: IsPaused
+  nameWithType: SubMenu.IsPaused
+  fullName: Tetris.SubMenu.IsPaused
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

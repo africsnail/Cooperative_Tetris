@@ -1,0 +1,70 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris
+  commentId: N:Tetris
+  id: Tetris
+  children:
+  - Tetris.Blocks
+  - Tetris.Menu
+  - Tetris.Rotation
+  - Tetris.ScoreSystem
+  - Tetris.SubMenu
+  - Tetris.SubTileMap
+  - Tetris.Tetromino
+  - Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+  type: Namespace
+  assemblies:
+  - cs.temp.dll
+references:
+- uid: Tetris.Blocks
+  commentId: T:Tetris.Blocks
+  name: Blocks
+  nameWithType: Blocks
+  fullName: Tetris.Blocks
+- uid: Tetris.Menu
+  commentId: T:Tetris.Menu
+  name: Menu
+  nameWithType: Menu
+  fullName: Tetris.Menu
+- uid: Tetris.Rotation
+  commentId: T:Tetris.Rotation
+  name: Rotation
+  nameWithType: Rotation
+  fullName: Tetris.Rotation
+- uid: Tetris.ScoreSystem
+  commentId: T:Tetris.ScoreSystem
+  name: ScoreSystem
+  nameWithType: ScoreSystem
+  fullName: Tetris.ScoreSystem
+- uid: Tetris.SubMenu
+  commentId: T:Tetris.SubMenu
+  name: SubMenu
+  nameWithType: SubMenu
+  fullName: Tetris.SubMenu
+- uid: Tetris.SubTileMap
+  commentId: T:Tetris.SubTileMap
+  parent: Tetris
+  name: SubTileMap
+  nameWithType: SubTileMap
+  fullName: Tetris.SubTileMap
+- uid: Tetris.Tetromino
+  commentId: T:Tetris.Tetromino
+  name: Tetromino
+  nameWithType: Tetromino
+  fullName: Tetris.Tetromino
+- uid: Tetris.TileMap
+  commentId: T:Tetris.TileMap
+  name: TileMap
+  nameWithType: TileMap
+  fullName: Tetris.TileMap
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris

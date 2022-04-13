@@ -1,0 +1,659 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris.Tetromino
+  commentId: T:Tetris.Tetromino
+  id: Tetromino
+  parent: Tetris
+  children:
+  - Tetris.Tetromino.AtSpawn
+  - Tetris.Tetromino.Color
+  - Tetris.Tetromino.CubeGo
+  - Tetris.Tetromino.Id
+  - Tetris.Tetromino.IsActive
+  - Tetris.Tetromino.IsHold
+  - Tetris.Tetromino.IsLocked
+  - Tetris.Tetromino.Location
+  - Tetris.Tetromino.RGrid
+  - Tetris.Tetromino.RotationState
+  - Tetris.Tetromino.Size
+  - Tetris.Tetromino.TetrominoGo
+  - Tetris.Tetromino.Type
+  langs:
+  - csharp
+  - vb
+  name: Tetromino
+  nameWithType: Tetromino
+  fullName: Tetris.Tetromino
+  type: Class
+  source:
+    id: Tetromino
+    path: ''
+    startLine: 2498
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public class Tetromino
+    content.vb: Public Class Tetromino
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Tetris.Tetromino.Id
+  commentId: F:Tetris.Tetromino.Id
+  id: Id
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: Tetromino.Id
+  fullName: Tetris.Tetromino.Id
+  type: Field
+  source:
+    id: Id
+    path: ''
+    startLine: 2504
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGet block&apos;s player id\n"
+  example: []
+  syntax:
+    content: public int Id
+    return:
+      type: System.Int32
+    content.vb: Public Id As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.Location
+  commentId: P:Tetris.Tetromino.Location
+  id: Location
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: Location
+  nameWithType: Tetromino.Location
+  fullName: Tetris.Tetromino.Location
+  type: Property
+  source:
+    id: Location
+    path: ''
+    startLine: 2508
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block&apos;s location\n"
+  example: []
+  syntax:
+    content: public float[] Location { get; set; }
+    parameters: []
+    return:
+      type: System.Single[]
+    content.vb: Public Property Location As Single()
+  overload: Tetris.Tetromino.Location*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.RGrid
+  commentId: P:Tetris.Tetromino.RGrid
+  id: RGrid
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: RGrid
+  nameWithType: Tetromino.RGrid
+  fullName: Tetris.Tetromino.RGrid
+  type: Property
+  source:
+    id: RGrid
+    path: ''
+    startLine: 2514
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block rotational grid, used for rotating the block\n"
+  example: []
+  syntax:
+    content: public int[, ] RGrid { get; set; }
+    parameters: []
+    return:
+      type: System.Int32[,]
+    content.vb: Public Property RGrid As Integer(,)
+  overload: Tetris.Tetromino.RGrid*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.Size
+  commentId: P:Tetris.Tetromino.Size
+  id: Size
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: Tetromino.Size
+  fullName: Tetris.Tetromino.Size
+  type: Property
+  source:
+    id: Size
+    path: ''
+    startLine: 2518
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block&apos;s array size\n"
+  example: []
+  syntax:
+    content: public int Size { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Size As Integer
+  overload: Tetris.Tetromino.Size*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.Type
+  commentId: P:Tetris.Tetromino.Type
+  id: Type
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: Tetromino.Type
+  fullName: Tetris.Tetromino.Type
+  type: Property
+  source:
+    id: Type
+    path: ''
+    startLine: 2522
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block&apos;s type\n"
+  example: []
+  syntax:
+    content: public string Type { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Type As String
+  overload: Tetris.Tetromino.Type*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.CubeGo
+  commentId: P:Tetris.Tetromino.CubeGo
+  id: CubeGo
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: CubeGo
+  nameWithType: Tetromino.CubeGo
+  fullName: Tetris.Tetromino.CubeGo
+  type: Property
+  source:
+    id: CubeGo
+    path: ''
+    startLine: 2526
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nArray for the individual cube GameObjects\n"
+  example: []
+  syntax:
+    content: public GameObject[, ] CubeGo { get; set; }
+    parameters: []
+    return:
+      type: GameObject[,]
+    content.vb: Public Property CubeGo As GameObject(,)
+  overload: Tetris.Tetromino.CubeGo*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.IsActive
+  commentId: P:Tetris.Tetromino.IsActive
+  id: IsActive
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: IsActive
+  nameWithType: Tetromino.IsActive
+  fullName: Tetris.Tetromino.IsActive
+  type: Property
+  source:
+    id: IsActive
+    path: ''
+    startLine: 2530
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block&apos;s activity state\n"
+  example: []
+  syntax:
+    content: public bool IsActive { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsActive As Boolean
+  overload: Tetris.Tetromino.IsActive*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.IsHold
+  commentId: P:Tetris.Tetromino.IsHold
+  id: IsHold
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: IsHold
+  nameWithType: Tetromino.IsHold
+  fullName: Tetris.Tetromino.IsHold
+  type: Property
+  source:
+    id: IsHold
+    path: ''
+    startLine: 2534
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block&apos;s hold state\n"
+  example: []
+  syntax:
+    content: public bool IsHold { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsHold As Boolean
+  overload: Tetris.Tetromino.IsHold*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.IsLocked
+  commentId: P:Tetris.Tetromino.IsLocked
+  id: IsLocked
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: IsLocked
+  nameWithType: Tetromino.IsLocked
+  fullName: Tetris.Tetromino.IsLocked
+  type: Property
+  source:
+    id: IsLocked
+    path: ''
+    startLine: 2538
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block&apos;s lock state\n"
+  example: []
+  syntax:
+    content: public bool IsLocked { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsLocked As Boolean
+  overload: Tetris.Tetromino.IsLocked*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.AtSpawn
+  commentId: P:Tetris.Tetromino.AtSpawn
+  id: AtSpawn
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: AtSpawn
+  nameWithType: Tetromino.AtSpawn
+  fullName: Tetris.Tetromino.AtSpawn
+  type: Property
+  source:
+    id: AtSpawn
+    path: ''
+    startLine: 2542
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block&apos;s spawn state\n"
+  example: []
+  syntax:
+    content: public bool AtSpawn { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property AtSpawn As Boolean
+  overload: Tetris.Tetromino.AtSpawn*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.TetrominoGo
+  commentId: P:Tetris.Tetromino.TetrominoGo
+  id: TetrominoGo
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: TetrominoGo
+  nameWithType: Tetromino.TetrominoGo
+  fullName: Tetris.Tetromino.TetrominoGo
+  type: Property
+  source:
+    id: TetrominoGo
+    path: ''
+    startLine: 2546
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nparent GameObject for the individual cubes\n"
+  example: []
+  syntax:
+    content: public GameObject TetrominoGo { get; set; }
+    parameters: []
+    return:
+      type: GameObject
+    content.vb: Public Property TetrominoGo As GameObject
+  overload: Tetris.Tetromino.TetrominoGo*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.RotationState
+  commentId: P:Tetris.Tetromino.RotationState
+  id: RotationState
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: RotationState
+  nameWithType: Tetromino.RotationState
+  fullName: Tetris.Tetromino.RotationState
+  type: Property
+  source:
+    id: RotationState
+    path: ''
+    startLine: 2550
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets block&apos;s rotation state\n"
+  example: []
+  syntax:
+    content: public int RotationState { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property RotationState As Integer
+  overload: Tetris.Tetromino.RotationState*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Tetromino.Color
+  commentId: P:Tetris.Tetromino.Color
+  id: Color
+  parent: Tetris.Tetromino
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: Tetromino.Color
+  fullName: Tetris.Tetromino.Color
+  type: Property
+  source:
+    id: Color
+    path: ''
+    startLine: 2554
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nstores color of the block\n"
+  example: []
+  syntax:
+    content: public Color Color { get; set; }
+    parameters: []
+    return:
+      type: Color
+    content.vb: Public Property Color As Color
+  overload: Tetris.Tetromino.Color*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Tetris.Tetromino.Location*
+  commentId: Overload:Tetris.Tetromino.Location
+  name: Location
+  nameWithType: Tetromino.Location
+  fullName: Tetris.Tetromino.Location
+- uid: System.Single[]
+  isExternal: true
+  name: Single[]
+  nameWithType: Single[]
+  fullName: System.Single[]
+  nameWithType.vb: Single()
+  fullName.vb: System.Single()
+  name.vb: Single()
+  spec.csharp:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Tetris.Tetromino.RGrid*
+  commentId: Overload:Tetris.Tetromino.RGrid
+  name: RGrid
+  nameWithType: Tetromino.RGrid
+  fullName: Tetris.Tetromino.RGrid
+- uid: System.Int32[,]
+  isExternal: true
+  name: Int32[,]
+  nameWithType: Int32[,]
+  fullName: System.Int32[,]
+  nameWithType.vb: Int32(,)
+  fullName.vb: System.Int32(,)
+  name.vb: Int32(,)
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: Tetris.Tetromino.Size*
+  commentId: Overload:Tetris.Tetromino.Size
+  name: Size
+  nameWithType: Tetromino.Size
+  fullName: Tetris.Tetromino.Size
+- uid: Tetris.Tetromino.Type*
+  commentId: Overload:Tetris.Tetromino.Type
+  name: Type
+  nameWithType: Tetromino.Type
+  fullName: Tetris.Tetromino.Type
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Tetris.Tetromino.CubeGo*
+  commentId: Overload:Tetris.Tetromino.CubeGo
+  name: CubeGo
+  nameWithType: Tetromino.CubeGo
+  fullName: Tetris.Tetromino.CubeGo
+- uid: GameObject[,]
+  isExternal: true
+  name: GameObject[,]
+  nameWithType: GameObject[,]
+  fullName: GameObject[,]
+  nameWithType.vb: GameObject(,)
+  fullName.vb: GameObject(,)
+  name.vb: GameObject(,)
+  spec.csharp:
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: Tetris.Tetromino.IsActive*
+  commentId: Overload:Tetris.Tetromino.IsActive
+  name: IsActive
+  nameWithType: Tetromino.IsActive
+  fullName: Tetris.Tetromino.IsActive
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Tetris.Tetromino.IsHold*
+  commentId: Overload:Tetris.Tetromino.IsHold
+  name: IsHold
+  nameWithType: Tetromino.IsHold
+  fullName: Tetris.Tetromino.IsHold
+- uid: Tetris.Tetromino.IsLocked*
+  commentId: Overload:Tetris.Tetromino.IsLocked
+  name: IsLocked
+  nameWithType: Tetromino.IsLocked
+  fullName: Tetris.Tetromino.IsLocked
+- uid: Tetris.Tetromino.AtSpawn*
+  commentId: Overload:Tetris.Tetromino.AtSpawn
+  name: AtSpawn
+  nameWithType: Tetromino.AtSpawn
+  fullName: Tetris.Tetromino.AtSpawn
+- uid: Tetris.Tetromino.TetrominoGo*
+  commentId: Overload:Tetris.Tetromino.TetrominoGo
+  name: TetrominoGo
+  nameWithType: Tetromino.TetrominoGo
+  fullName: Tetris.Tetromino.TetrominoGo
+- uid: GameObject
+  isExternal: true
+  name: GameObject
+  nameWithType: GameObject
+  fullName: GameObject
+- uid: Tetris.Tetromino.RotationState*
+  commentId: Overload:Tetris.Tetromino.RotationState
+  name: RotationState
+  nameWithType: Tetromino.RotationState
+  fullName: Tetris.Tetromino.RotationState
+- uid: Tetris.Tetromino.Color*
+  commentId: Overload:Tetris.Tetromino.Color
+  name: Color
+  nameWithType: Tetromino.Color
+  fullName: Tetris.Tetromino.Color
+- uid: Color
+  commentId: '!:Color'
+  isExternal: true
+  name: Color
+  nameWithType: Color
+  fullName: Color

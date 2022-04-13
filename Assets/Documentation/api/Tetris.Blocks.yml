@@ -1,0 +1,1769 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris.Blocks
+  commentId: T:Tetris.Blocks
+  id: Blocks
+  parent: Tetris
+  children:
+  - Tetris.Blocks.ActiveSpawn
+  - Tetris.Blocks.blockPrefab
+  - Tetris.Blocks.HoldArea
+  - Tetris.Blocks.HoldBlock
+  - Tetris.Blocks.holdSpawn
+  - Tetris.Blocks.HoldType
+  - Tetris.Blocks.HoldUsed
+  - Tetris.Blocks.InitializePlayer(System.Int32)
+  - Tetris.Blocks.IsFalling
+  - Tetris.Blocks.KeybindHardDrop
+  - Tetris.Blocks.KeybindHold
+  - Tetris.Blocks.KeybindLeft
+  - Tetris.Blocks.KeybindRight
+  - Tetris.Blocks.KeybindSoftDrop
+  - Tetris.Blocks.lastDir
+  - Tetris.Blocks.LockCounter
+  - Tetris.Blocks.lockDeepestRow
+  - Tetris.Blocks.move
+  - Tetris.Blocks.OriginalColors(System.Int32)
+  - Tetris.Blocks.otherMat
+  - Tetris.Blocks.PlayerIds
+  - Tetris.Blocks.PreviewArea
+  - Tetris.Blocks.PreviewBlock
+  - Tetris.Blocks.randomType
+  - Tetris.Blocks.RemovePlayer(System.Int32)
+  - Tetris.Blocks.rIndex
+  - Tetris.Blocks.spawn
+  - Tetris.Blocks.SpawnArea
+  - Tetris.Blocks.SpawnMino(System.Int32,System.String)
+  - Tetris.Blocks.StartArea
+  - Tetris.Blocks.Tetrominos
+  - Tetris.Blocks.timeAutoRepeat
+  - Tetris.Blocks.timeBeginAutoRepeat
+  - Tetris.Blocks.timeFall
+  - Tetris.Blocks.TimeLock
+  - Tetris.Blocks.timeSoftDrop
+  - Tetris.Blocks.timeToAutoRepeat
+  - Tetris.Blocks.timeToBeginAutoRepeat
+  - Tetris.Blocks.TimeToFall
+  - Tetris.Blocks.timeToLock
+  - Tetris.Blocks.TimeToSoftDrop
+  langs:
+  - csharp
+  - vb
+  name: Blocks
+  nameWithType: Blocks
+  fullName: Tetris.Blocks
+  type: Class
+  source:
+    id: Blocks
+    path: ''
+    startLine: 12
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nManages all block and their movement\n"
+  example: []
+  syntax:
+    content: 'public class Blocks : MonoBehaviour'
+    content.vb: >-
+      Public Class Blocks
+          Inherits MonoBehaviour
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Tetris.Blocks.IsFalling
+  commentId: F:Tetris.Blocks.IsFalling
+  id: IsFalling
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: IsFalling
+  nameWithType: Blocks.IsFalling
+  fullName: Tetris.Blocks.IsFalling
+  type: Field
+  source:
+    id: IsFalling
+    path: ''
+    startLine: 22
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList for IsFalling bool, false when soft dropping\n"
+  example: []
+  syntax:
+    content: public static readonly List<bool> IsFalling
+    return:
+      type: System.Collections.Generic.List{System.Boolean}
+    content.vb: Public Shared ReadOnly IsFalling As List(Of Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Blocks.ActiveSpawn
+  commentId: F:Tetris.Blocks.ActiveSpawn
+  id: ActiveSpawn
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: ActiveSpawn
+  nameWithType: Blocks.ActiveSpawn
+  fullName: Tetris.Blocks.ActiveSpawn
+  type: Field
+  source:
+    id: ActiveSpawn
+    path: ''
+    startLine: 27
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList for ActiveSpawn bool, a request for <xref href=\"Tetris.Blocks.SpawnMino(System.Int32%2cSystem.String)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static readonly List<bool> ActiveSpawn
+    return:
+      type: System.Collections.Generic.List{System.Boolean}
+    content.vb: Public Shared ReadOnly ActiveSpawn As List(Of Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Blocks.TimeToFall
+  commentId: F:Tetris.Blocks.TimeToFall
+  id: TimeToFall
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: TimeToFall
+  nameWithType: Blocks.TimeToFall
+  fullName: Tetris.Blocks.TimeToFall
+  type: Field
+  source:
+    id: TimeToFall
+    path: ''
+    startLine: 32
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nTime for a block to fall one block down\n"
+  example: []
+  syntax:
+    content: public static float TimeToFall
+    return:
+      type: System.Single
+    content.vb: Public Shared TimeToFall As Single
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.TimeLock
+  commentId: F:Tetris.Blocks.TimeLock
+  id: TimeLock
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: TimeLock
+  nameWithType: Blocks.TimeLock
+  fullName: Tetris.Blocks.TimeLock
+  type: Field
+  source:
+    id: TimeLock
+    path: ''
+    startLine: 38
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nLock timers for <xref href=\"Tetris.Blocks.Controls\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Tetris.Blocks.Falling\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static List<float> TimeLock
+    return:
+      type: System.Collections.Generic.List{System.Single}
+    content.vb: Public Shared TimeLock As List(Of Single)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.LockCounter
+  commentId: F:Tetris.Blocks.LockCounter
+  id: LockCounter
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: LockCounter
+  nameWithType: Blocks.LockCounter
+  fullName: Tetris.Blocks.LockCounter
+  type: Field
+  source:
+    id: LockCounter
+    path: ''
+    startLine: 47
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nCounter of how many rotations/moves happened when the lock conditions are met and <xref href=\"Tetris.Blocks.TimeLock\" data-throw-if-not-resolved=\"false\"></xref> was\nrunning\n"
+  remarks: "\nAfter reaching 15, block locks immediately after a rotation or a move\n"
+  example: []
+  syntax:
+    content: public static List<int> LockCounter
+    return:
+      type: System.Collections.Generic.List{System.Int32}
+    content.vb: Public Shared LockCounter As List(Of Integer)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.TimeToSoftDrop
+  commentId: F:Tetris.Blocks.TimeToSoftDrop
+  id: TimeToSoftDrop
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: TimeToSoftDrop
+  nameWithType: Blocks.TimeToSoftDrop
+  fullName: Tetris.Blocks.TimeToSoftDrop
+  type: Field
+  source:
+    id: TimeToSoftDrop
+    path: ''
+    startLine: 52
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nTime for a block to fall when soft drop key is held down\n"
+  example: []
+  syntax:
+    content: public static float TimeToSoftDrop
+    return:
+      type: System.Single
+    content.vb: Public Shared TimeToSoftDrop As Single
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.PreviewBlock
+  commentId: F:Tetris.Blocks.PreviewBlock
+  id: PreviewBlock
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: PreviewBlock
+  nameWithType: Blocks.PreviewBlock
+  fullName: Tetris.Blocks.PreviewBlock
+  type: Field
+  source:
+    id: PreviewBlock
+    path: ''
+    startLine: 59
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList for PreviewBlock GameObject\nStores block for <xref href=\"Tetris.Blocks.Preview(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static List<GameObject> PreviewBlock
+    return:
+      type: System.Collections.Generic.List{GameObject}
+    content.vb: Public Shared PreviewBlock As List(Of GameObject)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.HoldType
+  commentId: F:Tetris.Blocks.HoldType
+  id: HoldType
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: HoldType
+  nameWithType: Blocks.HoldType
+  fullName: Tetris.Blocks.HoldType
+  type: Field
+  source:
+    id: HoldType
+    path: ''
+    startLine: 65
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nArray for HoldType strings\n"
+  example: []
+  syntax:
+    content: public static readonly string[] HoldType
+    return:
+      type: System.String[]
+    content.vb: Public Shared ReadOnly HoldType As String()
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Blocks.HoldBlock
+  commentId: F:Tetris.Blocks.HoldBlock
+  id: HoldBlock
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: HoldBlock
+  nameWithType: Blocks.HoldBlock
+  fullName: Tetris.Blocks.HoldBlock
+  type: Field
+  source:
+    id: HoldBlock
+    path: ''
+    startLine: 70
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList for HoldBlock GameObjects\n"
+  example: []
+  syntax:
+    content: public static readonly List<GameObject> HoldBlock
+    return:
+      type: System.Collections.Generic.List{GameObject}
+    content.vb: Public Shared ReadOnly HoldBlock As List(Of GameObject)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Blocks.KeybindRight
+  commentId: F:Tetris.Blocks.KeybindRight
+  id: KeybindRight
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: KeybindRight
+  nameWithType: Blocks.KeybindRight
+  fullName: Tetris.Blocks.KeybindRight
+  type: Field
+  source:
+    id: KeybindRight
+    path: ''
+    startLine: 72
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static string[] KeybindRight
+    return:
+      type: System.String[]
+    content.vb: Public Shared KeybindRight As String()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.KeybindLeft
+  commentId: F:Tetris.Blocks.KeybindLeft
+  id: KeybindLeft
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: KeybindLeft
+  nameWithType: Blocks.KeybindLeft
+  fullName: Tetris.Blocks.KeybindLeft
+  type: Field
+  source:
+    id: KeybindLeft
+    path: ''
+    startLine: 73
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static string[] KeybindLeft
+    return:
+      type: System.String[]
+    content.vb: Public Shared KeybindLeft As String()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.KeybindSoftDrop
+  commentId: F:Tetris.Blocks.KeybindSoftDrop
+  id: KeybindSoftDrop
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: KeybindSoftDrop
+  nameWithType: Blocks.KeybindSoftDrop
+  fullName: Tetris.Blocks.KeybindSoftDrop
+  type: Field
+  source:
+    id: KeybindSoftDrop
+    path: ''
+    startLine: 74
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static string[] KeybindSoftDrop
+    return:
+      type: System.String[]
+    content.vb: Public Shared KeybindSoftDrop As String()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.KeybindHardDrop
+  commentId: F:Tetris.Blocks.KeybindHardDrop
+  id: KeybindHardDrop
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: KeybindHardDrop
+  nameWithType: Blocks.KeybindHardDrop
+  fullName: Tetris.Blocks.KeybindHardDrop
+  type: Field
+  source:
+    id: KeybindHardDrop
+    path: ''
+    startLine: 75
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static string[] KeybindHardDrop
+    return:
+      type: System.String[]
+    content.vb: Public Shared KeybindHardDrop As String()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.KeybindHold
+  commentId: F:Tetris.Blocks.KeybindHold
+  id: KeybindHold
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: KeybindHold
+  nameWithType: Blocks.KeybindHold
+  fullName: Tetris.Blocks.KeybindHold
+  type: Field
+  source:
+    id: KeybindHold
+    path: ''
+    startLine: 76
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static string[] KeybindHold
+    return:
+      type: System.String[]
+    content.vb: Public Shared KeybindHold As String()
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.PlayerIds
+  commentId: F:Tetris.Blocks.PlayerIds
+  id: PlayerIds
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: PlayerIds
+  nameWithType: Blocks.PlayerIds
+  fullName: Tetris.Blocks.PlayerIds
+  type: Field
+  source:
+    id: PlayerIds
+    path: ''
+    startLine: 82
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList of player ids, used to get player count\n"
+  example: []
+  syntax:
+    content: public static List<int> PlayerIds
+    return:
+      type: System.Collections.Generic.List{System.Int32}
+    content.vb: Public Shared PlayerIds As List(Of Integer)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.SpawnArea
+  commentId: F:Tetris.Blocks.SpawnArea
+  id: SpawnArea
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: SpawnArea
+  nameWithType: Blocks.SpawnArea
+  fullName: Tetris.Blocks.SpawnArea
+  type: Field
+  source:
+    id: SpawnArea
+    path: ''
+    startLine: 91
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nCoordinates for area above the game space where all blocks remain when not in use\n"
+  example: []
+  syntax:
+    content: public static Vector3 SpawnArea
+    return:
+      type: Vector3
+      description: "\nx, y, z\n"
+    content.vb: Public Shared SpawnArea As Vector3
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.StartArea
+  commentId: F:Tetris.Blocks.StartArea
+  id: StartArea
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: StartArea
+  nameWithType: Blocks.StartArea
+  fullName: Tetris.Blocks.StartArea
+  type: Field
+  source:
+    id: StartArea
+    path: ''
+    startLine: 100
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nCoordinates for area where each player starts\n"
+  example: []
+  syntax:
+    content: public static List<Vector3> StartArea
+    return:
+      type: System.Collections.Generic.List{Vector3}
+      description: "\nx, y, z\n"
+    content.vb: Public Shared StartArea As List(Of Vector3)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.PreviewArea
+  commentId: F:Tetris.Blocks.PreviewArea
+  id: PreviewArea
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: PreviewArea
+  nameWithType: Blocks.PreviewArea
+  fullName: Tetris.Blocks.PreviewArea
+  type: Field
+  source:
+    id: PreviewArea
+    path: ''
+    startLine: 109
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nCoordinates for area where each player has it&apos;s next prepared block\n"
+  example: []
+  syntax:
+    content: public static List<Vector3> PreviewArea
+    return:
+      type: System.Collections.Generic.List{Vector3}
+      description: "\nx, y, z\n"
+    content.vb: Public Shared PreviewArea As List(Of Vector3)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.HoldArea
+  commentId: F:Tetris.Blocks.HoldArea
+  id: HoldArea
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: HoldArea
+  nameWithType: Blocks.HoldArea
+  fullName: Tetris.Blocks.HoldArea
+  type: Field
+  source:
+    id: HoldArea
+    path: ''
+    startLine: 115
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nCoordinates for area where each player have it&apos;s held block, if such a block exists\n"
+  example: []
+  syntax:
+    content: public static List<Vector3> HoldArea
+    return:
+      type: System.Collections.Generic.List{Vector3}
+    content.vb: Public Shared HoldArea As List(Of Vector3)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.Tetrominos
+  commentId: F:Tetris.Blocks.Tetrominos
+  id: Tetrominos
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: Tetrominos
+  nameWithType: Blocks.Tetrominos
+  fullName: Tetris.Blocks.Tetrominos
+  type: Field
+  source:
+    id: Tetrominos
+    path: ''
+    startLine: 123
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList of all blocks\n"
+  remarks: "\nEach player has one of each type, locked blocks don&apos;t exist in this list\n"
+  example: []
+  syntax:
+    content: public static readonly List<Tetromino> Tetrominos
+    return:
+      type: System.Collections.Generic.List{Tetris.Tetromino}
+    content.vb: Public Shared ReadOnly Tetrominos As List(Of Tetromino)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Blocks.blockPrefab
+  commentId: F:Tetris.Blocks.blockPrefab
+  id: blockPrefab
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: blockPrefab
+  nameWithType: Blocks.blockPrefab
+  fullName: Tetris.Blocks.blockPrefab
+  type: Field
+  source:
+    id: blockPrefab
+    path: ''
+    startLine: 129
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets a Unity prefab for a cube with pre-applied material etc.\n"
+  example: []
+  syntax:
+    content: public GameObject blockPrefab
+    return:
+      type: GameObject
+    content.vb: Public blockPrefab As GameObject
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.randomType
+  commentId: F:Tetris.Blocks.randomType
+  id: randomType
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: randomType
+  nameWithType: Blocks.randomType
+  fullName: Tetris.Blocks.randomType
+  type: Field
+  source:
+    id: randomType
+    path: ''
+    startLine: 134
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nArray of block types used in <xref href=\"Tetris.Blocks.SpawnMino(System.Int32%2cSystem.String)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public string[] randomType
+    return:
+      type: System.String[]
+    content.vb: Public randomType As String()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.timeFall
+  commentId: F:Tetris.Blocks.timeFall
+  id: timeFall
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: timeFall
+  nameWithType: Blocks.timeFall
+  fullName: Tetris.Blocks.timeFall
+  type: Field
+  source:
+    id: timeFall
+    path: ''
+    startLine: 143
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nTimers for <xref href=\"Tetris.Blocks.Falling\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public List<float> timeFall
+    return:
+      type: System.Collections.Generic.List{System.Single}
+    content.vb: Public timeFall As List(Of Single)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.timeAutoRepeat
+  commentId: F:Tetris.Blocks.timeAutoRepeat
+  id: timeAutoRepeat
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: timeAutoRepeat
+  nameWithType: Blocks.timeAutoRepeat
+  fullName: Tetris.Blocks.timeAutoRepeat
+  type: Field
+  source:
+    id: timeAutoRepeat
+    path: ''
+    startLine: 149
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nAuto-repeat timers for <xref href=\"Tetris.Blocks.Controls\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public List<float> timeAutoRepeat
+    return:
+      type: System.Collections.Generic.List{System.Single}
+    content.vb: Public timeAutoRepeat As List(Of Single)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.timeToAutoRepeat
+  commentId: F:Tetris.Blocks.timeToAutoRepeat
+  id: timeToAutoRepeat
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: timeToAutoRepeat
+  nameWithType: Blocks.timeToAutoRepeat
+  fullName: Tetris.Blocks.timeToAutoRepeat
+  type: Field
+  source:
+    id: timeToAutoRepeat
+    path: ''
+    startLine: 154
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nTime for a block to move to side when auto-repeat is active\n"
+  example: []
+  syntax:
+    content: public float timeToAutoRepeat
+    return:
+      type: System.Single
+    content.vb: Public timeToAutoRepeat As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.timeToLock
+  commentId: F:Tetris.Blocks.timeToLock
+  id: timeToLock
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: timeToLock
+  nameWithType: Blocks.timeToLock
+  fullName: Tetris.Blocks.timeToLock
+  type: Field
+  source:
+    id: timeToLock
+    path: ''
+    startLine: 159
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nTime for a block to lock in place\n"
+  example: []
+  syntax:
+    content: public float timeToLock
+    return:
+      type: System.Single
+    content.vb: Public timeToLock As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.lockDeepestRow
+  commentId: F:Tetris.Blocks.lockDeepestRow
+  id: lockDeepestRow
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: lockDeepestRow
+  nameWithType: Blocks.lockDeepestRow
+  fullName: Tetris.Blocks.lockDeepestRow
+  type: Field
+  source:
+    id: lockDeepestRow
+    path: ''
+    startLine: 167
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nDeepest row reached by currently active block\n"
+  remarks: "\nThe <xref href=\"Tetris.Blocks.LockCounter\" data-throw-if-not-resolved=\"false\"></xref> resets if the block reaches a new deepest floor\n"
+  example: []
+  syntax:
+    content: public List<int> lockDeepestRow
+    return:
+      type: System.Collections.Generic.List{System.Int32}
+    content.vb: Public lockDeepestRow As List(Of Integer)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.timeBeginAutoRepeat
+  commentId: F:Tetris.Blocks.timeBeginAutoRepeat
+  id: timeBeginAutoRepeat
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: timeBeginAutoRepeat
+  nameWithType: Blocks.timeBeginAutoRepeat
+  fullName: Tetris.Blocks.timeBeginAutoRepeat
+  type: Field
+  source:
+    id: timeBeginAutoRepeat
+    path: ''
+    startLine: 173
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList for timeBeginAutoRepeat float\n"
+  example: []
+  syntax:
+    content: public List<float> timeBeginAutoRepeat
+    return:
+      type: System.Collections.Generic.List{System.Single}
+    content.vb: Public timeBeginAutoRepeat As List(Of Single)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.timeToBeginAutoRepeat
+  commentId: F:Tetris.Blocks.timeToBeginAutoRepeat
+  id: timeToBeginAutoRepeat
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: timeToBeginAutoRepeat
+  nameWithType: Blocks.timeToBeginAutoRepeat
+  fullName: Tetris.Blocks.timeToBeginAutoRepeat
+  type: Field
+  source:
+    id: timeToBeginAutoRepeat
+    path: ''
+    startLine: 178
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nTime for a block to begin auto-repeat after a direction key is held\n"
+  example: []
+  syntax:
+    content: public float timeToBeginAutoRepeat
+    return:
+      type: System.Single
+    content.vb: Public timeToBeginAutoRepeat As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.lastDir
+  commentId: F:Tetris.Blocks.lastDir
+  id: lastDir
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: lastDir
+  nameWithType: Blocks.lastDir
+  fullName: Tetris.Blocks.lastDir
+  type: Field
+  source:
+    id: lastDir
+    path: ''
+    startLine: 183
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList for LastDir Bool, describes direction for auto-repeat\n"
+  example: []
+  syntax:
+    content: public List<bool> lastDir
+    return:
+      type: System.Collections.Generic.List{System.Boolean}
+    content.vb: Public lastDir As List(Of Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.timeSoftDrop
+  commentId: F:Tetris.Blocks.timeSoftDrop
+  id: timeSoftDrop
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: timeSoftDrop
+  nameWithType: Blocks.timeSoftDrop
+  fullName: Tetris.Blocks.timeSoftDrop
+  type: Field
+  source:
+    id: timeSoftDrop
+    path: ''
+    startLine: 189
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nSoft drop timers for <xref href=\"Tetris.Blocks.Controls\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public List<float> timeSoftDrop
+    return:
+      type: System.Collections.Generic.List{System.Single}
+    content.vb: Public timeSoftDrop As List(Of Single)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.HoldUsed
+  commentId: F:Tetris.Blocks.HoldUsed
+  id: HoldUsed
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: HoldUsed
+  nameWithType: Blocks.HoldUsed
+  fullName: Tetris.Blocks.HoldUsed
+  type: Field
+  source:
+    id: HoldUsed
+    path: ''
+    startLine: 194
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList for holdUsed bool\n"
+  example: []
+  syntax:
+    content: public static List<bool> HoldUsed
+    return:
+      type: System.Collections.Generic.List{System.Boolean}
+    content.vb: Public Shared HoldUsed As List(Of Boolean)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.holdSpawn
+  commentId: F:Tetris.Blocks.holdSpawn
+  id: holdSpawn
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: holdSpawn
+  nameWithType: Blocks.holdSpawn
+  fullName: Tetris.Blocks.holdSpawn
+  type: Field
+  source:
+    id: holdSpawn
+    path: ''
+    startLine: 199
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nList for holdSpawn bool\n"
+  example: []
+  syntax:
+    content: public List<bool> holdSpawn
+    return:
+      type: System.Collections.Generic.List{System.Boolean}
+    content.vb: Public holdSpawn As List(Of Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.move
+  commentId: F:Tetris.Blocks.move
+  id: move
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: move
+  nameWithType: Blocks.move
+  fullName: Tetris.Blocks.move
+  type: Field
+  source:
+    id: move
+    path: ''
+    startLine: 205
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nUsed for <xref href=\"Tetris.Blocks.CanMove(System.Int32%2cSystem.String)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public bool move
+    return:
+      type: System.Boolean
+    content.vb: Public move As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.spawn
+  commentId: F:Tetris.Blocks.spawn
+  id: spawn
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: spawn
+  nameWithType: Blocks.spawn
+  fullName: Tetris.Blocks.spawn
+  type: Field
+  source:
+    id: spawn
+    path: ''
+    startLine: 210
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nUsed for <xref href=\"Tetris.Blocks.CanSpawn(System.Int32%2cSystem.String)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public bool spawn
+    return:
+      type: System.Boolean
+    content.vb: Public spawn As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.rIndex
+  commentId: F:Tetris.Blocks.rIndex
+  id: rIndex
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: rIndex
+  nameWithType: Blocks.rIndex
+  fullName: Tetris.Blocks.rIndex
+  type: Field
+  source:
+    id: rIndex
+    path: ''
+    startLine: 216
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nRandom integer for picking from <xref href=\"Tetris.Blocks.randomType\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public int rIndex
+    return:
+      type: System.Int32
+    content.vb: Public rIndex As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.otherMat
+  commentId: F:Tetris.Blocks.otherMat
+  id: otherMat
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: otherMat
+  nameWithType: Blocks.otherMat
+  fullName: Tetris.Blocks.otherMat
+  type: Field
+  source:
+    id: otherMat
+    path: ''
+    startLine: 220
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public Material otherMat
+    return:
+      type: Material
+    content.vb: Public otherMat As Material
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.InitializePlayer(System.Int32)
+  commentId: M:Tetris.Blocks.InitializePlayer(System.Int32)
+  id: InitializePlayer(System.Int32)
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: InitializePlayer(Int32)
+  nameWithType: Blocks.InitializePlayer(Int32)
+  fullName: Tetris.Blocks.InitializePlayer(System.Int32)
+  type: Method
+  source:
+    id: InitializePlayer
+    path: ''
+    startLine: 262
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nInitializes all variables needed for given player\n"
+  example: []
+  syntax:
+    content: public void InitializePlayer(int playerId)
+    parameters:
+    - id: playerId
+      type: System.Int32
+      description: Player id
+    content.vb: Public Sub InitializePlayer(playerId As Integer)
+  overload: Tetris.Blocks.InitializePlayer*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.RemovePlayer(System.Int32)
+  commentId: M:Tetris.Blocks.RemovePlayer(System.Int32)
+  id: RemovePlayer(System.Int32)
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: RemovePlayer(Int32)
+  nameWithType: Blocks.RemovePlayer(Int32)
+  fullName: Tetris.Blocks.RemovePlayer(System.Int32)
+  type: Method
+  source:
+    id: RemovePlayer
+    path: ''
+    startLine: 294
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nRemoves all variables needed for given player\n"
+  example: []
+  syntax:
+    content: public void RemovePlayer(int playerId)
+    parameters:
+    - id: playerId
+      type: System.Int32
+      description: Player id
+    content.vb: Public Sub RemovePlayer(playerId As Integer)
+  overload: Tetris.Blocks.RemovePlayer*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Blocks.OriginalColors(System.Int32)
+  commentId: M:Tetris.Blocks.OriginalColors(System.Int32)
+  id: OriginalColors(System.Int32)
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: OriginalColors(Int32)
+  nameWithType: Blocks.OriginalColors(Int32)
+  fullName: Tetris.Blocks.OriginalColors(System.Int32)
+  type: Method
+  source:
+    id: OriginalColors
+    path: ''
+    startLine: 526
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static void OriginalColors(int playerId)
+    parameters:
+    - id: playerId
+      type: System.Int32
+    content.vb: Public Shared Sub OriginalColors(playerId As Integer)
+  overload: Tetris.Blocks.OriginalColors*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Blocks.SpawnMino(System.Int32,System.String)
+  commentId: M:Tetris.Blocks.SpawnMino(System.Int32,System.String)
+  id: SpawnMino(System.Int32,System.String)
+  parent: Tetris.Blocks
+  langs:
+  - csharp
+  - vb
+  name: SpawnMino(Int32, String)
+  nameWithType: Blocks.SpawnMino(Int32, String)
+  fullName: Tetris.Blocks.SpawnMino(System.Int32, System.String)
+  type: Method
+  source:
+    id: SpawnMino
+    path: ''
+    startLine: 722
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nSpawns a block\n"
+  example: []
+  syntax:
+    content: protected void SpawnMino(int playerId, string type)
+    parameters:
+    - id: playerId
+      type: System.Int32
+      description: Player id
+    - id: type
+      type: System.String
+      description: Type of a block
+    content.vb: Protected Sub SpawnMino(playerId As Integer, type As String)
+  overload: Tetris.Blocks.SpawnMino*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+references:
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.List{System.Boolean}
+  commentId: T:System.Collections.Generic.List{System.Boolean}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Boolean>
+  nameWithType: List<Boolean>
+  fullName: System.Collections.Generic.List<System.Boolean>
+  nameWithType.vb: List(Of Boolean)
+  fullName.vb: System.Collections.Generic.List(Of System.Boolean)
+  name.vb: List(Of Boolean)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: Tetris.Blocks.SpawnMino(System.Int32,System.String)
+  commentId: M:Tetris.Blocks.SpawnMino(System.Int32,System.String)
+  isExternal: true
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: Tetris.Blocks.Controls
+  commentId: M:Tetris.Blocks.Controls
+  isExternal: true
+- uid: Tetris.Blocks.Falling
+  commentId: M:Tetris.Blocks.Falling
+  isExternal: true
+- uid: System.Collections.Generic.List{System.Single}
+  commentId: T:System.Collections.Generic.List{System.Single}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Single>
+  nameWithType: List<Single>
+  fullName: System.Collections.Generic.List<System.Single>
+  nameWithType.vb: List(Of Single)
+  fullName.vb: System.Collections.Generic.List(Of System.Single)
+  name.vb: List(Of Single)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Tetris.Blocks.TimeLock
+  commentId: F:Tetris.Blocks.TimeLock
+  isExternal: true
+- uid: System.Collections.Generic.List{System.Int32}
+  commentId: T:System.Collections.Generic.List{System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Int32>
+  nameWithType: List<Int32>
+  fullName: System.Collections.Generic.List<System.Int32>
+  nameWithType.vb: List(Of Int32)
+  fullName.vb: System.Collections.Generic.List(Of System.Int32)
+  name.vb: List(Of Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Tetris.Blocks.Preview(System.Int32)
+  commentId: M:Tetris.Blocks.Preview(System.Int32)
+  isExternal: true
+- uid: System.Collections.Generic.List{GameObject}
+  commentId: T:System.Collections.Generic.List{GameObject}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<GameObject>
+  nameWithType: List<GameObject>
+  fullName: System.Collections.Generic.List<GameObject>
+  nameWithType.vb: List(Of GameObject)
+  fullName.vb: System.Collections.Generic.List(Of GameObject)
+  name.vb: List(Of GameObject)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Vector3
+  commentId: '!:Vector3'
+  isExternal: true
+  name: Vector3
+  nameWithType: Vector3
+  fullName: Vector3
+- uid: System.Collections.Generic.List{Vector3}
+  commentId: T:System.Collections.Generic.List{Vector3}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Vector3>
+  nameWithType: List<Vector3>
+  fullName: System.Collections.Generic.List<Vector3>
+  nameWithType.vb: List(Of Vector3)
+  fullName.vb: System.Collections.Generic.List(Of Vector3)
+  name.vb: List(Of Vector3)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Vector3
+    name: Vector3
+    nameWithType: Vector3
+    fullName: Vector3
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Vector3
+    name: Vector3
+    nameWithType: Vector3
+    fullName: Vector3
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List{Tetris.Tetromino}
+  commentId: T:System.Collections.Generic.List{Tetris.Tetromino}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Tetromino>
+  nameWithType: List<Tetromino>
+  fullName: System.Collections.Generic.List<Tetris.Tetromino>
+  nameWithType.vb: List(Of Tetromino)
+  fullName.vb: System.Collections.Generic.List(Of Tetris.Tetromino)
+  name.vb: List(Of Tetromino)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Tetris.Tetromino
+    name: Tetromino
+    nameWithType: Tetromino
+    fullName: Tetris.Tetromino
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Tetris.Tetromino
+    name: Tetromino
+    nameWithType: Tetromino
+    fullName: Tetris.Tetromino
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GameObject
+  isExternal: true
+  name: GameObject
+  nameWithType: GameObject
+  fullName: GameObject
+- uid: Tetris.Blocks.LockCounter
+  commentId: F:Tetris.Blocks.LockCounter
+  isExternal: true
+- uid: Tetris.Blocks.CanMove(System.Int32,System.String)
+  commentId: M:Tetris.Blocks.CanMove(System.Int32,System.String)
+  isExternal: true
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Tetris.Blocks.CanSpawn(System.Int32,System.String)
+  commentId: M:Tetris.Blocks.CanSpawn(System.Int32,System.String)
+  isExternal: true
+- uid: Tetris.Blocks.randomType
+  commentId: F:Tetris.Blocks.randomType
+  isExternal: true
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Material
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: Material
+- uid: Tetris.Blocks.InitializePlayer*
+  commentId: Overload:Tetris.Blocks.InitializePlayer
+  name: InitializePlayer
+  nameWithType: Blocks.InitializePlayer
+  fullName: Tetris.Blocks.InitializePlayer
+- uid: Tetris.Blocks.RemovePlayer*
+  commentId: Overload:Tetris.Blocks.RemovePlayer
+  name: RemovePlayer
+  nameWithType: Blocks.RemovePlayer
+  fullName: Tetris.Blocks.RemovePlayer
+- uid: Tetris.Blocks.OriginalColors*
+  commentId: Overload:Tetris.Blocks.OriginalColors
+  name: OriginalColors
+  nameWithType: Blocks.OriginalColors
+  fullName: Tetris.Blocks.OriginalColors
+- uid: Tetris.Blocks.SpawnMino*
+  commentId: Overload:Tetris.Blocks.SpawnMino
+  name: SpawnMino
+  nameWithType: Blocks.SpawnMino
+  fullName: Tetris.Blocks.SpawnMino
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

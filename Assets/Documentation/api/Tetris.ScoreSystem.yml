@@ -1,0 +1,361 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris.ScoreSystem
+  commentId: T:Tetris.ScoreSystem
+  id: ScoreSystem
+  parent: Tetris
+  children:
+  - Tetris.ScoreSystem.CurrentAction
+  - Tetris.ScoreSystem.CurrentLevel
+  - Tetris.ScoreSystem.IsB2B
+  - Tetris.ScoreSystem.IsGameOverScoreSet
+  - Tetris.ScoreSystem.IsTSpinLastMove
+  - Tetris.ScoreSystem.LinesCleared
+  - Tetris.ScoreSystem.NewRecordText
+  - Tetris.ScoreSystem.Score
+  - Tetris.ScoreSystem.ScoreCounter
+  langs:
+  - csharp
+  - vb
+  name: ScoreSystem
+  nameWithType: ScoreSystem
+  fullName: Tetris.ScoreSystem
+  type: Class
+  source:
+    id: ScoreSystem
+    path: ''
+    startLine: 2319
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nScoring system\n"
+  example: []
+  syntax:
+    content: 'public class ScoreSystem : MonoBehaviour'
+    content.vb: >-
+      Public Class ScoreSystem
+          Inherits MonoBehaviour
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Tetris.ScoreSystem.CurrentLevel
+  commentId: F:Tetris.ScoreSystem.CurrentLevel
+  id: CurrentLevel
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: CurrentLevel
+  nameWithType: ScoreSystem.CurrentLevel
+  fullName: Tetris.ScoreSystem.CurrentLevel
+  type: Field
+  source:
+    id: CurrentLevel
+    path: ''
+    startLine: 2322
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static int CurrentLevel
+    return:
+      type: System.Int32
+    content.vb: Public Shared CurrentLevel As Integer
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.ScoreSystem.CurrentAction
+  commentId: F:Tetris.ScoreSystem.CurrentAction
+  id: CurrentAction
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: CurrentAction
+  nameWithType: ScoreSystem.CurrentAction
+  fullName: Tetris.ScoreSystem.CurrentAction
+  type: Field
+  source:
+    id: CurrentAction
+    path: ''
+    startLine: 2323
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static float CurrentAction
+    return:
+      type: System.Single
+    content.vb: Public Shared CurrentAction As Single
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.ScoreSystem.Score
+  commentId: F:Tetris.ScoreSystem.Score
+  id: Score
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: Score
+  nameWithType: ScoreSystem.Score
+  fullName: Tetris.ScoreSystem.Score
+  type: Field
+  source:
+    id: Score
+    path: ''
+    startLine: 2324
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static float Score
+    return:
+      type: System.Single
+    content.vb: Public Shared Score As Single
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.ScoreSystem.LinesCleared
+  commentId: F:Tetris.ScoreSystem.LinesCleared
+  id: LinesCleared
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: LinesCleared
+  nameWithType: ScoreSystem.LinesCleared
+  fullName: Tetris.ScoreSystem.LinesCleared
+  type: Field
+  source:
+    id: LinesCleared
+    path: ''
+    startLine: 2326
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static float LinesCleared
+    return:
+      type: System.Single
+    content.vb: Public Shared LinesCleared As Single
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.ScoreSystem.IsTSpinLastMove
+  commentId: F:Tetris.ScoreSystem.IsTSpinLastMove
+  id: IsTSpinLastMove
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: IsTSpinLastMove
+  nameWithType: ScoreSystem.IsTSpinLastMove
+  fullName: Tetris.ScoreSystem.IsTSpinLastMove
+  type: Field
+  source:
+    id: IsTSpinLastMove
+    path: ''
+    startLine: 2327
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static int IsTSpinLastMove
+    return:
+      type: System.Int32
+    content.vb: Public Shared IsTSpinLastMove As Integer
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.ScoreSystem.IsB2B
+  commentId: F:Tetris.ScoreSystem.IsB2B
+  id: IsB2B
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: IsB2B
+  nameWithType: ScoreSystem.IsB2B
+  fullName: Tetris.ScoreSystem.IsB2B
+  type: Field
+  source:
+    id: IsB2B
+    path: ''
+    startLine: 2328
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static bool IsB2B
+    return:
+      type: System.Boolean
+    content.vb: Public Shared IsB2B As Boolean
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.ScoreSystem.NewRecordText
+  commentId: F:Tetris.ScoreSystem.NewRecordText
+  id: NewRecordText
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: NewRecordText
+  nameWithType: ScoreSystem.NewRecordText
+  fullName: Tetris.ScoreSystem.NewRecordText
+  type: Field
+  source:
+    id: NewRecordText
+    path: ''
+    startLine: 2329
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static Text NewRecordText
+    return:
+      type: Text
+    content.vb: Public Shared NewRecordText As Text
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.ScoreSystem.IsGameOverScoreSet
+  commentId: F:Tetris.ScoreSystem.IsGameOverScoreSet
+  id: IsGameOverScoreSet
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: IsGameOverScoreSet
+  nameWithType: ScoreSystem.IsGameOverScoreSet
+  fullName: Tetris.ScoreSystem.IsGameOverScoreSet
+  type: Field
+  source:
+    id: IsGameOverScoreSet
+    path: ''
+    startLine: 2330
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static bool IsGameOverScoreSet
+    return:
+      type: System.Boolean
+    content.vb: Public Shared IsGameOverScoreSet As Boolean
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.ScoreSystem.ScoreCounter
+  commentId: M:Tetris.ScoreSystem.ScoreCounter
+  id: ScoreCounter
+  parent: Tetris.ScoreSystem
+  langs:
+  - csharp
+  - vb
+  name: ScoreCounter()
+  nameWithType: ScoreSystem.ScoreCounter()
+  fullName: Tetris.ScoreSystem.ScoreCounter()
+  type: Method
+  source:
+    id: ScoreCounter
+    path: ''
+    startLine: 2391
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nCalculates current level and sets the fall speed based on cleared lines\n"
+  remarks: "\nCalled at <xref href=\"Tetris.Blocks.SpawnMino(System.Int32%2cSystem.String)\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public static void ScoreCounter()
+    content.vb: Public Shared Sub ScoreCounter
+  overload: Tetris.ScoreSystem.ScoreCounter*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Text
+  isExternal: true
+  name: Text
+  nameWithType: Text
+  fullName: Text
+- uid: Tetris.Blocks.SpawnMino(System.Int32,System.String)
+  commentId: M:Tetris.Blocks.SpawnMino(System.Int32,System.String)
+  isExternal: true
+- uid: Tetris.ScoreSystem.ScoreCounter*
+  commentId: Overload:Tetris.ScoreSystem.ScoreCounter
+  name: ScoreCounter
+  nameWithType: ScoreSystem.ScoreCounter
+  fullName: Tetris.ScoreSystem.ScoreCounter

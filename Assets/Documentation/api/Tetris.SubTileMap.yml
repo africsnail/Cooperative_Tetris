@@ -1,0 +1,326 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris.SubTileMap
+  commentId: T:Tetris.SubTileMap
+  id: SubTileMap
+  parent: Tetris
+  children:
+  - Tetris.SubTileMap.CollisionMap
+  - Tetris.SubTileMap.Color
+  - Tetris.SubTileMap.GridCube
+  - Tetris.SubTileMap.IsActive
+  - Tetris.SubTileMap.IsClear
+  langs:
+  - csharp
+  - vb
+  name: SubTileMap
+  nameWithType: SubTileMap
+  fullName: Tetris.SubTileMap
+  type: Class
+  source:
+    id: SubTileMap
+    path: ''
+    startLine: 2470
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nClass used for playing field\n"
+  example: []
+  syntax:
+    content: public class SubTileMap
+    content.vb: Public Class SubTileMap
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Tetris.SubTileMap.IsActive
+  commentId: P:Tetris.SubTileMap.IsActive
+  id: IsActive
+  parent: Tetris.SubTileMap
+  langs:
+  - csharp
+  - vb
+  name: IsActive
+  nameWithType: SubTileMap.IsActive
+  fullName: Tetris.SubTileMap.IsActive
+  type: Property
+  source:
+    id: IsActive
+    path: ''
+    startLine: 2475
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets box&apos;s active status\n"
+  example: []
+  syntax:
+    content: public bool[, ] IsActive { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean[,]
+    content.vb: Public Property IsActive As Boolean(,)
+  overload: Tetris.SubTileMap.IsActive*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubTileMap.Color
+  commentId: P:Tetris.SubTileMap.Color
+  id: Color
+  parent: Tetris.SubTileMap
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: SubTileMap.Color
+  fullName: Tetris.SubTileMap.Color
+  type: Property
+  source:
+    id: Color
+    path: ''
+    startLine: 2479
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets box&apos;s color\n"
+  example: []
+  syntax:
+    content: public Color[, ] Color { get; set; }
+    parameters: []
+    return:
+      type: Color[,]
+    content.vb: Public Property Color As Color(,)
+  overload: Tetris.SubTileMap.Color*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubTileMap.IsClear
+  commentId: P:Tetris.SubTileMap.IsClear
+  id: IsClear
+  parent: Tetris.SubTileMap
+  langs:
+  - csharp
+  - vb
+  name: IsClear
+  nameWithType: SubTileMap.IsClear
+  fullName: Tetris.SubTileMap.IsClear
+  type: Property
+  source:
+    id: IsClear
+    path: ''
+    startLine: 2483
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets box&apos;s clear status, used for clearing rows\n"
+  example: []
+  syntax:
+    content: public bool[, ] IsClear { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean[,]
+    content.vb: Public Property IsClear As Boolean(,)
+  overload: Tetris.SubTileMap.IsClear*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubTileMap.CollisionMap
+  commentId: P:Tetris.SubTileMap.CollisionMap
+  id: CollisionMap
+  parent: Tetris.SubTileMap
+  langs:
+  - csharp
+  - vb
+  name: CollisionMap
+  nameWithType: SubTileMap.CollisionMap
+  fullName: Tetris.SubTileMap.CollisionMap
+  type: Property
+  source:
+    id: CollisionMap
+    path: ''
+    startLine: 2487
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets collision map, used for player to player collisions\n"
+  example: []
+  syntax:
+    content: public bool[, ] CollisionMap { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean[,]
+    content.vb: Public Property CollisionMap As Boolean(,)
+  overload: Tetris.SubTileMap.CollisionMap*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.SubTileMap.GridCube
+  commentId: P:Tetris.SubTileMap.GridCube
+  id: GridCube
+  parent: Tetris.SubTileMap
+  langs:
+  - csharp
+  - vb
+  name: GridCube
+  nameWithType: SubTileMap.GridCube
+  fullName: Tetris.SubTileMap.GridCube
+  type: Property
+  source:
+    id: GridCube
+    path: ''
+    startLine: 2491
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nGets play grid cubes\n"
+  example: []
+  syntax:
+    content: public GameObject[, ] GridCube { get; set; }
+    parameters: []
+    return:
+      type: GameObject[,]
+    content.vb: Public Property GridCube As GameObject(,)
+  overload: Tetris.SubTileMap.GridCube*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Tetris.SubTileMap.IsActive*
+  commentId: Overload:Tetris.SubTileMap.IsActive
+  name: IsActive
+  nameWithType: SubTileMap.IsActive
+  fullName: Tetris.SubTileMap.IsActive
+- uid: System.Boolean[,]
+  isExternal: true
+  name: Boolean[,]
+  nameWithType: Boolean[,]
+  fullName: System.Boolean[,]
+  nameWithType.vb: Boolean(,)
+  fullName.vb: System.Boolean(,)
+  name.vb: Boolean(,)
+  spec.csharp:
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: Tetris.SubTileMap.Color*
+  commentId: Overload:Tetris.SubTileMap.Color
+  name: Color
+  nameWithType: SubTileMap.Color
+  fullName: Tetris.SubTileMap.Color
+- uid: Color[,]
+  isExternal: true
+  name: Color[,]
+  nameWithType: Color[,]
+  fullName: Color[,]
+  nameWithType.vb: Color(,)
+  fullName.vb: Color(,)
+  name.vb: Color(,)
+  spec.csharp:
+  - uid: Color
+    name: Color
+    nameWithType: Color
+    fullName: Color
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: Color
+    name: Color
+    nameWithType: Color
+    fullName: Color
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: Tetris.SubTileMap.IsClear*
+  commentId: Overload:Tetris.SubTileMap.IsClear
+  name: IsClear
+  nameWithType: SubTileMap.IsClear
+  fullName: Tetris.SubTileMap.IsClear
+- uid: Tetris.SubTileMap.CollisionMap*
+  commentId: Overload:Tetris.SubTileMap.CollisionMap
+  name: CollisionMap
+  nameWithType: SubTileMap.CollisionMap
+  fullName: Tetris.SubTileMap.CollisionMap
+- uid: Tetris.SubTileMap.GridCube*
+  commentId: Overload:Tetris.SubTileMap.GridCube
+  name: GridCube
+  nameWithType: SubTileMap.GridCube
+  fullName: Tetris.SubTileMap.GridCube
+- uid: GameObject[,]
+  isExternal: true
+  name: GameObject[,]
+  nameWithType: GameObject[,]
+  fullName: GameObject[,]
+  nameWithType.vb: GameObject(,)
+  fullName.vb: GameObject(,)
+  name.vb: GameObject(,)
+  spec.csharp:
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)

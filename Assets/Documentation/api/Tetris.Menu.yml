@@ -1,0 +1,567 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris.Menu
+  commentId: T:Tetris.Menu
+  id: Menu
+  parent: Tetris
+  children:
+  - Tetris.Menu.Alert
+  - Tetris.Menu.AlertEnd
+  - Tetris.Menu.Alerts
+  - Tetris.Menu.AlertStart(System.String)
+  - Tetris.Menu.Animations
+  - Tetris.Menu.blockPrefab2
+  - Tetris.Menu.materialGame
+  - Tetris.Menu.materialMenu
+  - Tetris.Menu.Menus
+  - Tetris.Menu.NeedToAddPlayer
+  - Tetris.Menu.NeedToEndAlert
+  - Tetris.Menu.NeedToRemovePlayer
+  - Tetris.Menu.PlayerCount
+  langs:
+  - csharp
+  - vb
+  name: Menu
+  nameWithType: Menu
+  fullName: Tetris.Menu
+  type: Class
+  source:
+    id: Menu
+    path: ''
+    startLine: 1058
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nManages all menus and their behavior\n"
+  example: []
+  syntax:
+    content: 'public class Menu : MonoBehaviour'
+    content.vb: >-
+      Public Class Menu
+          Inherits MonoBehaviour
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Tetris.Menu.materialMenu
+  commentId: F:Tetris.Menu.materialMenu
+  id: materialMenu
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: materialMenu
+  nameWithType: Menu.materialMenu
+  fullName: Tetris.Menu.materialMenu
+  type: Field
+  source:
+    id: materialMenu
+    path: ''
+    startLine: 1062
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public Material materialMenu
+    return:
+      type: Material
+    content.vb: Public materialMenu As Material
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Menu.materialGame
+  commentId: F:Tetris.Menu.materialGame
+  id: materialGame
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: materialGame
+  nameWithType: Menu.materialGame
+  fullName: Tetris.Menu.materialGame
+  type: Field
+  source:
+    id: materialGame
+    path: ''
+    startLine: 1063
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public Material materialGame
+    return:
+      type: Material
+    content.vb: Public materialGame As Material
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Menu.blockPrefab2
+  commentId: F:Tetris.Menu.blockPrefab2
+  id: blockPrefab2
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: blockPrefab2
+  nameWithType: Menu.blockPrefab2
+  fullName: Tetris.Menu.blockPrefab2
+  type: Field
+  source:
+    id: blockPrefab2
+    path: ''
+    startLine: 1064
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public GameObject blockPrefab2
+    return:
+      type: GameObject
+    content.vb: Public blockPrefab2 As GameObject
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Menu.Alert
+  commentId: F:Tetris.Menu.Alert
+  id: Alert
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: Alert
+  nameWithType: Menu.Alert
+  fullName: Tetris.Menu.Alert
+  type: Field
+  source:
+    id: Alert
+    path: ''
+    startLine: 1078
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static Text Alert
+    return:
+      type: Text
+    content.vb: Public Shared Alert As Text
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Menu.Animations
+  commentId: F:Tetris.Menu.Animations
+  id: Animations
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: Animations
+  nameWithType: Menu.Animations
+  fullName: Tetris.Menu.Animations
+  type: Field
+  source:
+    id: Animations
+    path: ''
+    startLine: 1084
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static int Animations
+    return:
+      type: System.Int32
+    content.vb: Public Shared Animations As Integer
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Menu.Alerts
+  commentId: F:Tetris.Menu.Alerts
+  id: Alerts
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: Alerts
+  nameWithType: Menu.Alerts
+  fullName: Tetris.Menu.Alerts
+  type: Field
+  source:
+    id: Alerts
+    path: ''
+    startLine: 1088
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static int Alerts
+    return:
+      type: System.Int32
+    content.vb: Public Shared Alerts As Integer
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Menu.Menus
+  commentId: P:Tetris.Menu.Menus
+  id: Menus
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: Menus
+  nameWithType: Menu.Menus
+  fullName: Tetris.Menu.Menus
+  type: Property
+  source:
+    id: Menus
+    path: ''
+    startLine: 1092
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static SubMenu[] Menus { get; }
+    parameters: []
+    return:
+      type: Tetris.SubMenu[]
+    content.vb: Public Shared ReadOnly Property Menus As SubMenu()
+  overload: Tetris.Menu.Menus*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Menu.PlayerCount
+  commentId: P:Tetris.Menu.PlayerCount
+  id: PlayerCount
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: PlayerCount
+  nameWithType: Menu.PlayerCount
+  fullName: Tetris.Menu.PlayerCount
+  type: Property
+  source:
+    id: PlayerCount
+    path: ''
+    startLine: 1096
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public int PlayerCount { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property PlayerCount As Integer
+  overload: Tetris.Menu.PlayerCount*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Tetris.Menu.NeedToAddPlayer
+  commentId: P:Tetris.Menu.NeedToAddPlayer
+  id: NeedToAddPlayer
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: NeedToAddPlayer
+  nameWithType: Menu.NeedToAddPlayer
+  fullName: Tetris.Menu.NeedToAddPlayer
+  type: Property
+  source:
+    id: NeedToAddPlayer
+    path: ''
+    startLine: 1097
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static bool NeedToAddPlayer { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property NeedToAddPlayer As Boolean
+  overload: Tetris.Menu.NeedToAddPlayer*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Menu.NeedToRemovePlayer
+  commentId: P:Tetris.Menu.NeedToRemovePlayer
+  id: NeedToRemovePlayer
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: NeedToRemovePlayer
+  nameWithType: Menu.NeedToRemovePlayer
+  fullName: Tetris.Menu.NeedToRemovePlayer
+  type: Property
+  source:
+    id: NeedToRemovePlayer
+    path: ''
+    startLine: 1098
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static bool NeedToRemovePlayer { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property NeedToRemovePlayer As Boolean
+  overload: Tetris.Menu.NeedToRemovePlayer*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Menu.NeedToEndAlert
+  commentId: P:Tetris.Menu.NeedToEndAlert
+  id: NeedToEndAlert
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: NeedToEndAlert
+  nameWithType: Menu.NeedToEndAlert
+  fullName: Tetris.Menu.NeedToEndAlert
+  type: Property
+  source:
+    id: NeedToEndAlert
+    path: ''
+    startLine: 1099
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static bool NeedToEndAlert { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Property NeedToEndAlert As Boolean
+  overload: Tetris.Menu.NeedToEndAlert*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Menu.AlertStart(System.String)
+  commentId: M:Tetris.Menu.AlertStart(System.String)
+  id: AlertStart(System.String)
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: AlertStart(String)
+  nameWithType: Menu.AlertStart(String)
+  fullName: Tetris.Menu.AlertStart(System.String)
+  type: Method
+  source:
+    id: AlertStart
+    path: ''
+    startLine: 1753
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nStarts alerts\n"
+  example: []
+  syntax:
+    content: public static void AlertStart(string text)
+    parameters:
+    - id: text
+      type: System.String
+      description: alert text
+    content.vb: Public Shared Sub AlertStart(text As String)
+  overload: Tetris.Menu.AlertStart*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Menu.AlertEnd
+  commentId: M:Tetris.Menu.AlertEnd
+  id: AlertEnd
+  parent: Tetris.Menu
+  langs:
+  - csharp
+  - vb
+  name: AlertEnd()
+  nameWithType: Menu.AlertEnd()
+  fullName: Tetris.Menu.AlertEnd()
+  type: Method
+  source:
+    id: AlertEnd
+    path: ''
+    startLine: 1762
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nEnds alerts\n"
+  example: []
+  syntax:
+    content: public static IEnumerator AlertEnd()
+    return:
+      type: System.Collections.Generic.IEnumerator
+      description: ''
+    content.vb: Public Shared Function AlertEnd As IEnumerator
+  overload: Tetris.Menu.AlertEnd*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Material
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: Material
+- uid: GameObject
+  isExternal: true
+  name: GameObject
+  nameWithType: GameObject
+  fullName: GameObject
+- uid: Text
+  isExternal: true
+  name: Text
+  nameWithType: Text
+  fullName: Text
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Tetris.Menu.Menus*
+  commentId: Overload:Tetris.Menu.Menus
+  name: Menus
+  nameWithType: Menu.Menus
+  fullName: Tetris.Menu.Menus
+- uid: Tetris.SubMenu[]
+  isExternal: true
+  name: SubMenu[]
+  nameWithType: SubMenu[]
+  fullName: Tetris.SubMenu[]
+  nameWithType.vb: SubMenu()
+  fullName.vb: Tetris.SubMenu()
+  name.vb: SubMenu()
+  spec.csharp:
+  - uid: Tetris.SubMenu
+    name: SubMenu
+    nameWithType: SubMenu
+    fullName: Tetris.SubMenu
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Tetris.SubMenu
+    name: SubMenu
+    nameWithType: SubMenu
+    fullName: Tetris.SubMenu
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Tetris.Menu.PlayerCount*
+  commentId: Overload:Tetris.Menu.PlayerCount
+  name: PlayerCount
+  nameWithType: Menu.PlayerCount
+  fullName: Tetris.Menu.PlayerCount
+- uid: Tetris.Menu.NeedToAddPlayer*
+  commentId: Overload:Tetris.Menu.NeedToAddPlayer
+  name: NeedToAddPlayer
+  nameWithType: Menu.NeedToAddPlayer
+  fullName: Tetris.Menu.NeedToAddPlayer
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Tetris.Menu.NeedToRemovePlayer*
+  commentId: Overload:Tetris.Menu.NeedToRemovePlayer
+  name: NeedToRemovePlayer
+  nameWithType: Menu.NeedToRemovePlayer
+  fullName: Tetris.Menu.NeedToRemovePlayer
+- uid: Tetris.Menu.NeedToEndAlert*
+  commentId: Overload:Tetris.Menu.NeedToEndAlert
+  name: NeedToEndAlert
+  nameWithType: Menu.NeedToEndAlert
+  fullName: Tetris.Menu.NeedToEndAlert
+- uid: Tetris.Menu.AlertStart*
+  commentId: Overload:Tetris.Menu.AlertStart
+  name: AlertStart
+  nameWithType: Menu.AlertStart
+  fullName: Tetris.Menu.AlertStart
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Tetris.Menu.AlertEnd*
+  commentId: Overload:Tetris.Menu.AlertEnd
+  name: AlertEnd
+  nameWithType: Menu.AlertEnd
+  fullName: Tetris.Menu.AlertEnd
+- uid: System.Collections.Generic.IEnumerator
+  commentId: '!:System.Collections.Generic.IEnumerator'
+  isExternal: true
+  name: IEnumerator
+  nameWithType: IEnumerator
+  fullName: System.Collections.Generic.IEnumerator

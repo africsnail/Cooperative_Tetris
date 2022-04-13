@@ -1,0 +1,629 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris.Rotation
+  commentId: T:Tetris.Rotation
+  id: Rotation
+  parent: Tetris
+  children:
+  - Tetris.Rotation.CanRotate(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - Tetris.Rotation.FutureRotationAc
+  - Tetris.Rotation.FutureRotationC
+  - Tetris.Rotation.KeybindRotateAc
+  - Tetris.Rotation.KeybindRotateC
+  - Tetris.Rotation.RGridCache
+  - Tetris.Rotation.Rotate(System.Int32,System.String,System.Int32,System.Int32)
+  - Tetris.Rotation.RotateAttempt(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String)
+  - Tetris.Rotation.RotationOffsetX
+  - Tetris.Rotation.RotationOffsetY
+  langs:
+  - csharp
+  - vb
+  name: Rotation
+  nameWithType: Rotation
+  fullName: Tetris.Rotation
+  type: Class
+  source:
+    id: Rotation
+    path: ''
+    startLine: 1785
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nManages rotation of blocks\n"
+  example: []
+  syntax:
+    content: 'public class Rotation : MonoBehaviour'
+    content.vb: >-
+      Public Class Rotation
+          Inherits MonoBehaviour
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Tetris.Rotation.RotationOffsetX
+  commentId: F:Tetris.Rotation.RotationOffsetX
+  id: RotationOffsetX
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: RotationOffsetX
+  nameWithType: Rotation.RotationOffsetX
+  fullName: Tetris.Rotation.RotationOffsetX
+  type: Field
+  source:
+    id: RotationOffsetX
+    path: ''
+    startLine: 1787
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static float RotationOffsetX
+    return:
+      type: System.Single
+    content.vb: Public Shared RotationOffsetX As Single
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Rotation.RotationOffsetY
+  commentId: F:Tetris.Rotation.RotationOffsetY
+  id: RotationOffsetY
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: RotationOffsetY
+  nameWithType: Rotation.RotationOffsetY
+  fullName: Tetris.Rotation.RotationOffsetY
+  type: Field
+  source:
+    id: RotationOffsetY
+    path: ''
+    startLine: 1788
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static float RotationOffsetY
+    return:
+      type: System.Single
+    content.vb: Public Shared RotationOffsetY As Single
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Rotation.KeybindRotateC
+  commentId: F:Tetris.Rotation.KeybindRotateC
+  id: KeybindRotateC
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: KeybindRotateC
+  nameWithType: Rotation.KeybindRotateC
+  fullName: Tetris.Rotation.KeybindRotateC
+  type: Field
+  source:
+    id: KeybindRotateC
+    path: ''
+    startLine: 1790
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static readonly List<string> KeybindRotateC
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Shared ReadOnly KeybindRotateC As List(Of String)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Rotation.KeybindRotateAc
+  commentId: F:Tetris.Rotation.KeybindRotateAc
+  id: KeybindRotateAc
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: KeybindRotateAc
+  nameWithType: Rotation.KeybindRotateAc
+  fullName: Tetris.Rotation.KeybindRotateAc
+  type: Field
+  source:
+    id: KeybindRotateAc
+    path: ''
+    startLine: 1791
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static readonly List<string> KeybindRotateAc
+    return:
+      type: System.Collections.Generic.List{System.String}
+    content.vb: Public Shared ReadOnly KeybindRotateAc As List(Of String)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Rotation.FutureRotationC
+  commentId: F:Tetris.Rotation.FutureRotationC
+  id: FutureRotationC
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: FutureRotationC
+  nameWithType: Rotation.FutureRotationC
+  fullName: Tetris.Rotation.FutureRotationC
+  type: Field
+  source:
+    id: FutureRotationC
+    path: ''
+    startLine: 1794
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static readonly List<int> FutureRotationC
+    return:
+      type: System.Collections.Generic.List{System.Int32}
+    content.vb: Public Shared ReadOnly FutureRotationC As List(Of Integer)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Rotation.FutureRotationAc
+  commentId: F:Tetris.Rotation.FutureRotationAc
+  id: FutureRotationAc
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: FutureRotationAc
+  nameWithType: Rotation.FutureRotationAc
+  fullName: Tetris.Rotation.FutureRotationAc
+  type: Field
+  source:
+    id: FutureRotationAc
+    path: ''
+    startLine: 1795
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static readonly List<int> FutureRotationAc
+    return:
+      type: System.Collections.Generic.List{System.Int32}
+    content.vb: Public Shared ReadOnly FutureRotationAc As List(Of Integer)
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Tetris.Rotation.RGridCache
+  commentId: P:Tetris.Rotation.RGridCache
+  id: RGridCache
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: RGridCache
+  nameWithType: Rotation.RGridCache
+  fullName: Tetris.Rotation.RGridCache
+  type: Property
+  source:
+    id: RGridCache
+    path: ''
+    startLine: 1797
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static int[, ] RGridCache { get; set; }
+    parameters: []
+    return:
+      type: System.Int32[,]
+    content.vb: Public Shared Property RGridCache As Integer(,)
+  overload: Tetris.Rotation.RGridCache*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Rotation.RotateAttempt(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String)
+  commentId: M:Tetris.Rotation.RotateAttempt(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String)
+  id: RotateAttempt(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.String)
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: RotateAttempt(Int32, Int32, Int32, Int32, Int32, String)
+  nameWithType: Rotation.RotateAttempt(Int32, Int32, Int32, Int32, Int32, String)
+  fullName: Tetris.Rotation.RotateAttempt(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.String)
+  type: Method
+  source:
+    id: RotateAttempt
+    path: ''
+    startLine: 1849
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nAttempts a rotation, returns true if successful \n"
+  example: []
+  syntax:
+    content: public bool RotateAttempt(int playerId, int fromState, int intoState, int xOffset, int yOffset, string direction)
+    parameters:
+    - id: playerId
+      type: System.Int32
+      description: player id
+    - id: fromState
+      type: System.Int32
+      description: from rotation state
+    - id: intoState
+      type: System.Int32
+      description: into rotation state
+    - id: xOffset
+      type: System.Int32
+      description: x axis move
+    - id: yOffset
+      type: System.Int32
+      description: y axis move
+    - id: direction
+      type: System.String
+      description: direction
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public Function RotateAttempt(playerId As Integer, fromState As Integer, intoState As Integer, xOffset As Integer, yOffset As Integer, direction As String) As Boolean
+  overload: Tetris.Rotation.RotateAttempt*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.Rotation.CanRotate(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Tetris.Rotation.CanRotate(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: CanRotate(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: CanRotate(Int32, Int32, Int32, Int32, Int32)
+  nameWithType: Rotation.CanRotate(Int32, Int32, Int32, Int32, Int32)
+  fullName: Tetris.Rotation.CanRotate(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    id: CanRotate
+    path: ''
+    startLine: 1872
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nReturns if a block is able to rotate, checks for wall and player collisions\n"
+  example: []
+  syntax:
+    content: public static bool CanRotate(int playerId, int fromState, int intoState, int xOffset, int yOffset)
+    parameters:
+    - id: playerId
+      type: System.Int32
+      description: player id
+    - id: fromState
+      type: System.Int32
+      description: from rotation state
+    - id: intoState
+      type: System.Int32
+      description: into rotation state
+    - id: xOffset
+      type: System.Int32
+      description: x axis move
+    - id: yOffset
+      type: System.Int32
+      description: y axis move
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public Shared Function CanRotate(playerId As Integer, fromState As Integer, intoState As Integer, xOffset As Integer, yOffset As Integer) As Boolean
+  overload: Tetris.Rotation.CanRotate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.Rotation.Rotate(System.Int32,System.String,System.Int32,System.Int32)
+  commentId: M:Tetris.Rotation.Rotate(System.Int32,System.String,System.Int32,System.Int32)
+  id: Rotate(System.Int32,System.String,System.Int32,System.Int32)
+  parent: Tetris.Rotation
+  langs:
+  - csharp
+  - vb
+  name: Rotate(Int32, String, Int32, Int32)
+  nameWithType: Rotation.Rotate(Int32, String, Int32, Int32)
+  fullName: Tetris.Rotation.Rotate(System.Int32, System.String, System.Int32, System.Int32)
+  type: Method
+  source:
+    id: Rotate
+    path: ''
+    startLine: 2173
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nRotates the block\n"
+  example: []
+  syntax:
+    content: public static void Rotate(int playerId, string direction, int xMove, int yMove)
+    parameters:
+    - id: playerId
+      type: System.Int32
+      description: player id
+    - id: direction
+      type: System.String
+      description: direction of rotation
+    - id: xMove
+      type: System.Int32
+      description: x axis move
+    - id: yMove
+      type: System.Int32
+      description: y axis move
+    content.vb: Public Shared Sub Rotate(playerId As Integer, direction As String, xMove As Integer, yMove As Integer)
+  overload: Tetris.Rotation.Rotate*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Collections.Generic.List{System.String}
+  commentId: T:System.Collections.Generic.List{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<String>
+  nameWithType: List<String>
+  fullName: System.Collections.Generic.List<System.String>
+  nameWithType.vb: List(Of String)
+  fullName.vb: System.Collections.Generic.List(Of System.String)
+  name.vb: List(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections.Generic.List{System.Int32}
+  commentId: T:System.Collections.Generic.List{System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Int32>
+  nameWithType: List<Int32>
+  fullName: System.Collections.Generic.List<System.Int32>
+  nameWithType.vb: List(Of Int32)
+  fullName.vb: System.Collections.Generic.List(Of System.Int32)
+  name.vb: List(Of Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Tetris.Rotation.RGridCache*
+  commentId: Overload:Tetris.Rotation.RGridCache
+  name: RGridCache
+  nameWithType: Rotation.RGridCache
+  fullName: Tetris.Rotation.RGridCache
+- uid: System.Int32[,]
+  isExternal: true
+  name: Int32[,]
+  nameWithType: Int32[,]
+  fullName: System.Int32[,]
+  nameWithType.vb: Int32(,)
+  fullName.vb: System.Int32(,)
+  name.vb: Int32(,)
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: Tetris.Rotation.RotateAttempt*
+  commentId: Overload:Tetris.Rotation.RotateAttempt
+  name: RotateAttempt
+  nameWithType: Rotation.RotateAttempt
+  fullName: Tetris.Rotation.RotateAttempt
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Tetris.Rotation.CanRotate*
+  commentId: Overload:Tetris.Rotation.CanRotate
+  name: CanRotate
+  nameWithType: Rotation.CanRotate
+  fullName: Tetris.Rotation.CanRotate
+- uid: Tetris.Rotation.Rotate*
+  commentId: Overload:Tetris.Rotation.Rotate
+  name: Rotate
+  nameWithType: Rotation.Rotate
+  fullName: Tetris.Rotation.Rotate

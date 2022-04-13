@@ -1,0 +1,20 @@
+### YamlMime:TableOfContent
+- uid: Tetris
+  name: Tetris
+  items:
+  - uid: Tetris.Blocks
+    name: Blocks
+  - uid: Tetris.Menu
+    name: Menu
+  - uid: Tetris.Rotation
+    name: Rotation
+  - uid: Tetris.ScoreSystem
+    name: ScoreSystem
+  - uid: Tetris.SubMenu
+    name: SubMenu
+  - uid: Tetris.SubTileMap
+    name: SubTileMap
+  - uid: Tetris.Tetromino
+    name: Tetromino
+  - uid: Tetris.TileMap
+    name: TileMap

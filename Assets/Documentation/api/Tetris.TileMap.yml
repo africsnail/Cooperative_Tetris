@@ -1,0 +1,765 @@
+### YamlMime:ManagedReference
+items:
+- uid: Tetris.TileMap
+  commentId: T:Tetris.TileMap
+  id: TileMap
+  parent: Tetris
+  children:
+  - Tetris.TileMap.blockPrefab
+  - Tetris.TileMap.blockWithTexture
+  - Tetris.TileMap.ClearCollisionMap
+  - Tetris.TileMap.ClearGridCubes
+  - Tetris.TileMap.GameOver(System.Boolean)
+  - Tetris.TileMap.GameOverCube
+  - Tetris.TileMap.GridHeight
+  - Tetris.TileMap.GridWidth
+  - Tetris.TileMap.InitializeGrid
+  - Tetris.TileMap.IsClear
+  - Tetris.TileMap.IsGameOver
+  - Tetris.TileMap.LineToAnimate
+  - Tetris.TileMap.MovementTileMap
+  - Tetris.TileMap.PlayGrid
+  - Tetris.TileMap.timeGameOver
+  - Tetris.TileMap.timeToGameOver
+  langs:
+  - csharp
+  - vb
+  name: TileMap
+  nameWithType: TileMap
+  fullName: Tetris.TileMap
+  type: Class
+  source:
+    id: TileMap
+    path: ''
+    startLine: 2567
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: 'public class TileMap : MonoBehaviour'
+    content.vb: >-
+      Public Class TileMap
+          Inherits MonoBehaviour
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Tetris.TileMap.GridHeight
+  commentId: F:Tetris.TileMap.GridHeight
+  id: GridHeight
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: GridHeight
+  nameWithType: TileMap.GridHeight
+  fullName: Tetris.TileMap.GridHeight
+  type: Field
+  source:
+    id: GridHeight
+    path: ''
+    startLine: 2571
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static int GridHeight
+    return:
+      type: System.Int32
+    content.vb: Public Shared GridHeight As Integer
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.GridWidth
+  commentId: F:Tetris.TileMap.GridWidth
+  id: GridWidth
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: GridWidth
+  nameWithType: TileMap.GridWidth
+  fullName: Tetris.TileMap.GridWidth
+  type: Field
+  source:
+    id: GridWidth
+    path: ''
+    startLine: 2572
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static int GridWidth
+    return:
+      type: System.Int32
+    content.vb: Public Shared GridWidth As Integer
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.IsGameOver
+  commentId: F:Tetris.TileMap.IsGameOver
+  id: IsGameOver
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: IsGameOver
+  nameWithType: TileMap.IsGameOver
+  fullName: Tetris.TileMap.IsGameOver
+  type: Field
+  source:
+    id: IsGameOver
+    path: ''
+    startLine: 2574
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static bool IsGameOver
+    return:
+      type: System.Boolean
+    content.vb: Public Shared IsGameOver As Boolean
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.IsClear
+  commentId: F:Tetris.TileMap.IsClear
+  id: IsClear
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: IsClear
+  nameWithType: TileMap.IsClear
+  fullName: Tetris.TileMap.IsClear
+  type: Field
+  source:
+    id: IsClear
+    path: ''
+    startLine: 2576
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static List<int> IsClear
+    return:
+      type: System.Collections.Generic.List{System.Int32}
+    content.vb: Public Shared IsClear As List(Of Integer)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.blockPrefab
+  commentId: F:Tetris.TileMap.blockPrefab
+  id: blockPrefab
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: blockPrefab
+  nameWithType: TileMap.blockPrefab
+  fullName: Tetris.TileMap.blockPrefab
+  type: Field
+  source:
+    id: blockPrefab
+    path: ''
+    startLine: 2577
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public GameObject blockPrefab
+    return:
+      type: GameObject
+    content.vb: Public blockPrefab As GameObject
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.TileMap.timeGameOver
+  commentId: F:Tetris.TileMap.timeGameOver
+  id: timeGameOver
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: timeGameOver
+  nameWithType: TileMap.timeGameOver
+  fullName: Tetris.TileMap.timeGameOver
+  type: Field
+  source:
+    id: timeGameOver
+    path: ''
+    startLine: 2580
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public float timeGameOver
+    return:
+      type: System.Single
+    content.vb: Public timeGameOver As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.TileMap.timeToGameOver
+  commentId: F:Tetris.TileMap.timeToGameOver
+  id: timeToGameOver
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: timeToGameOver
+  nameWithType: TileMap.timeToGameOver
+  fullName: Tetris.TileMap.timeToGameOver
+  type: Field
+  source:
+    id: timeToGameOver
+    path: ''
+    startLine: 2581
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public float timeToGameOver
+    return:
+      type: System.Single
+    content.vb: Public timeToGameOver As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.TileMap.blockWithTexture
+  commentId: F:Tetris.TileMap.blockWithTexture
+  id: blockWithTexture
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: blockWithTexture
+  nameWithType: TileMap.blockWithTexture
+  fullName: Tetris.TileMap.blockWithTexture
+  type: Field
+  source:
+    id: blockWithTexture
+    path: ''
+    startLine: 2583
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public Material blockWithTexture
+    return:
+      type: Material
+    content.vb: Public blockWithTexture As Material
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.TileMap.LineToAnimate
+  commentId: P:Tetris.TileMap.LineToAnimate
+  id: LineToAnimate
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: LineToAnimate
+  nameWithType: TileMap.LineToAnimate
+  fullName: Tetris.TileMap.LineToAnimate
+  type: Property
+  source:
+    id: LineToAnimate
+    path: ''
+    startLine: 2585
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static GameObject[, ] LineToAnimate { get; set; }
+    parameters: []
+    return:
+      type: GameObject[,]
+    content.vb: Public Shared Property LineToAnimate As GameObject(,)
+  overload: Tetris.TileMap.LineToAnimate*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.GameOverCube
+  commentId: P:Tetris.TileMap.GameOverCube
+  id: GameOverCube
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: GameOverCube
+  nameWithType: TileMap.GameOverCube
+  fullName: Tetris.TileMap.GameOverCube
+  type: Property
+  source:
+    id: GameOverCube
+    path: ''
+    startLine: 2586
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static GameObject[, ] GameOverCube { get; set; }
+    parameters: []
+    return:
+      type: GameObject[,]
+    content.vb: Public Shared Property GameOverCube As GameObject(,)
+  overload: Tetris.TileMap.GameOverCube*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.PlayGrid
+  commentId: P:Tetris.TileMap.PlayGrid
+  id: PlayGrid
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: PlayGrid
+  nameWithType: TileMap.PlayGrid
+  fullName: Tetris.TileMap.PlayGrid
+  type: Property
+  source:
+    id: PlayGrid
+    path: ''
+    startLine: 2588
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static int[, ] PlayGrid { get; set; }
+    parameters: []
+    return:
+      type: System.Int32[,]
+    content.vb: Public Shared Property PlayGrid As Integer(,)
+  overload: Tetris.TileMap.PlayGrid*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.MovementTileMap
+  commentId: P:Tetris.TileMap.MovementTileMap
+  id: MovementTileMap
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: MovementTileMap
+  nameWithType: TileMap.MovementTileMap
+  fullName: Tetris.TileMap.MovementTileMap
+  type: Property
+  source:
+    id: MovementTileMap
+    path: ''
+    startLine: 2590
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  syntax:
+    content: public static SubTileMap MovementTileMap { get; set; }
+    parameters: []
+    return:
+      type: Tetris.SubTileMap
+    content.vb: Public Shared Property MovementTileMap As SubTileMap
+  overload: Tetris.TileMap.MovementTileMap*
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.InitializeGrid
+  commentId: M:Tetris.TileMap.InitializeGrid
+  id: InitializeGrid
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: InitializeGrid()
+  nameWithType: TileMap.InitializeGrid()
+  fullName: Tetris.TileMap.InitializeGrid()
+  type: Method
+  source:
+    id: InitializeGrid
+    path: ''
+    startLine: 2609
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nInitializes the play grid\n"
+  example: []
+  syntax:
+    content: public void InitializeGrid()
+    content.vb: Public Sub InitializeGrid
+  overload: Tetris.TileMap.InitializeGrid*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Tetris.TileMap.ClearCollisionMap
+  commentId: M:Tetris.TileMap.ClearCollisionMap
+  id: ClearCollisionMap
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: ClearCollisionMap()
+  nameWithType: TileMap.ClearCollisionMap()
+  fullName: Tetris.TileMap.ClearCollisionMap()
+  type: Method
+  source:
+    id: ClearCollisionMap
+    path: ''
+    startLine: 2649
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nClears the collision map, which is used for detecting player to player collisions\n"
+  example: []
+  syntax:
+    content: public static void ClearCollisionMap()
+    content.vb: Public Shared Sub ClearCollisionMap
+  overload: Tetris.TileMap.ClearCollisionMap*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.GameOver(System.Boolean)
+  commentId: M:Tetris.TileMap.GameOver(System.Boolean)
+  id: GameOver(System.Boolean)
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: GameOver(Boolean)
+  nameWithType: TileMap.GameOver(Boolean)
+  fullName: Tetris.TileMap.GameOver(System.Boolean)
+  type: Method
+  source:
+    id: GameOver
+    path: ''
+    startLine: 2659
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nStarts the game over animation, resets the play grid\n"
+  example: []
+  syntax:
+    content: public static void GameOver(bool isReal)
+    parameters:
+    - id: isReal
+      type: System.Boolean
+      description: ''
+    content.vb: Public Shared Sub GameOver(isReal As Boolean)
+  overload: Tetris.TileMap.GameOver*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Tetris.TileMap.ClearGridCubes
+  commentId: M:Tetris.TileMap.ClearGridCubes
+  id: ClearGridCubes
+  parent: Tetris.TileMap
+  langs:
+  - csharp
+  - vb
+  name: ClearGridCubes()
+  nameWithType: TileMap.ClearGridCubes()
+  fullName: Tetris.TileMap.ClearGridCubes()
+  type: Method
+  source:
+    id: ClearGridCubes
+    path: ''
+    startLine: 2719
+  assemblies:
+  - cs.temp.dll
+  namespace: Tetris
+  summary: "\nClears the GameObject grid cubes\n"
+  example: []
+  syntax:
+    content: public static void ClearGridCubes()
+    content.vb: Public Shared Sub ClearGridCubes
+  overload: Tetris.TileMap.ClearGridCubes*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Tetris
+  commentId: N:Tetris
+  name: Tetris
+  nameWithType: Tetris
+  fullName: Tetris
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Collections.Generic.List{System.Int32}
+  commentId: T:System.Collections.Generic.List{System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Int32>
+  nameWithType: List<Int32>
+  fullName: System.Collections.Generic.List<System.Int32>
+  nameWithType.vb: List(Of Int32)
+  fullName.vb: System.Collections.Generic.List(Of System.Int32)
+  name.vb: List(Of Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: GameObject
+  isExternal: true
+  name: GameObject
+  nameWithType: GameObject
+  fullName: GameObject
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: Material
+  isExternal: true
+  name: Material
+  nameWithType: Material
+  fullName: Material
+- uid: Tetris.TileMap.LineToAnimate*
+  commentId: Overload:Tetris.TileMap.LineToAnimate
+  name: LineToAnimate
+  nameWithType: TileMap.LineToAnimate
+  fullName: Tetris.TileMap.LineToAnimate
+- uid: GameObject[,]
+  isExternal: true
+  name: GameObject[,]
+  nameWithType: GameObject[,]
+  fullName: GameObject[,]
+  nameWithType.vb: GameObject(,)
+  fullName.vb: GameObject(,)
+  name.vb: GameObject(,)
+  spec.csharp:
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: GameObject
+    name: GameObject
+    nameWithType: GameObject
+    fullName: GameObject
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: Tetris.TileMap.GameOverCube*
+  commentId: Overload:Tetris.TileMap.GameOverCube
+  name: GameOverCube
+  nameWithType: TileMap.GameOverCube
+  fullName: Tetris.TileMap.GameOverCube
+- uid: Tetris.TileMap.PlayGrid*
+  commentId: Overload:Tetris.TileMap.PlayGrid
+  name: PlayGrid
+  nameWithType: TileMap.PlayGrid
+  fullName: Tetris.TileMap.PlayGrid
+- uid: System.Int32[,]
+  isExternal: true
+  name: Int32[,]
+  nameWithType: Int32[,]
+  fullName: System.Int32[,]
+  nameWithType.vb: Int32(,)
+  fullName.vb: System.Int32(,)
+  name.vb: Int32(,)
+  spec.csharp:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '[,]'
+    nameWithType: '[,]'
+    fullName: '[,]'
+  spec.vb:
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: (,)
+    nameWithType: (,)
+    fullName: (,)
+- uid: Tetris.TileMap.MovementTileMap*
+  commentId: Overload:Tetris.TileMap.MovementTileMap
+  name: MovementTileMap
+  nameWithType: TileMap.MovementTileMap
+  fullName: Tetris.TileMap.MovementTileMap
+- uid: Tetris.SubTileMap
+  commentId: T:Tetris.SubTileMap
+  parent: Tetris
+  name: SubTileMap
+  nameWithType: SubTileMap
+  fullName: Tetris.SubTileMap
+- uid: Tetris.TileMap.InitializeGrid*
+  commentId: Overload:Tetris.TileMap.InitializeGrid
+  name: InitializeGrid
+  nameWithType: TileMap.InitializeGrid
+  fullName: Tetris.TileMap.InitializeGrid
+- uid: Tetris.TileMap.ClearCollisionMap*
+  commentId: Overload:Tetris.TileMap.ClearCollisionMap
+  name: ClearCollisionMap
+  nameWithType: TileMap.ClearCollisionMap
+  fullName: Tetris.TileMap.ClearCollisionMap
+- uid: Tetris.TileMap.GameOver*
+  commentId: Overload:Tetris.TileMap.GameOver
+  name: GameOver
+  nameWithType: TileMap.GameOver
+  fullName: Tetris.TileMap.GameOver
+- uid: Tetris.TileMap.ClearGridCubes*
+  commentId: Overload:Tetris.TileMap.ClearGridCubes
+  name: ClearGridCubes
+  nameWithType: TileMap.ClearGridCubes
+  fullName: Tetris.TileMap.ClearGridCubes
