@@ -41,7 +41,8 @@ ios
 ios.app
 
 # Meta
-*.meta
+*meta
+!/Assets/**.meta
 
 # Builds
 *.apk
