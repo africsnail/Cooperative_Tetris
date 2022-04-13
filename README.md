@@ -12,3 +12,4 @@ Složky nutné pro importování projektu do Unity
 3. Stáhněte si celý projekt z GitHubu
 4. Klikněte na tlačítko `open`
 5. Zvolte staženou složku
+6. Po načetní projektu otevřete v Unity složku `./Scenes` a rozklikněte soubor `Tetris.unity`
