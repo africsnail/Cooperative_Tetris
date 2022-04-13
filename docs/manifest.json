@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Tetris.Menu.html",
-          "hash": "yJDCIvecHD4f3NsS/kpdABMRxmAtztafA1xh7zyru5g="
+          "hash": "iFBmyUf1Qw8rmkmZQzLTSnOy/Ykal5slc0zwFXAM+oU="
         }
       },
       "is_incremental": false,
@@ -380,7 +380,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "HT0vxFMVkq8NCsx5eUx3e0Yd5NeZzEksEj2Yp1Y8fBI="
+          "hash": "oM1fgVfRapl8CoHjMLlOXKuKfq1foqOTNWWVdhJq/wk="
         }
       },
       "is_incremental": false,
@@ -392,7 +392,7 @@
       "output": {
         ".html": {
           "relative_path": "manual/tetris.html",
-          "hash": "MzhHNsttQ14e7WNsc2XQoHGShWXPhC5CO6EIqjXgOOc="
+          "hash": "owhSBAY3bGm4nA2+xCHXpnD6+Yf2EvitjjO1aJ7i9SA="
         }
       },
       "is_incremental": false,

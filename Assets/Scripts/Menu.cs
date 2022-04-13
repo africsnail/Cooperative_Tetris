@@ -28,6 +28,9 @@ namespace Tetris
         private AudioSource _musicMusic;
         private int _volume;
         private Text _volumePercentage;
+        
+        // Alerts
+        public static Text Alert;
 
         // In-game settings
         private Slider _volumeSlider;
@@ -35,6 +38,10 @@ namespace Tetris
         // Animation toggle
         public static int Animations = 1;
         private Text _animationToggle;
+        
+        // Alert toggle
+        public static int Alerts = 1;
+        private Text _alertToggle;
 
         // Menus
         public static SubMenu[] Menus { get; private set; }
@@ -44,6 +51,7 @@ namespace Tetris
         public int PlayerCount { get; set; }
         public static bool NeedToAddPlayer { get; set; }
         public static bool NeedToRemovePlayer { get; set; }
+        public static bool NeedToEndAlert { get; set; }
 
         private static GameObject Border { get; set; }
 
@@ -64,6 +72,12 @@ namespace Tetris
         private void Update()
         {
             MenuControls();
+            if (Alerts == 1)
+                if (NeedToEndAlert)
+                {
+                    StartCoroutine(AlertEnd());
+                    NeedToEndAlert = false;
+                }
         }
 
         /// <summary>
@@ -81,7 +95,7 @@ namespace Tetris
                     _backgroundMaterial.material = materialMenu;
                     _musicMusic.Pause();
                     if (Animations == 1)
-                        StartCoroutine(MenuOpenAnimation(GridWidth - 1, GridHeight));
+                        MenuOpenAnimation(GridWidth - 1, GridHeight);
                     GetRenderer(GridWidth - 1, GridHeight);
                 }
                 else
@@ -220,6 +234,27 @@ namespace Tetris
                     {
                         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                         {
+                            if (Alerts == 1)
+                            {
+                                Alerts = 0;
+                                _alertToggle.text = "OFF";
+                                _alertToggle.color = Color.red;
+                            }
+                            else
+                            {
+                                Alerts = 1;
+                                _alertToggle.text = "ON";
+                                _alertToggle.color = Color.green;
+                                
+                            }
+
+                            PlayerPrefs.SetInt("alerts", Alerts);
+                        }
+                    }
+                    else if (Menus[2].SelectedIndex == 4)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+                        {
                             Menus[0].IsPaused = true;
                             Menus[2].IsPaused = false;
                             Menus[0].CanvasCanvas.enabled = true;
@@ -293,6 +328,7 @@ namespace Tetris
                 _volumePercentage = Menus[2].MenuItem[1].transform.GetChild(0).GetComponent<Text>();
                 _volumeSlider = Menus[2].MenuItem[1].transform.GetChild(1).GetComponent<Slider>();
                 _animationToggle = Menus[2].MenuItem[2].transform.GetChild(0).GetComponent<Text>();
+                _alertToggle = Menus[2].MenuItem[3].transform.GetChild(0).GetComponent<Text>();
                 _volume = PlayerPrefs.GetInt("volume");
                 _volumeSlider.value = PlayerPrefs.GetInt("volume") / 100f;
                 _volumePercentage.text = PlayerPrefs.GetInt("volume") + "%";
@@ -309,6 +345,21 @@ namespace Tetris
                     _animationToggle.text = "OFF";
                     _animationToggle.color = Color.red;
                 }
+                // Read alert preferences and set the needed variables
+                Alerts = PlayerPrefs.GetInt("alerts");
+                if (Alerts == 1)
+                {
+                    _alertToggle.text = "ON";
+                    _alertToggle.color = Color.green;
+                }
+                else
+                {
+                    _alertToggle.text = "OFF";
+                    _alertToggle.color = Color.red;
+                }
+
+                Alert = GameObject.Find("Alert").GetComponent<Text>();
+                Alert.text = "";
             }
         }
         /// <summary>
@@ -605,7 +656,6 @@ namespace Tetris
                 while (GameOverCube[x, y].transform.position[1] > -3) yield return null;
                 
                 Destroy(GameOverCube[x, y]);
-                Debug.Log("Cleanup x y:" + x + ", " + y);
             }
         }
         /// <summary>
@@ -614,7 +664,7 @@ namespace Tetris
         /// <param name="w">grid width</param>
         /// <param name="h">grid height</param>
         /// <returns></returns>
-        private IEnumerator MenuOpenAnimation(int w, int h)
+        private void MenuOpenAnimation(int w, int h)
         {
             Debug.Log("Initializing animation cubes with x: " + w + ", y: " + h);
             _animationCube = new GameObject[w, h];
@@ -649,14 +699,31 @@ namespace Tetris
                         animationRigidbody2.AddTorque(0, 0, 0.5f, ForceMode.Impulse);
                     }
             }
+        }
 
+        /// <summary>
+        /// Starts alerts
+        /// </summary>
+        /// <param name="text">alert text</param>
+        public static void AlertStart(string text)
+        {
+            Alert.text = text;
+            NeedToEndAlert = true;
+        }
+        /// <summary>
+        /// Ends alerts
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerator AlertEnd()
+        {
             var time = new float();
-            var duration = 5f;
+            var duration = 0.5f;
             while (time < duration)
             {
                 time += Time.deltaTime;
                 yield return null;
             }
+            Alert.text = "";
         }
     }
 }

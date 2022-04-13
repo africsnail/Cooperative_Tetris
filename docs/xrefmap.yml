@@ -296,6 +296,44 @@ references:
   commentId: T:Tetris.Menu
   fullName: Tetris.Menu
   nameWithType: Menu
+- uid: Tetris.Menu.Alert
+  name: Alert
+  href: api/Tetris.Menu.html#Tetris_Menu_Alert
+  commentId: F:Tetris.Menu.Alert
+  fullName: Tetris.Menu.Alert
+  nameWithType: Menu.Alert
+- uid: Tetris.Menu.AlertEnd
+  name: AlertEnd()
+  href: api/Tetris.Menu.html#Tetris_Menu_AlertEnd
+  commentId: M:Tetris.Menu.AlertEnd
+  fullName: Tetris.Menu.AlertEnd()
+  nameWithType: Menu.AlertEnd()
+- uid: Tetris.Menu.AlertEnd*
+  name: AlertEnd
+  href: api/Tetris.Menu.html#Tetris_Menu_AlertEnd_
+  commentId: Overload:Tetris.Menu.AlertEnd
+  isSpec: "True"
+  fullName: Tetris.Menu.AlertEnd
+  nameWithType: Menu.AlertEnd
+- uid: Tetris.Menu.Alerts
+  name: Alerts
+  href: api/Tetris.Menu.html#Tetris_Menu_Alerts
+  commentId: F:Tetris.Menu.Alerts
+  fullName: Tetris.Menu.Alerts
+  nameWithType: Menu.Alerts
+- uid: Tetris.Menu.AlertStart(System.String)
+  name: AlertStart(String)
+  href: api/Tetris.Menu.html#Tetris_Menu_AlertStart_System_String_
+  commentId: M:Tetris.Menu.AlertStart(System.String)
+  fullName: Tetris.Menu.AlertStart(System.String)
+  nameWithType: Menu.AlertStart(String)
+- uid: Tetris.Menu.AlertStart*
+  name: AlertStart
+  href: api/Tetris.Menu.html#Tetris_Menu_AlertStart_
+  commentId: Overload:Tetris.Menu.AlertStart
+  isSpec: "True"
+  fullName: Tetris.Menu.AlertStart
+  nameWithType: Menu.AlertStart
 - uid: Tetris.Menu.Animations
   name: Animations
   href: api/Tetris.Menu.html#Tetris_Menu_Animations
@@ -346,6 +384,19 @@ references:
   isSpec: "True"
   fullName: Tetris.Menu.NeedToAddPlayer
   nameWithType: Menu.NeedToAddPlayer
+- uid: Tetris.Menu.NeedToEndAlert
+  name: NeedToEndAlert
+  href: api/Tetris.Menu.html#Tetris_Menu_NeedToEndAlert
+  commentId: P:Tetris.Menu.NeedToEndAlert
+  fullName: Tetris.Menu.NeedToEndAlert
+  nameWithType: Menu.NeedToEndAlert
+- uid: Tetris.Menu.NeedToEndAlert*
+  name: NeedToEndAlert
+  href: api/Tetris.Menu.html#Tetris_Menu_NeedToEndAlert_
+  commentId: Overload:Tetris.Menu.NeedToEndAlert
+  isSpec: "True"
+  fullName: Tetris.Menu.NeedToEndAlert
+  nameWithType: Menu.NeedToEndAlert
 - uid: Tetris.Menu.NeedToRemovePlayer
   name: NeedToRemovePlayer
   href: api/Tetris.Menu.html#Tetris_Menu_NeedToRemovePlayer

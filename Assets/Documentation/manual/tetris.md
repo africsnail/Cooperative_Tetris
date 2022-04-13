@@ -13,6 +13,11 @@ Nejdůležitějším originálním prvkem této implementace hry je kooperativn�
 další hráče, kteří následně spolupracují a snaží se dosáhnout společného skóre.
 
 ## <a id = "2"> </a>2. Instalace a spuštění
+1. Přejděte na [GitHub releases](https://github.com/africsnail/Cooperative_Tetris/releases) projektu.
+2. Stáhněte si nejnovější `.zip` soubor pro svůj operační systém.
+3. Rozbalte soubor do nové složky.
+4. Otevřete složku s rozbalenými soubory.
+5. Spusťte spustitelný soubor. (`.exe` pro Windows, `.x86_64` pro Linux)
 
 ## <a id = "3"> </a>3. Pravidla
 
@@ -74,6 +79,8 @@ další hráče, kteří následně spolupracují a snaží se dosáhnout spole�
   - _Ovládání pomocí pravé a levé šipky_
 - **Animations**: Přepíná stav animací.
   - _OFF = vypnuté animace, ON = zapnuté animace_
+- **Scoring alerts**: Přepíná stav upozornění bodovaných úkonů.
+  - _OFF = vypnuté upozornění, ON = zapnuté upozornění_
 - **Back**: Vrátí Vás do menu pozastavené hry.
 
 
@@ -139,13 +146,13 @@ Následující tabulka vysvětluje bodování hry:
 ## <a id = "8"> </a>8. Zdroje
 
 ### 8.1 Použité knihovny
-- **Unity** https://unity.com/
 - **C#** https://dotnet.microsoft.com/en-us/languages/csharp
+- **Unity** https://unity.com/
 - **DocFX** https://dotnet.github.io/docfx/
 
 ### 8.2 Dokumentace
-- **Unity** https://docs.unity.com/
 - **C#** https://docs.microsoft.com/en-us/dotnet/csharp/
+- **Unity** https://docs.unity.com/
 - **DocFX** https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html
 
 ### 8.3 Ostatní

@@ -32,7 +32,7 @@ namespace Tetris
             new[] {0, 0, -1, 2, 2},
 
             new[] {0, 1, 1, 0, 1},
-            new[] {0, -1, -1, 0, -1},
+            new[] {0, 0, 1, -2, -2},
 
             new[] {0, -1, -1, 0, -1},
             new[] {0, 0, -1, 2, 2}
@@ -48,7 +48,7 @@ namespace Tetris
             new[] {0, 0, 0, 2, -1},
 
             new[] {0, 2, -1, 2, -1},
-            new[] {0, 0, 0, 1, 2},
+            new[] {0, 0, 0, 1, -2},
 
             new[] {0, 1, -2, 1, -2},
             new[] {0, 0, 0, -2, 1}
@@ -75,6 +75,8 @@ namespace Tetris
         public bool RotateAttempt(int playerId, int fromState, int intoState, int xOffset, int yOffset,
             string direction)
         {
+            Debug.Log("Attempting rotation: " + playerId + " " + direction + " moving by x: " + xOffset + ", y:" +
+                      yOffset + " (from state " + fromState + " to " + intoState + ")");
             if (CanRotate(playerId, fromState, intoState, xOffset, yOffset))
             {
                 Rotate(playerId, direction, xOffset, yOffset);
@@ -169,7 +171,7 @@ namespace Tetris
                             }
                             else
                             {
-                                Debug.Log("Cannot rotate due to outside-bound collision");
+                                Debug.Log("Cannot rotate due to outside-bound collision" + (locationX) + ", " + (locationY));
                                 canRotate = false;
                                 TileMap.ClearCollisionMap();
                             }
@@ -347,14 +349,15 @@ namespace Tetris
                                     // Rotate anticlockwise for non I tetrominos
                                     for (var x = 0; x < 4; x++)
                                     {
-                                        if (block.RotationState == _rotationStates[x][0] &&
-                                            FutureRotationC[playerId] == _rotationStates[x][1])
+                                        if (block.RotationState == _rotationStates[x][1] &&
+                                            FutureRotationAc[playerId] == _rotationStates[x][0])
                                         {
                                             for (var c = 0; c < 5; c++)
                                             {
+                                                Debug.Log("c = " + c + ", x = " + x);
                                                 if (RotateAttempt(playerId, block.RotationState,
-                                                        FutureRotationAc[playerId], -_rotationSystem[x * 2][c],
-                                                        -_rotationSystem[x * 2 + 1][c], "Ac"))
+                                                        FutureRotationAc[playerId], -1 * _rotationSystem[x * 2][c],
+                                                         -1 * _rotationSystem[x * 2 + 1][c], "Ac"))
                                                     break;
                                             }
 
@@ -367,14 +370,14 @@ namespace Tetris
                                     // Rotate anticlockwise for I tetrominos
                                     for (var x = 0; x < 4; x++)
                                     {
-                                        if (block.RotationState == _rotationStates[x][0] &&
-                                            FutureRotationC[playerId] == _rotationStates[x][1])
+                                        if (block.RotationState == _rotationStates[x][1] &&
+                                            FutureRotationAc[playerId] == _rotationStates[x][0])
                                         {
                                             for (var c = 0; c < 5; c++)
                                             {
                                                 if (RotateAttempt(playerId, block.RotationState,
-                                                        FutureRotationAc[playerId], -_rotationSystemI[x * 2][c],
-                                                        -_rotationSystemI[x * 2 + 1][c], "Ac"))
+                                                        FutureRotationAc[playerId], -1 * _rotationSystemI[x * 2][c],
+                                                        -1 * _rotationSystemI[x * 2 + 1][c], "Ac"))
                                                     break;
                                             }
 
@@ -450,7 +453,8 @@ namespace Tetris
                             if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
                                     block.RotationState) == 2)
                             {
-                                Debug.Log("Mini T-Spin");
+                                if (Menu.Alerts == 1)
+                                    Menu.AlertStart("Mini T-Spin");
                                 ScoreSystem.IsTSpinLastMove = 2;
                                 ScoreSystem.CurrentAction += 1;
                                 ScoreSystem.Score += 100 * ScoreSystem.CurrentLevel;
@@ -458,7 +462,8 @@ namespace Tetris
                             else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
                                          block.RotationState) == 1)
                             {
-                                Debug.Log("T-Spin");
+                                if (Menu.Alerts == 1)
+                                    Menu.AlertStart("T-Spin");
                                 ScoreSystem.IsTSpinLastMove = 1;
                                 ScoreSystem.CurrentAction += 4;
                                 ScoreSystem.Score += 400 * ScoreSystem.CurrentLevel;
@@ -497,7 +502,8 @@ namespace Tetris
                             if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
                                     block.RotationState) == 2)
                             {
-                                Debug.Log("Mini T-Spin");
+                                if (Menu.Alerts == 1)
+                                    Menu.AlertStart("Mini T-Spin");
                                 ScoreSystem.IsTSpinLastMove = 2;
                                 ScoreSystem.CurrentAction += 1;
                                 ScoreSystem.Score += 100 * ScoreSystem.CurrentLevel;
@@ -505,7 +511,8 @@ namespace Tetris
                             else if (IsTSpin(new[] {(int) block.Location[0], (int) block.Location[1]},
                                          block.RotationState) == 1)
                             {
-                                Debug.Log("T-Spin");
+                                if (Menu.Alerts == 1)
+                                    Menu.AlertStart("T-Spin");
                                 ScoreSystem.IsTSpinLastMove = 1;
                                 ScoreSystem.CurrentAction += 4;
                                 ScoreSystem.Score += 400 * ScoreSystem.CurrentLevel;
