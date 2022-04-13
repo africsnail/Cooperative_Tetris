@@ -9,7 +9,7 @@ Složky nutné pro importování projektu do Unity
 # Návod k importování do Unity
 1. Naistalujte si Unity Hub
 2. Nainstalujte si v něm _Unity Editor 2020.3.33f1_
-3. Stáhněte si celý projekt z GitHubu
+3. Naklonujte si projekt z GitHubu
 4. Klikněte na tlačítko `open`
 5. Zvolte staženou složku
 6. Po načetní projektu otevřete v Unity složku `./Scenes` a rozklikněte soubor `Tetris.unity`
