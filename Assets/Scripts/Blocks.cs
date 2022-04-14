@@ -214,7 +214,7 @@ namespace Tetris
         /// <summary>
         ///     Random integer for picking from <see cref="randomType" />
         /// </summary>
-        public int rIndex;
+        public List<int> rIndex = new List<int>();
 
         //Multiplayer
 
@@ -281,6 +281,7 @@ namespace Tetris
             holdSpawn.Add(new bool());
             PreviewBlock.Add(new GameObject());
             HoldBlock.Add(new GameObject());
+            rIndex.Add(new int());
             // Rotation variables
             Rotation.FutureRotationAc.Add(new int());
             Rotation.FutureRotationC.Add(new int());
@@ -313,6 +314,7 @@ namespace Tetris
             holdSpawn.RemoveAt(playerId);
             PreviewBlock.RemoveAt(playerId);
             HoldBlock.RemoveAt(playerId);
+            rIndex.RemoveAt(playerId);
             // Rotation variables
             Rotation.FutureRotationAc.RemoveAt(playerId);
             Rotation.FutureRotationC.RemoveAt(playerId);
@@ -329,7 +331,7 @@ namespace Tetris
             // Definition of Tetromino types
             IsFalling[playerId] = true;
             ActiveSpawn[playerId] = true;
-            rIndex = rnd.Next(randomType.Length);
+            rIndex[playerId] = rnd.Next(randomType.Length);
             Tetrominos.Add(new Tetromino
             {
                 RGrid = new[,]
@@ -692,7 +694,7 @@ namespace Tetris
         {
             spawn = true;
             if (type == "random")
-                type = randomType[rIndex];
+                type = randomType[rIndex[playerId]];
             foreach (var block in Tetrominos.Where(block => block.Type == type && block.Id == playerId))
             {
                 for (var x = 0; x < block.Size; x++)
@@ -709,7 +711,7 @@ namespace Tetris
         private void Preview(int playerId)
         {
             PreviewBlock[playerId] =
-                Instantiate(Tetrominos.Find(mino => mino.Type == randomType[rIndex] && mino.Id == playerId)
+                Instantiate(Tetrominos.Find(mino => mino.Type == randomType[rIndex[playerId]] && mino.Id == playerId)
                     .TetrominoGo);
             PreviewBlock[playerId].name = "Preview block " + playerId;
             PreviewBlock[playerId].transform.position = PreviewArea[playerId];
@@ -732,13 +734,13 @@ namespace Tetris
                         ScoreSystem.ScoreCounter();
                         if (type == "random")
                         {
-                            Tetrominos.Find(mino => mino.Type == randomType[rIndex] && mino.Id == playerId).IsActive =
+                            Tetrominos.Find(mino => mino.Type == randomType[rIndex[playerId]] && mino.Id == playerId).IsActive =
                                 true;
                             Tetrominos.Find(mino => mino.IsActive && mino.Id == playerId).TetrominoGo.transform
                                     .position =
                                 StartArea[playerId];
                             foreach (var block in Tetrominos.Where(block =>
-                                         block.Type == randomType[rIndex] && block.Id == playerId))
+                                         block.Type == randomType[rIndex[playerId]] && block.Id == playerId))
                                 block.IsActive = true;
                         }
                         else
@@ -766,7 +768,7 @@ namespace Tetris
 
                         if (holdSpawn[playerId] == false)
                         {
-                            rIndex = rnd.Next(randomType.Length);
+                            rIndex[playerId] = rnd.Next(randomType.Length);
                         }
 
                         DestroyImmediate(PreviewBlock[playerId]);
